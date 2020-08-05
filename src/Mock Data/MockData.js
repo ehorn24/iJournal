@@ -1,4 +1,4 @@
-const MockData = [
+export const MockData = [
   {
     journal_title: "High School",
     date_created: "8/8/2010",
@@ -30,5 +30,3 @@ const MockData = [
     ],
   },
 ];
-
-module.export = MockData;
