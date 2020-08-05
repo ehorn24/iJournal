@@ -8,7 +8,7 @@ const Home = () => {
       <header>
         <h1 className="home-header">iJournal</h1>
       </header>
-      <main>
+      <main className="home-main">
         <section className="sidebar">
           <h4>Sidebar Goes Here</h4>
         </section>

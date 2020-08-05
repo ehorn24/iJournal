@@ -1,0 +1,42 @@
+.home-header {
+  text-align: center;
+}
+
+.home-main {
+  .sidebar {
+    border: 1px solid black;
+    width: 30%;
+    height: 600px;
+    float: left;
+  }
+  .my-journals {
+    float: left;
+    border: 1px solid black;
+    border-left: none;
+    width: 69%;
+    height: 600px;
+    h4 {
+      font-size: 28px;
+      margin: 20px;
+      text-align: center;
+    }
+    .journals-flex {
+      display: flex;
+      justify-content: space-evenly;
+      a {
+        font-size: 24px;
+        border: 1px solid black;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        padding: 10px;
+        margin: 15px;
+        text-decoration: none;
+        color: black;
+        &:hover {
+          background-color: lightblue;
+        }
+      }
+    }
+  }
+}
