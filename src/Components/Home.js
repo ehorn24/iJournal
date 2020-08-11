@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { MockData } from "../Mock Data/MockData";
+import { MockEntries } from "../Mock Data/MockEntries";
 import TagsInput from "./TagsInput";
 
 const Home = ({ addTags, removeTags, tags }) => {
+  let years = new Set();
+  MockEntries.forEach((ent) => years.add(ent.entry_year));
+  years = [...years];
   return (
     <>
       <header>
@@ -38,6 +42,17 @@ const Home = ({ addTags, removeTags, tags }) => {
             <option value="10">October</option>
             <option value="11">November</option>
             <option value="12">December</option>
+          </select>
+          <label htmlFor="">Year:</label>
+          <select name="year" id="year">
+            <option value=""></option>
+            {years.map((y, i) => {
+              return (
+                <option key={i} value={y}>
+                  {y}
+                </option>
+              );
+            })}
           </select>
           <label htmlFor="filterby-tags">Tags:</label>
           <TagsInput addTags={addTags} removeTags={removeTags} tags={tags} />
