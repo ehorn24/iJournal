@@ -2,13 +2,13 @@ import React from "react";
 
 const TagsInput = ({ addTags, removeTags, tags }) => {
   return (
-    <div>
-      <ul>
+    <div className="tags-input">
+      <ul id="tags">
         {tags.map((tag, index) => (
-          <li key={index}>
-            <span>{tag}</span>
-            <i className="material-icons" onClick={() => removeTags(index)}>
-              close
+          <li key={index} id="tag">
+            <span className="tag-title">{tag}</span>
+            <i className="tag-close-icon" onClick={() => removeTags(index)}>
+              X
             </i>
           </li>
         ))}
