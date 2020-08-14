@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //Components
 import Landing from "./Components/Landing";
 import Home from "./Components/Home";
+import Sidebar from "./Components/Sidebar";
+import Header from "./Components/Header";
 
 export default class App extends Component {
   state = {
@@ -37,12 +39,16 @@ export default class App extends Component {
             exact
             path="/home"
             render={(props) => (
-              <Home
-                {...props}
-                addTags={this.addTags}
-                removeTags={this.removeTags}
-                tags={this.state.tags}
-              />
+              <>
+                <Header />
+                <Sidebar
+                  page="Home"
+                  addTags={this.addTags}
+                  removeTags={this.removeTags}
+                  tags={this.state.tags}
+                />
+                <Home {...props} />
+              </>
             )}
           />
         </Switch>
