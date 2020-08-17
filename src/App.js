@@ -3,19 +3,29 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //Components
 import Landing from "./Components/Landing";
-import Home from "./Components/Home";
 import Sidebar from "./Components/Sidebar";
 import Header from "./Components/Header";
+import MainDisplay from "./Components/MainDisplay";
 
 export default class App extends Component {
   state = {
+    journal: "",
+    month: "",
+    year: "",
     tags: [],
+  };
+
+  //Sidebar Search
+  handleFormChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   //Tags Input Functions
   addTags = (e) => {
     if (e.key === "Enter" && e.target.value !== "") {
-      this.setState({ tags: [...this.state.tags, e.target.value] });
+      this.setState({
+        tags: [...this.state.tags, e.target.value],
+      });
       e.target.value = "";
     }
   };
@@ -27,6 +37,17 @@ export default class App extends Component {
           (tag) => this.state.tags.indexOf(tag) !== index
         ),
       ],
+    });
+  };
+
+  //Clear Filters
+  clearFilters = () => {
+    this.setState({
+      journal: "",
+      month: "",
+      year: "",
+      tags: [],
+      search: false,
     });
   };
 
@@ -46,8 +67,17 @@ export default class App extends Component {
                   addTags={this.addTags}
                   removeTags={this.removeTags}
                   tags={this.state.tags}
+                  handleFormChange={this.handleFormChange}
+                  handleFormSubmit={this.handleFormSubmit}
+                  clearFilters={this.clearFilters}
                 />
-                <Home {...props} />
+                <MainDisplay
+                  {...props}
+                  journal={this.state.journal}
+                  month={this.state.month}
+                  year={this.state.year}
+                  tags={this.state.tags}
+                />
               </>
             )}
           />
