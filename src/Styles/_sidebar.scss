@@ -25,15 +25,18 @@
         font-weight: bold;
       }
     }
-    .sidebar-search {
-      background-color: white;
-      border: 1px solid black;
-      padding: 5px;
-      font-size: 14px;
-      display: block;
-      margin: 20px auto;
-      &:hover {
-        background-color: lightblue;
+    .sidebar-button-flex {
+      display: flex;
+      justify-content: space-evenly;
+      margin: 10px;
+      .sidebar-button {
+        background-color: white;
+        border: 1px solid black;
+        padding: 5px;
+        font-size: 14px;
+        &:hover {
+          background-color: lightblue;
+        }
       }
     }
   }
