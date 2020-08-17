@@ -1,7 +1,7 @@
 export const MockData = [
   {
     journal_title: "High School",
-    date_created: "8/8/2010",
+    date_created: "August 8th, 2010",
     entries: [
       "First day of school!",
       "I hate homework",
@@ -11,7 +11,7 @@ export const MockData = [
   },
   {
     journal_title: "College",
-    date_created: "07/12/2015",
+    date_created: "July 12th, 2015",
     entries: [
       "I got into my top school!!",
       "Joined a sorority",
@@ -21,7 +21,7 @@ export const MockData = [
   },
   {
     journal_title: "Quarantine Diaries",
-    date_created: "02/25/2020",
+    date_created: "February 25, 2020",
     entries: [
       "COVID sucks!!",
       "I miss my friends :(",
