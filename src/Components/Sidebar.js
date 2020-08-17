@@ -3,9 +3,16 @@ import { MockData } from "../Mock Data/MockData";
 import { MockEntries } from "../Mock Data/MockEntries";
 import TagsInput from "./TagsInput";
 
-const Sidebar = ({ addTags, removeTags, tags, page }) => {
+const Sidebar = ({
+  addTags,
+  removeTags,
+  tags,
+  page,
+  handleFormChange,
+  clearFilters,
+}) => {
   let years = new Set();
-  MockEntries.forEach((ent) => years.add(ent.entry_year));
+  MockEntries.forEach((ent) => years.add(ent.year));
   years = [...years];
 
   switch (page) {
@@ -13,7 +20,12 @@ const Sidebar = ({ addTags, removeTags, tags, page }) => {
       return (
         <div className="sidebar">
           <h4 className="sidebar-header">Search for journal entries</h4>
-          <form className="sidebar-form" onSubmit={(e) => e.preventDefault()}>
+          <form
+            className="sidebar-form"
+            onChange={handleFormChange}
+            onSubmit={(e) => e.preventDefault()}
+            onReset={clearFilters}
+          >
             <ul>
               <li>
                 <label htmlFor="filterby-journal">Journal:</label>
@@ -32,18 +44,18 @@ const Sidebar = ({ addTags, removeTags, tags, page }) => {
                 <label htmlFor="filterby-month">Month:</label>
                 <select name="month" id="month">
                   <option value=""></option>
-                  <option value="1">January</option>
-                  <option value="2">February</option>
-                  <option value="3">March</option>
-                  <option value="4">April</option>
-                  <option value="5">May</option>
-                  <option value="6">June</option>
-                  <option value="7">July</option>
-                  <option value="8">August</option>
-                  <option value="9">September</option>
-                  <option value="10">October</option>
-                  <option value="11">November</option>
-                  <option value="12">December</option>
+                  <option value="January">January</option>
+                  <option value="February">February</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
                 </select>
               </li>
               <li>
@@ -68,7 +80,13 @@ const Sidebar = ({ addTags, removeTags, tags, page }) => {
                 />
               </li>
             </ul>
-            <button className="sidebar-search">Search</button>
+            <div className="sidebar-button-flex">
+              <input
+                type="reset"
+                className="sidebar-button"
+                value="Clear All Filters"
+              />
+            </div>
           </form>
         </div>
       );
