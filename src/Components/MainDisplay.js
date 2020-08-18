@@ -40,9 +40,9 @@ const MainDisplay = ({ journal, month, year, tags }) => {
 
   if (Object.keys(currentFilters).length === 0) {
     return (
-      <main className="home-main">
+      <main className="maindisplay-main">
         <section className="my-journals">
-          <h4>My Journals</h4>
+          <h4 className="maindisplay-header">My Journals</h4>
           <div className="journals-flex">
             {MockData.map((j, i) => {
               return (
@@ -57,14 +57,14 @@ const MainDisplay = ({ journal, month, year, tags }) => {
     );
   } else {
     return (
-      <main className="home-main">
+      <main className="maindisplay-main">
         <section className="my-journals">
-          <h4>Looking for one of these?</h4>
-          <div>
+          <h4 className="maindisplay-header">Looking for one of these?</h4>
+          <div className="maindisplay-entries">
             {matchingEntries.length !== null
               ? matchingEntries.map((m, i) => {
                   return (
-                    <div key={i}>
+                    <div className="entry" key={i}>
                       <h3>{m.entry_title}</h3>
                       <p>
                         {m.month} {m.date}, {m.year}
