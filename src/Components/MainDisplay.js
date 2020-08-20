@@ -2,8 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { MockData } from "../Mock Data/MockData";
 import { MockEntries } from "../Mock Data/MockEntries";
+import EntryModal from "./EntryModal";
 
-const MainDisplay = ({ journal, month, year, tags }) => {
+const MainDisplay = ({
+  journal,
+  month,
+  year,
+  tags,
+  showEntryModal,
+  openModal,
+  closeModal,
+  showEntry,
+}) => {
   //get selected filters
   let currentFilters = {};
   const getFilters = (journal, month, year, tags) => {
@@ -53,6 +63,7 @@ const MainDisplay = ({ journal, month, year, tags }) => {
             })}
           </div>
         </section>
+        <EntryModal showEntryModal={showEntryModal} closeModal={closeModal} />
       </main>
     );
   } else {
@@ -64,7 +75,11 @@ const MainDisplay = ({ journal, month, year, tags }) => {
             {matchingEntries.length !== null
               ? matchingEntries.map((m, i) => {
                   return (
-                    <div className="entry" key={i}>
+                    <div
+                      className="entry"
+                      key={i}
+                      onClick={(e) => openModal(e, m.entry_title)}
+                    >
                       <h3>{m.entry_title}</h3>
                       <p>
                         {m.month} {m.date}, {m.year}
@@ -81,6 +96,11 @@ const MainDisplay = ({ journal, month, year, tags }) => {
               : "Didn't work"}
           </div>
         </section>
+        <EntryModal
+          showEntryModal={showEntryModal}
+          closeModal={closeModal}
+          showEntry={showEntry}
+        />
       </main>
     );
   }
