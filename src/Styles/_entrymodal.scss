@@ -1,0 +1,73 @@
+.modal {
+  position: fixed;
+  z-index: 500;
+  background-color: white;
+  width: 85%;
+  height: 550px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px black;
+  padding: 16px;
+  box-sizing: border-box;
+  transition: opacity 0.3s ease-in;
+  right: 0;
+  left: 0;
+  top: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  background-color: lightyellow;
+}
+
+.show-entry {
+  opacity: 1;
+}
+
+.hide-entry {
+  transform: translateY(-100vh);
+  opacity: 0;
+}
+
+.modal-close {
+  background-color: white;
+  position: fixed;
+  height: 30px;
+  width: 30px;
+  right: 80px;
+  top: 35px;
+  cursor: pointer;
+}
+
+.modal-page {
+  width: 95%;
+  border: 1px solid black;
+  background-color: white;
+  margin: 0 auto;
+  .entry-title {
+    text-align: center;
+    margin: 10px;
+  }
+  .journal-date-div {
+    display: flex;
+    justify-content: space-evenly;
+    width: 40%;
+    margin: 0 auto;
+  }
+  .entry-tagslist {
+    text-align: center;
+    li {
+      display: inline-block;
+      border: 1px solid lightblue;
+      background-color: lightblue;
+      padding: 5px;
+      margin: 10px;
+    }
+  }
+  .entry-text-div {
+    max-height: 350px;
+    overflow: auto;
+    .entry-text {
+      margin: 30px;
+      line-height: 22px;
+    }
+  }
+}
