@@ -13,6 +13,8 @@ export default class App extends Component {
     month: "",
     year: "",
     tags: [],
+    entryModal: false,
+    showEntry: "",
   };
 
   //Sidebar Search
@@ -47,8 +49,18 @@ export default class App extends Component {
       month: "",
       year: "",
       tags: [],
-      search: false,
     });
+  };
+
+  //Entry Modal Toggle
+  openModal = (e, entry) => {
+    e.preventDefault();
+    this.setState({ entryModal: true, showEntry: entry });
+  };
+
+  closeModal = (e) => {
+    e.preventDefault();
+    this.setState({ entryModal: false });
   };
 
   render() {
@@ -77,6 +89,10 @@ export default class App extends Component {
                   month={this.state.month}
                   year={this.state.year}
                   tags={this.state.tags}
+                  showEntryModal={this.state.entryModal}
+                  openModal={this.openModal}
+                  closeModal={this.closeModal}
+                  showEntry={this.state.showEntry}
                 />
               </>
             )}
