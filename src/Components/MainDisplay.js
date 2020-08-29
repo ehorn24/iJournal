@@ -89,21 +89,27 @@ const MainDisplay = ({
                 Find what you're looking for?
               </h4>
               <div className="maindisplay-entries">
-                {matchingEntries.length !== null && matchingEntries.length !== 0
-                  ? matchingEntries.map((x, i) => {
-                      return (
-                        <EntryDisplay
-                          key={i}
-                          title={x.entry_title}
-                          month={x.month}
-                          date={x.date}
-                          year={x.year}
-                          tags={x.tags}
-                          openModal={openModal}
-                        />
-                      );
-                    })
-                  : "None of your entries matched those filters. Please try again."}
+                {matchingEntries.length !== null &&
+                matchingEntries.length !== 0 ? (
+                  matchingEntries.map((x, i) => {
+                    return (
+                      <EntryDisplay
+                        key={i}
+                        title={x.entry_title}
+                        month={x.month}
+                        date={x.date}
+                        year={x.year}
+                        tags={x.tags}
+                        openModal={openModal}
+                      />
+                    );
+                  })
+                ) : (
+                  <p className="entry-error">
+                    None of your entries matched those filters. Please try
+                    again.
+                  </p>
+                )}
               </div>
             </section>
             <EntryModal
@@ -180,21 +186,26 @@ const MainDisplay = ({
                 Find what you're looking for?
               </h4>
               <div className="maindisplay-entries">
-                {matchEntries.length !== null && matchEntries.length !== 0
-                  ? matchEntries.map((x, i) => {
-                      return (
-                        <EntryDisplay
-                          key={i}
-                          title={x.entry_title}
-                          month={x.month}
-                          date={x.date}
-                          year={x.year}
-                          tags={x.tags}
-                          openModal={openModal}
-                        />
-                      );
-                    })
-                  : "None of your entries matched those filters. Please try again."}
+                {matchEntries.length !== null && matchEntries.length !== 0 ? (
+                  matchEntries.map((x, i) => {
+                    return (
+                      <EntryDisplay
+                        key={i}
+                        title={x.entry_title}
+                        month={x.month}
+                        date={x.date}
+                        year={x.year}
+                        tags={x.tags}
+                        openModal={openModal}
+                      />
+                    );
+                  })
+                ) : (
+                  <p className="entry-error">
+                    None of your entries matched those filters. Please try
+                    again.
+                  </p>
+                )}
               </div>
             </section>
           </main>
