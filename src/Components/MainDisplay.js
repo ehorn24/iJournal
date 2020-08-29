@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { MockData } from "../Mock Data/MockData";
 import { MockEntries } from "../Mock Data/MockEntries";
 import EntryModal from "./EntryModal";
+import EntryDisplay from "./EntryDisplay";
 
 const MainDisplay = ({
   page,
@@ -16,7 +17,7 @@ const MainDisplay = ({
   showEntry,
   match,
 }) => {
-  //get selected filters
+  //Get user's selected filters (if any)
   let currentFilters = {};
   const getFilters = (journal, month, year, tags) => {
     if (journal !== "") {
@@ -33,10 +34,11 @@ const MainDisplay = ({
     }
     return currentFilters;
   };
+
   //Main Page (no journal selected)
   switch (page) {
     case "Main":
-      //Find entries that match selected filters
+      //Get entries that match selected filters
       getFilters(journal, month, year, tags);
       const matchingEntries = MockEntries.filter((ent) => {
         return Object.keys(currentFilters).every((k) => {
@@ -54,6 +56,8 @@ const MainDisplay = ({
           return bool;
         });
       });
+
+      //If no filters are selected, display all journals
       if (Object.keys(currentFilters).length === 0) {
         return (
           <main className="maindisplay-main">
@@ -73,12 +77,10 @@ const MainDisplay = ({
                 })}
               </div>
             </section>
-            <EntryModal
-              showEntryModal={showEntryModal}
-              closeModal={closeModal}
-            />
           </main>
         );
+
+        //If user has selected filters
       } else {
         return (
           <main className="maindisplay-main">
@@ -87,28 +89,21 @@ const MainDisplay = ({
                 Find what you're looking for?
               </h4>
               <div className="maindisplay-entries">
-                {matchingEntries.length !== null
+                {matchingEntries.length !== null && matchingEntries.length !== 0
                   ? matchingEntries.map((x, i) => {
                       return (
-                        <div
-                          className="entry"
+                        <EntryDisplay
                           key={i}
-                          onClick={(e) => openModal(e, x.entry_title)}
-                        >
-                          <h3>{x.entry_title}</h3>
-                          <p>
-                            {x.month} {x.date}, {x.year}
-                          </p>
-                          <p>
-                            Tags:{" "}
-                            {x.tags.map((t) => {
-                              return t + "/";
-                            })}
-                          </p>
-                        </div>
+                          title={x.entry_title}
+                          month={x.month}
+                          date={x.date}
+                          year={x.year}
+                          tags={x.tags}
+                          openModal={openModal}
+                        />
                       );
                     })
-                  : "Didn't work"}
+                  : "None of your entries matched those filters. Please try again."}
               </div>
             </section>
             <EntryModal
@@ -119,10 +114,11 @@ const MainDisplay = ({
           </main>
         );
       }
+
     //Journal Main Page (Journal selected)
     case "Journal":
+      //Get user's selected filters
       getFilters(journal, month, year, tags);
-      let allJournalEntries = [];
       const matchEntries = MockEntries.filter((ent) => {
         return Object.keys(currentFilters).every((k) => {
           let bool = true;
@@ -139,6 +135,9 @@ const MainDisplay = ({
           return bool;
         });
       });
+      let allJournalEntries = [];
+
+      //If no filters are selected
       if (Object.keys(currentFilters).length === 0) {
         MockEntries.forEach((x) => {
           if (x.journal === match.params.journalname) {
@@ -151,22 +150,15 @@ const MainDisplay = ({
               <div className="maindisplay-entries">
                 {allJournalEntries.map((x, i) => {
                   return (
-                    <div
-                      className="entry"
+                    <EntryDisplay
                       key={i}
-                      onClick={(e) => openModal(e, x.entry_title)}
-                    >
-                      <h3>{x.entry_title}</h3>
-                      <p>
-                        {x.month} {x.date}, {x.year}
-                      </p>
-                      <p>
-                        Tags:{" "}
-                        {x.tags.map((t) => {
-                          return t + "/";
-                        })}
-                      </p>
-                    </div>
+                      title={x.entry_title}
+                      month={x.month}
+                      date={x.date}
+                      year={x.year}
+                      tags={x.tags}
+                      openModal={openModal}
+                    />
                   );
                 })}
               </div>
@@ -178,6 +170,8 @@ const MainDisplay = ({
             />
           </main>
         );
+
+        //If filters are selected
       } else {
         return (
           <main className="maindisplay-main">
@@ -186,24 +180,21 @@ const MainDisplay = ({
                 Find what you're looking for?
               </h4>
               <div className="maindisplay-entries">
-                {matchEntries.length !== null
+                {matchEntries.length !== null && matchEntries.length !== 0
                   ? matchEntries.map((x, i) => {
                       return (
-                        <div className="entry" key={i}>
-                          <h3>{x.entry_title}</h3>
-                          <p>
-                            {x.month} {x.date}, {x.year}
-                          </p>
-                          <p>
-                            Tags:{" "}
-                            {x.tags.map((t) => {
-                              return t + "/";
-                            })}
-                          </p>
-                        </div>
+                        <EntryDisplay
+                          key={i}
+                          title={x.entry_title}
+                          month={x.month}
+                          date={x.date}
+                          year={x.year}
+                          tags={x.tags}
+                          openModal={openModal}
+                        />
                       );
                     })
-                  : "Didn't work"}
+                  : "None of your entries matched those filters. Please try again."}
               </div>
             </section>
           </main>
