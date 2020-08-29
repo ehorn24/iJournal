@@ -85,6 +85,36 @@ export default class App extends Component {
                 />
                 <MainDisplay
                   {...props}
+                  page="Main"
+                  journal={this.state.journal}
+                  month={this.state.month}
+                  year={this.state.year}
+                  tags={this.state.tags}
+                  showEntryModal={this.state.entryModal}
+                  openModal={this.openModal}
+                  closeModal={this.closeModal}
+                  showEntry={this.state.showEntry}
+                />
+              </>
+            )}
+          />
+          <Route
+            path="/:journalname"
+            render={(props) => (
+              <>
+                <Header />
+                <Sidebar
+                  page="Journal"
+                  addTags={this.addTags}
+                  removeTags={this.removeTags}
+                  tags={this.state.tags}
+                  handleFormChange={this.handleFormChange}
+                  handleFormSubmit={this.handleFormSubmit}
+                  clearFilters={this.clearFilters}
+                />
+                <MainDisplay
+                  {...props}
+                  page="Journal"
                   journal={this.state.journal}
                   month={this.state.month}
                   year={this.state.year}
