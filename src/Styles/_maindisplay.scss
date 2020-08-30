@@ -10,14 +10,28 @@
     border-left: none;
     width: 69%;
     height: 600px;
-    h4 {
+    .maindisplay-header {
       font-size: 28px;
       margin: 20px;
       text-align: center;
     }
+    .addjournal-button {
+      text-decoration: none;
+      color: black;
+      background-color: white;
+      display: block;
+      margin: 0 auto;
+      width: 80px;
+      padding: 8px;
+      border: 1px solid black;
+      &:hover {
+        background-color: lightblue;
+      }
+    }
     .journals-flex {
       display: flex;
       justify-content: space-evenly;
+      margin-top: 20px;
       a {
         font-size: 24px;
         border: 1px solid black;
