@@ -152,7 +152,7 @@ const Sidebar = ({
         </div>
       );
     default:
-      return page;
+      return null;
   }
 };
 
