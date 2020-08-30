@@ -6,6 +6,7 @@ import Landing from "./Components/Landing";
 import Sidebar from "./Components/Sidebar";
 import Header from "./Components/Header";
 import MainDisplay from "./Components/MainDisplay";
+import New from "./Components/New";
 
 export default class App extends Component {
   state = {
@@ -99,7 +100,7 @@ export default class App extends Component {
             )}
           />
           <Route
-            path="/:journalname"
+            path="/journal/:journalname"
             render={(props) => (
               <>
                 <Header />
@@ -124,6 +125,16 @@ export default class App extends Component {
                   closeModal={this.closeModal}
                   showEntry={this.state.showEntry}
                 />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/new/:type"
+            render={(props) => (
+              <>
+                <Header />
+                <New {...props} />
               </>
             )}
           />

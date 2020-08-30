@@ -1,0 +1,44 @@
+.add-main {
+  border-top: 1px solid black;
+  .add-header {
+    text-align: center;
+    font-size: 26px;
+    margin: 20px;
+  }
+  p {
+    text-align: center;
+  }
+  .add-form {
+    border: 1px solid black;
+    width: 400px;
+    margin: 30px auto;
+    padding: 15px;
+    ul {
+      list-style: none;
+      text-align: center;
+      li {
+        padding: 8px;
+        label {
+          margin: 8px;
+          display: block;
+        }
+        input {
+          padding: 5px;
+          text-align: center;
+        }
+      }
+    }
+    button {
+      background-color: white;
+      font-size: 14px;
+      padding: 8px;
+      border: 1px solid black;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
+      &:hover {
+        background-color: lightblue;
+      }
+    }
+  }
+}
