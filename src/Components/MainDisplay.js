@@ -63,11 +63,14 @@ const MainDisplay = ({
           <main className="maindisplay-main">
             <section className="my-journals">
               <h4 className="maindisplay-header">My Journals</h4>
+              <Link to="/new/journal" className="addjournal-button">
+                New +
+              </Link>
               <div className="journals-flex">
                 {MockData.map((j, i) => {
                   return (
                     <Link
-                      to={"/" + j.journal_title}
+                      to={"/journal/" + j.journal_title}
                       className="journal"
                       key={i}
                     >
@@ -153,6 +156,10 @@ const MainDisplay = ({
         return (
           <main className="maindisplay-main">
             <section className="my-journals">
+              <h4 className="maindisplay-header">{match.params.journalname}</h4>
+              <Link to="/new/entry" className="addjournal-button">
+                New +
+              </Link>
               <div className="maindisplay-entries">
                 {allJournalEntries.map((x, i) => {
                   return (
