@@ -1,144 +1,108 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 //Components
 import Landing from "./Components/Landing";
-import Sidebar from "./Components/Sidebar";
-import Header from "./Components/Header";
-import MainDisplay from "./Components/MainDisplay";
-import New from "./Components/New";
+import {
+  createNewUser,
+  authenticateUser,
+  getAllUsernames,
+} from "./Services/userServices";
 
 export default class App extends Component {
   state = {
-    journal: "",
-    month: "",
-    year: "",
-    tags: [],
-    entryModal: false,
-    showEntry: "",
+    loggedIn: false,
+    error: false,
+    redirect: null,
+    signup: false,
+    username: "",
+    password: "",
+    firstname: "",
+    lastname: "",
+    usernames: [],
   };
 
-  //Sidebar Search
+  componentDidMount() {
+    getAllUsernames().then((usernames) => {
+      this.setState({ usernames });
+    });
+  }
+
   handleFormChange = (e) => {
+    e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  //Tags Input Functions
-  addTags = (e) => {
-    if (e.key === "Enter" && e.target.value !== "") {
-      this.setState({
-        tags: [...this.state.tags, e.target.value],
-      });
-      e.target.value = "";
-    }
+  //Toggle log in or signup option
+  changeLogIn = (e) => {
+    e.preventDefault();
+    this.setState({ signup: !this.state.signup });
   };
 
-  removeTags = (index) => {
-    this.setState({
-      tags: [
-        ...this.state.tags.filter(
-          (tag) => this.state.tags.indexOf(tag) !== index
-        ),
-      ],
+  //Log In
+  handleLogIn = () => {
+    authenticateUser(this.state.username, this.state.password).then((res) => {
+      if (res === "ok") {
+        this.setState({ loggedIn: true, password: "" }, () => {
+          if (typeof Storage !== undefined) {
+            localStorage.setItem("username", this.state.username);
+            localStorage.setItem("loggedIn", true);
+          }
+        });
+      } else {
+        window.alert("Didn't authenticate");
+      }
     });
   };
 
-  //Clear Filters
-  clearFilters = () => {
-    this.setState({
-      journal: "",
-      month: "",
-      year: "",
-      tags: [],
+  //Sign Up
+  handleSignUp = () => {
+    createNewUser(
+      this.state.username,
+      this.state.password,
+      this.state.firstname,
+      this.state.lastname
+    ).then((res) => {
+      if (res === "ok") {
+        this.setState({ loggedIn: true, password: "" }, () => {
+          if (typeof Storage !== undefined) {
+            localStorage.setItem("username", this.state.username);
+            localStorage.setItem("loggedIn", true);
+          }
+        });
+      } else {
+        window.alert("Account not created!");
+      }
     });
-  };
-
-  //Entry Modal Toggle
-  openModal = (e, entry) => {
-    e.preventDefault();
-    this.setState({ entryModal: true, showEntry: entry });
-  };
-
-  closeModal = (e) => {
-    e.preventDefault();
-    this.setState({ entryModal: false });
   };
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
     return (
       <Router>
-        <Switch>
-          <Route exact path="/" render={(props) => <Landing {...props} />} />
-          <Route
-            exact
-            path="/home"
-            render={(props) => (
-              <>
-                <Header />
-                <Sidebar
-                  page="Home"
-                  addTags={this.addTags}
-                  removeTags={this.removeTags}
-                  tags={this.state.tags}
+        <Route
+          exact
+          path="/"
+          render={(props) => (
+            <div>
+              {this.state.loggedIn ? (
+                <h3>Logged in!</h3>
+              ) : (
+                <Landing
+                  page={this.state.signup ? "signup" : "login"}
+                  changeLogIn={this.changeLogIn}
                   handleFormChange={this.handleFormChange}
-                  handleFormSubmit={this.handleFormSubmit}
-                  clearFilters={this.clearFilters}
+                  handleLogIn={this.handleLogIn}
+                  handleSignUp={this.handleSignUp}
+                  existingUsernames={this.state.usernames}
+                  username={this.state.username}
                 />
-                <MainDisplay
-                  {...props}
-                  page="Main"
-                  journal={this.state.journal}
-                  month={this.state.month}
-                  year={this.state.year}
-                  tags={this.state.tags}
-                  showEntryModal={this.state.entryModal}
-                  openModal={this.openModal}
-                  closeModal={this.closeModal}
-                  showEntry={this.state.showEntry}
-                />
-              </>
-            )}
-          />
-          <Route
-            path="/journal/:journalname"
-            render={(props) => (
-              <>
-                <Header />
-                <Sidebar
-                  page="Journal"
-                  addTags={this.addTags}
-                  removeTags={this.removeTags}
-                  tags={this.state.tags}
-                  handleFormChange={this.handleFormChange}
-                  handleFormSubmit={this.handleFormSubmit}
-                  clearFilters={this.clearFilters}
-                />
-                <MainDisplay
-                  {...props}
-                  page="Journal"
-                  journal={this.state.journal}
-                  month={this.state.month}
-                  year={this.state.year}
-                  tags={this.state.tags}
-                  showEntryModal={this.state.entryModal}
-                  openModal={this.openModal}
-                  closeModal={this.closeModal}
-                  showEntry={this.state.showEntry}
-                />
-              </>
-            )}
-          />
-          <Route
-            exact
-            path="/new/:type"
-            render={(props) => (
-              <>
-                <Header />
-                <New {...props} />
-              </>
-            )}
-          />
-        </Switch>
+              )}
+            </div>
+          )}
+        />
       </Router>
     );
   }
