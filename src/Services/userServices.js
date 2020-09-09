@@ -35,6 +35,16 @@ const userServices = {
       },
     }).then((res) => res.json());
   },
+
+  getUserInfo(username) {
+    return fetch(`${userURL}/username`, {
+      method: "POST",
+      body: JSON.stringify({ username }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => res.json());
+  },
 };
 
 module.exports = userServices;
