@@ -5,7 +5,7 @@ const EntryDisplay = ({ title, month, date, year, tags, openModal }) => {
     <div className="entry" onClick={(e) => openModal(e, title)}>
       <h3>{title}</h3>
       <p>
-        {month} {date}, {year}
+        {month.slice(1, 2)}-{date.slice(1, 2)}-{year}
       </p>
       <p>
         Tags:{" "}
