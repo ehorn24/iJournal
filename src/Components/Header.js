@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ user }) => {
   return (
     <header className="ijournal-header">
-      <Link to="/home">iJournal</Link>
+      <Link to="/">{user}'s iJournal</Link>
     </header>
   );
 };
