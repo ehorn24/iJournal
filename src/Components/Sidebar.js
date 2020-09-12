@@ -1,22 +1,25 @@
 import React from "react";
-import { MockData } from "../Mock Data/MockData";
-import { MockEntries } from "../Mock Data/MockEntries";
 import TagsInput from "./TagsInput";
 
 const Sidebar = ({
+  page,
+  entries,
+  journals,
+  tags,
   addTags,
   removeTags,
-  tags,
-  page,
   handleFormChange,
   clearFilters,
 }) => {
   let years = new Set();
-  MockEntries.forEach((ent) => years.add(ent.year));
+  entries.forEach((ent) => {
+    let sliceYear = ent.date_created.slice(0, 4);
+    years.add(sliceYear);
+  });
   years = [...years];
 
   switch (page) {
-    case "Home":
+    case "main":
       return (
         <div className="sidebar">
           <h4 className="sidebar-header">Search for journal entries</h4>
@@ -31,10 +34,10 @@ const Sidebar = ({
                 <label htmlFor="filterby-journal">Journal:</label>
                 <select name="journal" id="journal">
                   <option value=""></option>
-                  {MockData.map((j, i) => {
+                  {journals.map((j, i) => {
                     return (
-                      <option value={j.journal_title} key={i}>
-                        {j.journal_title}
+                      <option value={j.id} key={i}>
+                        {j.journal_name}
                       </option>
                     );
                   })}
@@ -44,28 +47,28 @@ const Sidebar = ({
                 <label htmlFor="filterby-month">Month:</label>
                 <select name="month" id="month">
                   <option value=""></option>
-                  <option value="January">January</option>
-                  <option value="February">February</option>
-                  <option value="March">March</option>
-                  <option value="April">April</option>
-                  <option value="May">May</option>
-                  <option value="June">June</option>
-                  <option value="July">July</option>
-                  <option value="August">August</option>
-                  <option value="September">September</option>
-                  <option value="October">October</option>
-                  <option value="November">November</option>
-                  <option value="December">December</option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
                 </select>
               </li>
               <li>
-                <label htmlFor="">Year:</label>
+                <label htmlFor="filterby-year">Year:</label>
                 <select name="year" id="year">
                   <option value=""></option>
-                  {years.map((y, i) => {
+                  {years.map((year, i) => {
                     return (
-                      <option key={i} value={y}>
-                        {y}
+                      <option value={year} key={i}>
+                        {year}
                       </option>
                     );
                   })}
@@ -83,69 +86,8 @@ const Sidebar = ({
             <div className="sidebar-button-flex">
               <input
                 type="reset"
-                className="sidebar-button"
                 value="Clear All Filters"
-              />
-            </div>
-          </form>
-        </div>
-      );
-    case "Journal":
-      return (
-        <div className="sidebar">
-          <h4 className="sidebar-header">Search for journal entries</h4>
-          <form
-            className="sidebar-form"
-            onChange={handleFormChange}
-            onSubmit={(e) => e.preventDefault()}
-            onReset={clearFilters}
-          >
-            <ul>
-              <li>
-                <label htmlFor="filterby-month">Month:</label>
-                <select name="month" id="month">
-                  <option value=""></option>
-                  <option value="January">January</option>
-                  <option value="February">February</option>
-                  <option value="March">March</option>
-                  <option value="April">April</option>
-                  <option value="May">May</option>
-                  <option value="June">June</option>
-                  <option value="July">July</option>
-                  <option value="August">August</option>
-                  <option value="September">September</option>
-                  <option value="October">October</option>
-                  <option value="November">November</option>
-                  <option value="December">December</option>
-                </select>
-              </li>
-              <li>
-                <label htmlFor="">Year:</label>
-                <select name="year" id="year">
-                  <option value=""></option>
-                  {years.map((y, i) => {
-                    return (
-                      <option key={i} value={y}>
-                        {y}
-                      </option>
-                    );
-                  })}
-                </select>
-              </li>
-              <li>
-                <label htmlFor="filterby-tags">Tags:</label>
-                <TagsInput
-                  addTags={addTags}
-                  removeTags={removeTags}
-                  tags={tags}
-                />
-              </li>
-            </ul>
-            <div className="sidebar-button-flex">
-              <input
-                type="reset"
                 className="sidebar-button"
-                value="Clear All Filters"
               />
             </div>
           </form>
