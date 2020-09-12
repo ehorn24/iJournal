@@ -1,23 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MockData } from "../Mock Data/MockData";
-import { MockEntries } from "../Mock Data/MockEntries";
-import EntryModal from "./EntryModal";
 import EntryDisplay from "./EntryDisplay";
 
 const MainDisplay = ({
   page,
+  journals,
+  entries,
   journal,
   month,
   year,
   tags,
-  showEntryModal,
-  openModal,
-  closeModal,
-  showEntry,
-  match,
 }) => {
-  //Get user's selected filters (if any)
+  //Get user's selected filters, if any
   let currentFilters = {};
   const getFilters = (journal, month, year, tags) => {
     if (journal !== "") {
@@ -35,18 +29,40 @@ const MainDisplay = ({
     return currentFilters;
   };
 
-  //Main Page (no journal selected)
+  let entriesArr = [];
+  const modifyEntries = (arr) => {
+    arr.forEach((a) => {
+      let obj = {};
+      obj.id = a.id;
+      obj.journal = a.journal.toString();
+      obj.entry_title = a.entry_title;
+      obj.month = a.date_created.slice(5, 7);
+      obj.year = a.date_created.slice(0, 4);
+      obj.date = a.date_created.slice(8, 10);
+      obj.tags = a.tags;
+      obj.entry_text = a.entry_text;
+      entriesArr.push(obj);
+    });
+    return entriesArr;
+  };
+  modifyEntries(entries);
+
   switch (page) {
-    case "Main":
-      //Get entries that match selected filters
+    //Main page - No journal selected
+    case "main":
+      //Filter entries
       getFilters(journal, month, year, tags);
-      const matchingEntries = MockEntries.filter((ent) => {
+      const mEntries = entriesArr.filter((entry) => {
         return Object.keys(currentFilters).every((k) => {
           let bool = true;
-          if (typeof ent[k] === "string") {
-            bool = (ent[k] === currentFilters[k]) * bool;
+          if (typeof entry[k] === "string") {
+            bool = (entry[k] === currentFilters[k]) * bool;
           } else {
-            let entrySet = new Set(ent.tags.map((t) => t));
+            let entrySet = new Set(
+              entry.tags.map((t) => {
+                return t;
+              })
+            );
             let tagsSet = new Set(currentFilters[k]);
             let intersect = new Set(
               [...entrySet].filter((x) => tagsSet.has(x))
@@ -57,7 +73,7 @@ const MainDisplay = ({
         });
       });
 
-      //If no filters are selected, display all journals
+      //Display all journals if no entries selected
       if (Object.keys(currentFilters).length === 0) {
         return (
           <main className="maindisplay-main">
@@ -67,14 +83,14 @@ const MainDisplay = ({
                 New +
               </Link>
               <div className="journals-flex">
-                {MockData.map((j, i) => {
+                {journals.map((journal, i) => {
                   return (
                     <Link
-                      to={"/journal/" + j.journal_title}
+                      to={`/journal/${journal.journal_name}`}
                       className="journal"
                       key={i}
                     >
-                      {j.journal_title}
+                      {journal.journal_name}
                     </Link>
                   );
                 })}
@@ -82,7 +98,6 @@ const MainDisplay = ({
             </section>
           </main>
         );
-
         //If user has selected filters
       } else {
         return (
@@ -92,9 +107,8 @@ const MainDisplay = ({
                 Find what you're looking for?
               </h4>
               <div className="maindisplay-entries">
-                {matchingEntries.length !== null &&
-                matchingEntries.length !== 0 ? (
-                  matchingEntries.map((x, i) => {
+                {mEntries.length !== null && mEntries.length !== 0 ? (
+                  mEntries.map((x, i) => {
                     return (
                       <EntryDisplay
                         key={i}
@@ -103,123 +117,17 @@ const MainDisplay = ({
                         date={x.date}
                         year={x.year}
                         tags={x.tags}
-                        openModal={openModal}
                       />
                     );
                   })
                 ) : (
-                  <p className="entry-error">
-                    None of your entries matched those filters. Please try
-                    again.
-                  </p>
-                )}
-              </div>
-            </section>
-            <EntryModal
-              showEntryModal={showEntryModal}
-              closeModal={closeModal}
-              showEntry={showEntry}
-            />
-          </main>
-        );
-      }
-
-    //Journal Main Page (Journal selected)
-    case "Journal":
-      //Get user's selected filters
-      getFilters(journal, month, year, tags);
-      const matchEntries = MockEntries.filter((ent) => {
-        return Object.keys(currentFilters).every((k) => {
-          let bool = true;
-          if (typeof ent[k] === "string") {
-            bool = (ent[k] === currentFilters[k]) * bool;
-          } else {
-            let entrySet = new Set(ent.tags.map((t) => t));
-            let tagsSet = new Set(currentFilters[k]);
-            let intersect = new Set(
-              [...entrySet].filter((x) => tagsSet.has(x))
-            );
-            bool = (intersect.size === tagsSet.size) * bool;
-          }
-          return bool;
-        });
-      });
-      let allJournalEntries = [];
-
-      //If no filters are selected
-      if (Object.keys(currentFilters).length === 0) {
-        MockEntries.forEach((x) => {
-          if (x.journal === match.params.journalname) {
-            allJournalEntries.push(x);
-          }
-        });
-        return (
-          <main className="maindisplay-main">
-            <section className="my-journals">
-              <h4 className="maindisplay-header">{match.params.journalname}</h4>
-              <Link to="/new/entry" className="addjournal-button">
-                New +
-              </Link>
-              <div className="maindisplay-entries">
-                {allJournalEntries.map((x, i) => {
-                  return (
-                    <EntryDisplay
-                      key={i}
-                      title={x.entry_title}
-                      month={x.month}
-                      date={x.date}
-                      year={x.year}
-                      tags={x.tags}
-                      openModal={openModal}
-                    />
-                  );
-                })}
-              </div>
-            </section>
-            <EntryModal
-              showEntryModal={showEntryModal}
-              closeModal={closeModal}
-              showEntry={showEntry}
-            />
-          </main>
-        );
-
-        //If filters are selected
-      } else {
-        return (
-          <main className="maindisplay-main">
-            <section className="my-journals">
-              <h4 className="maindisplay-header">
-                Find what you're looking for?
-              </h4>
-              <div className="maindisplay-entries">
-                {matchEntries.length !== null && matchEntries.length !== 0 ? (
-                  matchEntries.map((x, i) => {
-                    return (
-                      <EntryDisplay
-                        key={i}
-                        title={x.entry_title}
-                        month={x.month}
-                        date={x.date}
-                        year={x.year}
-                        tags={x.tags}
-                        openModal={openModal}
-                      />
-                    );
-                  })
-                ) : (
-                  <p className="entry-error">
-                    None of your entries matched those filters. Please try
-                    again.
-                  </p>
+                  <p>There were no matching entries</p>
                 )}
               </div>
             </section>
           </main>
         );
       }
-    default:
-      return page;
   }
 };
 
