@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import { getUserInfo } from "../Services/userServices";
-import { getUserJournals } from "../Services/journalServices";
-import { getUserEntries } from "../Services/entryServices";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -9,40 +6,11 @@ import MainDisplay from "./MainDisplay";
 
 export default class Main extends Component {
   state = {
-    username: "",
-    userInfo: [],
-    journals: [],
-    entries: [],
     tags: [],
     journal: "",
     month: "",
     year: "",
   };
-
-  componentDidMount() {
-    if (typeof Storage !== undefined) {
-      if (localStorage.getItem("loggedIn") === "true") {
-        this.setState({ username: localStorage.getItem("username") }, () => {
-          getUserInfo(this.state.username).then((res) => {
-            if (!res.error) {
-              this.setState({ userInfo: res }, () => {
-                getUserJournals(this.state.userInfo.id).then((res) => {
-                  if (!res.error) {
-                    this.setState({ journals: res });
-                  }
-                });
-                getUserEntries(this.state.userInfo.id).then((res) => {
-                  if (!res.error) {
-                    this.setState({ entries: res });
-                  }
-                });
-              });
-            }
-          });
-        });
-      }
-    }
-  }
 
   handleFormChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -58,7 +26,6 @@ export default class Main extends Component {
     });
   };
 
-  //Tags
   addTags = (e) => {
     if (e.key === "Enter" && e.target.value !== "") {
       this.setState({ tags: [...this.state.tags, e.target.value] });
@@ -85,22 +52,50 @@ export default class Main extends Component {
             path="/"
             render={(props) => (
               <>
-                <Header user={this.state.userInfo.firstname} />
+                <Header user={this.props.userInfo.firstname} />
                 <Sidebar
                   page="main"
-                  entries={this.state.entries}
-                  journals={this.state.journals}
+                  entries={this.props.entries}
+                  journals={this.props.journals}
                   tags={this.state.tags}
                   addTags={this.addTags}
-                  removeTags={this.deleteTags}
+                  removeTags={this.removeTags}
                   handleFormChange={this.handleFormChange}
                   clearFilters={this.clearFilters}
                 />
                 <MainDisplay
                   {...props}
                   page="main"
-                  entries={this.state.entries}
-                  journals={this.state.journals}
+                  entries={this.props.entries}
+                  journals={this.props.journals}
+                  journal={this.state.journal}
+                  month={this.state.month}
+                  year={this.state.year}
+                  tags={this.state.tags}
+                />
+              </>
+            )}
+          />
+          <Route
+            path="/journal/:journal_id/:journal_name"
+            render={(props) => (
+              <>
+                <Header user={this.props.userInfo.firstname} />
+                <Sidebar
+                  page="journal"
+                  entries={this.props.entries}
+                  journals={this.props.journals}
+                  tags={this.state.tags}
+                  addTags={this.addTags}
+                  removeTags={this.removeTags}
+                  handleFormChange={this.handleFormChange}
+                  clearFilters={this.clearFilters}
+                />
+                <MainDisplay
+                  {...props}
+                  page="journal"
+                  entries={this.props.entries}
+                  journals={this.props.journals}
                   journal={this.state.journal}
                   month={this.state.month}
                   year={this.state.year}
