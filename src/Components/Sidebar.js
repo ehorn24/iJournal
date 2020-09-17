@@ -93,6 +93,67 @@ const Sidebar = ({
           </form>
         </div>
       );
+    case "journal":
+      return (
+        <div className="sidebar">
+          <h4 className="sidebar-header">Search for journal entries</h4>
+          <form
+            className="sidebar-form"
+            onChange={handleFormChange}
+            onSubmit={(e) => e.preventDefault()}
+            onReset={clearFilters}
+          >
+            <ul>
+              <li>
+                <label htmlFor="filterby-month">Month:</label>
+                <select name="month" id="month">
+                  <option value=""></option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+              </li>
+              <li>
+                <label htmlFor="filterby-year">Year:</label>
+                <select name="year" id="year">
+                  <option value=""></option>
+                  {years.map((year, i) => {
+                    return (
+                      <option value={year} key={i}>
+                        {year}
+                      </option>
+                    );
+                  })}
+                </select>
+              </li>
+              <li>
+                <label htmlFor="filterby-tags">Tags:</label>
+                <TagsInput
+                  addTags={addTags}
+                  removeTags={removeTags}
+                  tags={tags}
+                />
+              </li>
+            </ul>
+            <div className="sidebar-button-flex">
+              <input
+                type="reset"
+                value="Clear All Filters"
+                className="sidebar-button"
+              />
+            </div>
+          </form>
+        </div>
+      );
     default:
       return null;
   }
