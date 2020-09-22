@@ -1,43 +1,50 @@
-.add-main {
-  border-top: 1px solid black;
-  .add-header {
+.new-journal-main {
+  border: 1px solid blue;
+  height: 550px;
+  h2 {
     text-align: center;
-    font-size: 26px;
-    margin: 20px;
+    margin: 30px;
   }
-  p {
-    text-align: center;
-  }
-  .add-form {
-    border: 1px solid black;
-    width: 400px;
-    margin: 30px auto;
-    padding: 15px;
+  form {
+    .journal-cover-preview {
+      border: 1px solid black;
+      width: 400px;
+      height: 400px;
+      margin-left: 150px;
+      margin-right: 100px;
+      float: left;
+    }
     ul {
+      display: flex;
+      width: 400px;
       list-style: none;
-      text-align: center;
+      flex-direction: column;
       li {
-        padding: 8px;
+        padding: 5px;
+        margin: 10px;
+        .image-tip {
+          padding: 3px;
+          margin-left: 120px;
+        }
         label {
-          margin: 8px;
-          display: block;
+          display: inline-block;
+          width: 120px;
         }
         input {
-          padding: 5px;
-          text-align: center;
+          padding: 8px;
         }
       }
-    }
-    button {
-      background-color: white;
-      font-size: 14px;
-      padding: 8px;
-      border: 1px solid black;
-      cursor: pointer;
-      display: block;
-      margin: 20px auto;
-      &:hover {
-        background-color: lightblue;
+      .new-journal-button {
+        margin: 30px auto;
+        background-color: white;
+        padding: 8px;
+        border: 1px solid black;
+        cursor: pointer;
+        text-align: center;
+        width: 120px;
+        &:hover {
+          background-color: lightblue;
+        }
       }
     }
   }
