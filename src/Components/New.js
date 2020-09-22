@@ -1,93 +1,36 @@
 import React from "react";
 
-const New = ({ match }) => {
-  let [month, date, year] = new Date().toLocaleDateString().split("/");
-  switch (match.params.type) {
-    case "journal":
-      return (
-        <main className="add-main">
-          <h3 className="add-header">New {match.params.type}</h3>
-          <p>For the static version, this page has no real functionality.</p>
-          <form className="add-form">
-            <ul>
-              <li>
-                <label htmlFor="new-name">Journal name:</label>
-                <input type="text" name="journal-name" id="journal-name" />
-              </li>
-              <li>
-                <label htmlFor="new-date">Date created:</label>
-                <input
-                  type="text"
-                  name="journal-date"
-                  id="journal-date"
-                  readOnly="readonly"
-                  value={month + "/" + date + "/" + year}
-                />
-              </li>
-              <li>
-                <label htmlFor="new-tags">Tags:</label>
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  readOnly="readonly"
-                  value="Tags go here"
-                />
-              </li>
-            </ul>
-            <button>Add</button>
-          </form>
-        </main>
-      );
-    case "entry":
-      return (
-        <main className="add-main">
-          <h3 className="add-header">New {match.params.type}</h3>
-          <p>For the static version, this page has no real functionality.</p>
-          <form className="add-form">
-            <ul>
-              <li>
-                <label htmlFor="new-name">Journal name:</label>
-                <input
-                  type="text"
-                  name="journal-name"
-                  id="journal-name"
-                  readOnly="readonly"
-                  value="Journal"
-                />
-              </li>
-              <li>
-                <label htmlFor="new-date">Date created:</label>
-                <input
-                  type="text"
-                  name="journal-date"
-                  id="journal-date"
-                  readOnly="readonly"
-                  value={month + "/" + date + "/" + year}
-                />
-              </li>
-              <li>
-                <label htmlFor="new-tags">Tags:</label>
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  readOnly="readonly"
-                  value="Tags go here"
-                />
-              </li>
-              <li>
-                <label htmlFor="">Entry:</label>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-              </li>
-            </ul>
-            <button>Add</button>
-          </form>
-        </main>
-      );
-    default:
-      return null;
-  }
+const New = () => {
+  return (
+    <main className="new-journal-main">
+      <h2>Create a new journal</h2>
+      <form action="">
+        <div className="journal-cover-preview">Journal cover image</div>
+        <ul>
+          <li>
+            <label htmlFor="journal-image">Journal cover:</label>
+            <input type="text" name="journal-image" id="journal-image" />
+            <p className="image-tip">*Please use a photo URL</p>
+          </li>
+          <li>
+            <label htmlFor="name">Journal name:</label>
+            <input type="text" name="journal-name" id="journal-name" />
+          </li>
+          <li>
+            <label htmlFor="date">Date created:</label>
+            <input
+              type="text"
+              name="journal-date"
+              id="journal-date"
+              disabled
+              placeholder={new Date().toDateString()}
+            />
+          </li>
+          <button className="new-journal-button">Create Journal</button>
+        </ul>
+      </form>
+    </main>
+  );
 };
 
 export default New;
