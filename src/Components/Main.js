@@ -3,6 +3,7 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import MainDisplay from "./MainDisplay";
+import New from "./New";
 
 export default class Main extends Component {
   state = {
@@ -47,12 +48,12 @@ export default class Main extends Component {
     return (
       <>
         <Router>
+          <Header user={this.props.userInfo.firstname} />
           <Route
             exact
             path="/"
             render={(props) => (
               <>
-                <Header user={this.props.userInfo.firstname} />
                 <Sidebar
                   page="main"
                   entries={this.props.entries}
@@ -80,7 +81,6 @@ export default class Main extends Component {
             path="/journal/:journal_id/:journal_name"
             render={(props) => (
               <>
-                <Header user={this.props.userInfo.firstname} />
                 <Sidebar
                   page="journal"
                   entries={this.props.entries}
@@ -101,6 +101,14 @@ export default class Main extends Component {
                   year={this.state.year}
                   tags={this.state.tags}
                 />
+              </>
+            )}
+          />
+          <Route
+            path="/new/journal"
+            render={(props) => (
+              <>
+                <New {...props} />
               </>
             )}
           />
