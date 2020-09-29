@@ -31,6 +31,7 @@
     .journals-flex {
       display: flex;
       justify-content: space-evenly;
+      flex-wrap: wrap;
       margin-top: 20px;
       a {
         font-size: 24px;
