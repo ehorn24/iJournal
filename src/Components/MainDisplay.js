@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import EntryDisplay from "./EntryDisplay";
+import EntryModal from "./EntryModal";
 
 const MainDisplay = ({
   page,
@@ -11,6 +12,10 @@ const MainDisplay = ({
   year,
   tags,
   match,
+  openEntryModal,
+  closeEntryModal,
+  entryModal,
+  entryToShow,
 }) => {
   //Get user's selected filters, if any
   let currentFilters = {};
@@ -79,7 +84,7 @@ const MainDisplay = ({
             <section className="my-journals">
               <h4 className="maindisplay-header">My Journals</h4>
               <Link to="/new/journal" className="addjournal-button">
-                New +
+                New Journal +
               </Link>
               <div className="journals-flex">
                 {journals.map((journal, i) => {
@@ -116,6 +121,8 @@ const MainDisplay = ({
                         date={x.date}
                         year={x.year}
                         tags={x.tags}
+                        id={x.id}
+                        openEntryModal={openEntryModal}
                       />
                     );
                   })
@@ -124,6 +131,11 @@ const MainDisplay = ({
                 )}
               </div>
             </section>
+            <EntryModal
+              entryModal={entryModal}
+              entryToShow={entryToShow}
+              closeEntryModal={closeEntryModal}
+            />
           </main>
         );
       }
@@ -140,8 +152,14 @@ const MainDisplay = ({
               <h4 className="maindisplay-header">
                 {match.params.journal_name}
               </h4>
-              <Link to="/new/entry" className="addjournal-button">
-                New +
+              <Link to={`/edit/journal/${match.params.journal_id}`}>
+                Edit Journal
+              </Link>
+              <Link
+                to={`/new/entry/${match.params.journal_id}`}
+                className="addjournal-button"
+              >
+                New Entry +
               </Link>
               <div className="maindisplay-entries">
                 {journalEntries.length === 0 ? (
@@ -159,12 +177,19 @@ const MainDisplay = ({
                         date={x.date}
                         year={x.year}
                         tags={x.tags}
+                        id={x.id}
+                        openEntryModal={openEntryModal}
                       />
                     );
                   })
                 )}
               </div>
             </section>
+            <EntryModal
+              entryModal={entryModal}
+              entryToShow={entryToShow}
+              closeEntryModal={closeEntryModal}
+            />
           </main>
         );
         //If user has selected filters, display matching entries
@@ -187,6 +212,8 @@ const MainDisplay = ({
                           date={x.date}
                           year={x.year}
                           tags={x.tags}
+                          id={x.id}
+                          openEntryModal={openEntryModal}
                         />
                       );
                     }
@@ -197,6 +224,11 @@ const MainDisplay = ({
                 )}
               </div>
             </section>
+            <EntryModal
+              entryModal={entryModal}
+              entryToShow={entryToShow}
+              closeEntryModal={closeEntryModal}
+            />
           </main>
         );
       }
