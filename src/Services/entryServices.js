@@ -24,6 +24,14 @@ const entryServices = {
       }),
     }).then((res) => res.json());
   },
+  deleteEntry(entry_id) {
+    return fetch(`${entryURL}/${entry_id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  },
 };
 
 module.exports = entryServices;
