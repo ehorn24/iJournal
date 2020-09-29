@@ -10,6 +10,20 @@ const entryServices = {
       },
     }).then((res) => res.json());
   },
+  addNewEntry(user_id, journal, entry_title, tags, entry_text) {
+    return fetch(`${entryURL}/u/${user_id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        journal,
+        entry_title,
+        tags,
+        entry_text,
+      }),
+    }).then((res) => res.json());
+  },
 };
 
 module.exports = entryServices;
