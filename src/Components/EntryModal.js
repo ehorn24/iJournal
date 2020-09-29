@@ -10,6 +10,7 @@ const EntryModal = ({ entryModal, entryToShow, closeEntryModal }) => {
         {entryToShow ? (
           <>
             <h1 className="entry-title">{entryToShow[0].entry_title}</h1>
+
             <div className="journal-date-div">
               <h4 className="entry-date">
                 {`${entryToShow[0].date_created.slice(
