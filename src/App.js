@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 //Components
 import Landing from "./Components/Landing";
@@ -35,13 +36,29 @@ export default class App extends Component {
     //If user is currently logged in, render Main Component
     if (typeof Storage !== undefined) {
       if (localStorage.getItem("loggedIn") === "true") {
-        this.setState({
-          loggedIn: true,
-          username: localStorage.getItem("username"),
-          userInfo: JSON.parse(localStorage.getItem("userInfo")),
-          journals: JSON.parse(localStorage.getItem("journals")),
-          entries: JSON.parse(localStorage.getItem("entries")),
-        });
+        this.setState(
+          {
+            loggedIn: true,
+            username: localStorage.getItem("username"),
+            userInfo: JSON.parse(localStorage.getItem("userInfo")),
+          },
+          () => {
+            if (this.state.userInfo && this.state.userInfo.id) {
+              getUserJournals(this.state.userInfo.id).then((res) => {
+                if (!res.error) {
+                  this.setLocalStorage("journals", JSON.stringify(res));
+                  this.setState({ journals: res });
+                }
+              });
+              getUserEntries(this.state.userInfo.id).then((res) => {
+                if (!res.error) {
+                  this.setLocalStorage("entries", res);
+                  this.setState({ entries: res });
+                }
+              });
+            }
+          }
+        );
       }
     }
   }
@@ -74,18 +91,18 @@ export default class App extends Component {
             if (!res.error) {
               this.setLocalStorage("userInfo", JSON.stringify(res));
               this.setState({ userInfo: res }, () => {
-                getUserJournals(this.state.userInfo.id).then((res) => {
-                  if (!res.error) {
-                    this.setLocalStorage("journals", JSON.stringify(res));
-                    this.setState({ journals: res });
-                  }
-                });
-                getUserEntries(this.state.userInfo.id).then((res) => {
-                  if (!res.error) {
-                    this.setLocalStorage("entries", JSON.stringify(res));
-                    this.setState({ entries: res });
-                  }
-                });
+                if (this.state.userInfo && this.state.userInfo.id) {
+                  getUserJournals(this.state.userInfo.id).then((res) => {
+                    if (!res.error) {
+                      this.setState({ journals: res });
+                    }
+                  });
+                  getUserEntries(this.state.userInfo.id).then((res) => {
+                    if (!res.error) {
+                      this.setState({ entries: res });
+                    }
+                  });
+                }
               });
             }
           });
@@ -102,6 +119,8 @@ export default class App extends Component {
     e.preventDefault();
     this.setState({ loggedIn: false, username: "" }, () => {
       this.setLocalStorage("loggedIn", false);
+      localStorage.setItem("username", "");
+      localStorage.setItem("userInfo", "");
     });
   };
 
@@ -128,14 +147,19 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        {this.state.loggedIn ? (
+        {this.state.loggedIn &&
+        this.state.userInfo &&
+        this.state.userInfo.id ? (
           <>
             <Main
               userInfo={this.state.userInfo}
               journals={this.state.journals}
               entries={this.state.entries}
+              setParentState={(obj) => this.setState(obj)}
             />
-            <button onClick={this.handleLogOut}>LOG OUT</button>
+            <button onClick={this.handleLogOut}>
+              <Link to="/">LOG OUT</Link>
+            </button>
           </>
         ) : (
           <Landing
