@@ -16,6 +16,8 @@ const MainDisplay = ({
   closeEntryModal,
   entryModal,
   entryToShow,
+  handleDeleteEntry,
+  handleDeleteJournal,
 }) => {
   //Get user's selected filters, if any
   let currentFilters = {};
@@ -122,7 +124,9 @@ const MainDisplay = ({
                         year={x.year}
                         tags={x.tags}
                         id={x.id}
+                        journal={x.journal}
                         openEntryModal={openEntryModal}
+                        handleDeleteEntry={handleDeleteEntry}
                       />
                     );
                   })
@@ -152,6 +156,14 @@ const MainDisplay = ({
               <h4 className="maindisplay-header">
                 {match.params.journal_name}
               </h4>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleDeleteJournal(match.params.journal_id);
+                }}
+              >
+                Delete
+              </button>
               <Link to={`/edit/journal/${match.params.journal_id}`}>
                 Edit Journal
               </Link>
@@ -178,7 +190,9 @@ const MainDisplay = ({
                         year={x.year}
                         tags={x.tags}
                         id={x.id}
+                        journal={x.journal}
                         openEntryModal={openEntryModal}
+                        handleDeleteEntry={handleDeleteEntry}
                       />
                     );
                   })
@@ -213,7 +227,9 @@ const MainDisplay = ({
                           year={x.year}
                           tags={x.tags}
                           id={x.id}
+                          journal={x.journal}
                           openEntryModal={openEntryModal}
+                          handleDeleteEntry={handleDeleteEntry}
                         />
                       );
                     }
