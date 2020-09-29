@@ -8,8 +8,13 @@ import {
   addNewJournal,
   getUserJournals,
   editJournal,
+  deleteJournal,
 } from "../Services/journalServices";
-import { getUserEntries, addNewEntry } from "../Services/entryServices";
+import {
+  getUserEntries,
+  addNewEntry,
+  deleteEntry,
+} from "../Services/entryServices";
 export default class Main extends Component {
   state = {
     tags: [],
@@ -24,7 +29,6 @@ export default class Main extends Component {
     entryModal: false,
     entryToShow: "",
     newEntryTitle: "",
-    newEntryTags: [],
     newEntryText: "",
   };
 
@@ -117,6 +121,24 @@ export default class Main extends Component {
     });
   };
 
+  handleDeleteJournal = (journal_id) => {
+    deleteJournal(journal_id).then((res) => {
+      if (!res.error) {
+        const removeJournal = this.props.journals.filter(
+          (j) => !(j.id.toString() === journal_id.toString())
+        );
+        const removeEntries = this.props.entries.filter(
+          (ent) => !(ent.journal.toString() === journal_id.toString())
+        );
+        this.setState({ redirect: "/" }, () => {
+          this.setState({ redirect: null });
+          this.props.setParentState({ journals: removeJournal });
+          this.props.setParentState({ entries: removeEntries });
+        });
+      }
+    });
+  };
+
   //Entry functions
   openEntryModal = (id) => {
     let entry = this.props.entries.filter((x) => x.id === id);
@@ -151,6 +173,32 @@ export default class Main extends Component {
           () => {
             this.setState({ redirect: null, tags: [] });
             this.props.setParentState({ entries: withNewE });
+          }
+        );
+      }
+    });
+  };
+
+  handleDeleteEntry = (entry_id, journal_id) => {
+    let journal_name = "";
+    this.props.journals.map((j) => {
+      if (j.id.toString() === journal_id.toString()) {
+        journal_name = j.journal_name;
+      }
+      return journal_name;
+    });
+    deleteEntry(entry_id).then((res) => {
+      if (!res.error) {
+        const removeEntry = this.props.entries.filter(
+          (ent) => !(ent.id === entry_id)
+        );
+        this.setState(
+          {
+            redirect: `/journal/${journal_id}/${journal_name}`,
+          },
+          () => {
+            this.setState({ redirect: null });
+            this.props.setParentState({ entries: removeEntry });
           }
         );
       }
@@ -192,6 +240,8 @@ export default class Main extends Component {
                 closeEntryModal={this.closeEntryModal}
                 entryModal={this.state.entryModal}
                 entryToShow={this.state.entryToShow}
+                handleDeleteEntry={this.handleDeleteEntry}
+                handleDeleteJournal={this.handleDeleteJournal}
               />
             </>
           )}
@@ -223,6 +273,8 @@ export default class Main extends Component {
                 closeEntryModal={this.closeEntryModal}
                 entryModal={this.state.entryModal}
                 entryToShow={this.state.entryToShow}
+                handleDeleteEntry={this.handleDeleteEntry}
+                handleDeleteJournal={this.handleDeleteJournal}
               />
             </>
           )}
