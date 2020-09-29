@@ -1,17 +1,51 @@
 import React, { Component } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import MainDisplay from "./MainDisplay";
 import New from "./New";
-
+import {
+  addNewJournal,
+  getUserJournals,
+  editJournal,
+} from "../Services/journalServices";
+import { getUserEntries, addNewEntry } from "../Services/entryServices";
 export default class Main extends Component {
   state = {
     tags: [],
     journal: "",
     month: "",
     year: "",
+    newJournalName: "",
+    newJournalCover: "",
+    editJournalName: "",
+    editJournalCover: "",
+    redirect: null,
+    entryModal: false,
+    entryToShow: "",
+    newEntryTitle: "",
+    newEntryTags: [],
+    newEntryText: "",
   };
+
+  componentDidMount() {
+    if (this.props.userInfo && this.props.userInfo.id) {
+      if (this.props.journals.length === 0) {
+        getUserJournals(this.props.userInfo.id).then((res) => {
+          if (!res.error) {
+            this.props.setParentState({ journals: res });
+          }
+        });
+      }
+      if (this.props.entries.length === 0) {
+        getUserEntries(this.props.userInfo.id).then((res) => {
+          if (!res.error) {
+            this.props.setParentState({ entries: res });
+          }
+        });
+      }
+    }
+  }
 
   handleFormChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -44,75 +78,183 @@ export default class Main extends Component {
     });
   };
 
+  //Journal Functions
+  createNewJournal = () => {
+    addNewJournal(this.props.userInfo.id, this.state.newJournalName).then(
+      (res) => {
+        if (!res.error) {
+          const withNewJ = this.props.journals;
+          withNewJ.push(res);
+          this.setState({ redirect: "/" }, () => {
+            this.setState({ redirect: null });
+            this.props.setParentState({ journals: withNewJ });
+          });
+        }
+      }
+    );
+  };
+
+  editJournalItem = (id) => {
+    editJournal(
+      id,
+      this.state.editJournalName,
+      this.state.editJournalCover
+    ).then((res) => {
+      if (res && res.error) {
+        window.alert("Journal was not updated. Please try again.");
+      }
+      this.setState(
+        {
+          redirect: `/journal/${id}/${this.state.editJournalName}`,
+        },
+        () => {
+          this.setState({ redirect: null });
+          getUserJournals(this.props.userInfo.id).then((res) => {
+            this.props.setParentState({ journals: res });
+          });
+        }
+      );
+    });
+  };
+
+  //Entry functions
+  openEntryModal = (id) => {
+    let entry = this.props.entries.filter((x) => x.id === id);
+    this.setState({ entryModal: true, entryToShow: entry });
+  };
+
+  closeEntryModal = (e) => {
+    e.preventDefault();
+    this.setState({ entryModal: false });
+  };
+
+  createNewEntry = (journal_id) => {
+    let journal_name = "";
+    this.props.journals.map((j) => {
+      if (j.id.toString() === journal_id.toString()) {
+        journal_name = j.journal_name;
+      }
+      return journal_name;
+    });
+    addNewEntry(
+      this.props.userInfo.id,
+      journal_id,
+      this.state.newEntryTitle,
+      this.state.tags,
+      this.state.newEntryText
+    ).then((res) => {
+      if (!res.error) {
+        const withNewE = this.props.entries;
+        withNewE.push(res);
+        this.setState(
+          { redirect: `/journal/${journal_id}/${journal_name}` },
+          () => {
+            this.setState({ redirect: null, tags: [] });
+            this.props.setParentState({ entries: withNewE });
+          }
+        );
+      }
+    });
+  };
+
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
     return (
       <>
-        <Router>
-          <Header user={this.props.userInfo.firstname} />
-          <Route
-            exact
-            path="/"
-            render={(props) => (
-              <>
-                <Sidebar
-                  page="main"
-                  entries={this.props.entries}
-                  journals={this.props.journals}
-                  tags={this.state.tags}
-                  addTags={this.addTags}
-                  removeTags={this.removeTags}
-                  handleFormChange={this.handleFormChange}
-                  clearFilters={this.clearFilters}
-                />
-                <MainDisplay
-                  {...props}
-                  page="main"
-                  entries={this.props.entries}
-                  journals={this.props.journals}
-                  journal={this.state.journal}
-                  month={this.state.month}
-                  year={this.state.year}
-                  tags={this.state.tags}
-                />
-              </>
-            )}
-          />
-          <Route
-            path="/journal/:journal_id/:journal_name"
-            render={(props) => (
-              <>
-                <Sidebar
-                  page="journal"
-                  entries={this.props.entries}
-                  journals={this.props.journals}
-                  tags={this.state.tags}
-                  addTags={this.addTags}
-                  removeTags={this.removeTags}
-                  handleFormChange={this.handleFormChange}
-                  clearFilters={this.clearFilters}
-                />
-                <MainDisplay
-                  {...props}
-                  page="journal"
-                  entries={this.props.entries}
-                  journals={this.props.journals}
-                  journal={this.state.journal}
-                  month={this.state.month}
-                  year={this.state.year}
-                  tags={this.state.tags}
-                />
-              </>
-            )}
-          />
-          <Route
-            path="/new/journal"
-            render={(props) => (
-              <>
-                <New {...props} />
-              </>
-            )}
-          />
-        </Router>
+        <Header user={this.props.userInfo.firstname} />
+        <Route
+          exact
+          path="/"
+          render={(props) => (
+            <>
+              <Sidebar
+                page="main"
+                entries={this.props.entries}
+                journals={this.props.journals}
+                tags={this.state.tags}
+                addTags={this.addTags}
+                removeTags={this.removeTags}
+                handleFormChange={this.handleFormChange}
+                clearFilters={this.clearFilters}
+              />
+              <MainDisplay
+                {...props}
+                page="main"
+                entries={this.props.entries}
+                journals={this.props.journals}
+                journal={this.state.journal}
+                month={this.state.month}
+                year={this.state.year}
+                tags={this.state.tags}
+                openEntryModal={this.openEntryModal}
+                closeEntryModal={this.closeEntryModal}
+                entryModal={this.state.entryModal}
+                entryToShow={this.state.entryToShow}
+              />
+            </>
+          )}
+        />
+        <Route
+          path="/journal/:journal_id/:journal_name"
+          render={(props) => (
+            <>
+              <Sidebar
+                page="journal"
+                entries={this.props.entries}
+                journals={this.props.journals}
+                tags={this.state.tags}
+                addTags={this.addTags}
+                removeTags={this.removeTags}
+                handleFormChange={this.handleFormChange}
+                clearFilters={this.clearFilters}
+              />
+              <MainDisplay
+                {...props}
+                page="journal"
+                entries={this.props.entries}
+                journals={this.props.journals}
+                journal={this.state.journal}
+                month={this.state.month}
+                year={this.state.year}
+                tags={this.state.tags}
+                openEntryModal={this.openEntryModal}
+                closeEntryModal={this.closeEntryModal}
+                entryModal={this.state.entryModal}
+                entryToShow={this.state.entryToShow}
+              />
+            </>
+          )}
+        />
+        <Route
+          path={["/new/:type/:id", "/new/:type"]}
+          render={(props) => (
+            <>
+              <New
+                {...props}
+                action="new"
+                handleFormChange={this.handleFormChange}
+                createNewJournal={this.createNewJournal}
+                createNewEntry={this.createNewEntry}
+                tags={this.state.tags}
+                addTags={this.addTags}
+                removeTags={this.removeTags}
+              />
+            </>
+          )}
+        />
+        <Route
+          path="/edit/journal/:id"
+          render={(props) => (
+            <New
+              {...props}
+              action="edit"
+              handleFormChange={this.handleFormChange}
+              editJournalItem={this.editJournalItem}
+            />
+          )}
+        />
       </>
     );
   }
