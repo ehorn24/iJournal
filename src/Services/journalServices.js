@@ -35,6 +35,14 @@ const journalServices = {
       }),
     });
   },
+  deleteJournal(journal_id) {
+    return fetch(`${journalURL}/j/${journal_id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  },
 };
 
 module.exports = journalServices;
