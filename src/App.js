@@ -34,32 +34,33 @@ export default class App extends Component {
       this.setState({ usernames });
     });
     //If user is currently logged in, render Main Component
-    if (typeof Storage !== undefined) {
-      if (localStorage.getItem("loggedIn") === "true") {
-        this.setState(
-          {
-            loggedIn: true,
-            username: localStorage.getItem("username"),
-            userInfo: JSON.parse(localStorage.getItem("userInfo")),
-          },
-          () => {
-            if (this.state.userInfo && this.state.userInfo.id) {
-              getUserJournals(this.state.userInfo.id).then((res) => {
-                if (!res.error) {
-                  this.setLocalStorage("journals", JSON.stringify(res));
-                  this.setState({ journals: res });
-                }
-              });
-              getUserEntries(this.state.userInfo.id).then((res) => {
-                if (!res.error) {
-                  this.setLocalStorage("entries", res);
-                  this.setState({ entries: res });
-                }
-              });
-            }
+    if (
+      typeof Storage !== undefined &&
+      localStorage.getItem("loggedIn") === "true"
+    ) {
+      this.setState(
+        {
+          loggedIn: true,
+          username: localStorage.getItem("username"),
+          userInfo: JSON.parse(localStorage.getItem("userInfo")),
+        },
+        () => {
+          if (this.state.userInfo && this.state.userInfo.id) {
+            getUserJournals(this.state.userInfo.id).then((res) => {
+              if (!res.error) {
+                this.setLocalStorage("journals", JSON.stringify(res));
+                this.setState({ journals: res });
+              }
+            });
+            getUserEntries(this.state.userInfo.id).then((res) => {
+              if (!res.error) {
+                this.setLocalStorage("entries", res);
+                this.setState({ entries: res });
+              }
+            });
           }
-        );
-      }
+        }
+      );
     }
   }
 
