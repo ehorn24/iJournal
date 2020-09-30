@@ -1,17 +1,12 @@
 .ijournal-header {
-  background-color: lightblue;
-  border: 1px solid black;
-  border-bottom: none;
-  padding: 15px;
   text-align: center;
+  margin: 8px;
   a {
-    display: inline;
-    text-decoration: none;
-    color: black;
-    font-size: 24px;
+    font-family: "Caveat", cursive;
+    color: white;
+    font-size: 50px;
     font-weight: bold;
-    &:hover {
-      font-size: 26px;
-    }
+    text-decoration: none;
+    cursor: pointer;
   }
 }
