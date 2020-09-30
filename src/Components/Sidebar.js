@@ -22,17 +22,19 @@ const Sidebar = ({
     case "main":
       return (
         <div className="sidebar">
-          <h4 className="sidebar-header">Search for journal entries</h4>
+          <h4 className="sidebar-header">Filter for entries</h4>
           <form
             className="sidebar-form"
             onChange={handleFormChange}
             onSubmit={(e) => e.preventDefault()}
             onReset={clearFilters}
           >
-            <ul>
-              <li>
-                <label htmlFor="filterby-journal">Journal:</label>
-                <select name="journal" id="journal">
+            <ul className="sidebar-ul">
+              <li className="sidebar-li">
+                <label htmlFor="filterby-journal" className="sidebar-label">
+                  Journal
+                </label>
+                <select name="journal" id="journal" className="sidebar-select">
                   <option value=""></option>
                   {journals.map((j, i) => {
                     return (
@@ -43,9 +45,11 @@ const Sidebar = ({
                   })}
                 </select>
               </li>
-              <li>
-                <label htmlFor="filterby-month">Month:</label>
-                <select name="month" id="month">
+              <li className="sidebar-li">
+                <label htmlFor="filterby-month" className="sidebar-label">
+                  Month
+                </label>
+                <select name="month" id="month" className="sidebar-select">
                   <option value=""></option>
                   <option value="01">January</option>
                   <option value="02">February</option>
@@ -61,9 +65,11 @@ const Sidebar = ({
                   <option value="12">December</option>
                 </select>
               </li>
-              <li>
-                <label htmlFor="filterby-year">Year:</label>
-                <select name="year" id="year">
+              <li className="sidebar-li">
+                <label htmlFor="filterby-year" className="sidebar-label">
+                  Year
+                </label>
+                <select name="year" id="year" className="sidebar-select">
                   <option value=""></option>
                   {years.map((year, i) => {
                     return (
@@ -74,22 +80,24 @@ const Sidebar = ({
                   })}
                 </select>
               </li>
-              <li>
-                <label htmlFor="filterby-tags">Tags:</label>
-                <TagsInput
-                  addTags={addTags}
-                  removeTags={removeTags}
-                  tags={tags}
-                />
+              <li className="sidebar-li tags-li">
+                <label htmlFor="filterby-tags" className="sidebar-label">
+                  Tags
+                </label>
+                <div className="tagsinput-div">
+                  <TagsInput
+                    addTags={addTags}
+                    removeTags={removeTags}
+                    tags={tags}
+                  />
+                </div>
               </li>
             </ul>
-            <div className="sidebar-button-flex">
-              <input
-                type="reset"
-                value="Clear All Filters"
-                className="sidebar-button"
-              />
-            </div>
+            <input
+              type="reset"
+              value="Clear All Filters"
+              className="sidebar-button"
+            />
           </form>
         </div>
       );
