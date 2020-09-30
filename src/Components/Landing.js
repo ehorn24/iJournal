@@ -29,35 +29,63 @@ const Landing = ({
 
   return (
     <main className="landing-main">
-      <h1 className="landing-header">Welcome to iJournal!</h1>
+      <h1 className="landing-header">
+        Welcome to <span className="title-span">iJournal</span>
+      </h1>
+      <div className="book">
+        <span className="page turn"></span>
+        <span className="page turn"></span>
+        <span className="page turn"></span>
+        <span className="page turn"></span>
+        <span className="page turn"></span>
+        <span className="page turn"></span>
+        <span className="cover"></span>
+        <span className="page"></span>
+        <span className="cover turn"></span>
+      </div>
       <div>
         {page === "login" ? (
-          <div>
-            <h3>Log in</h3>
+          <div className="login-form-div">
             <form
-              action=""
+              className="login-form"
               onChange={handleFormChange}
               onSubmit={(e) => {
                 e.preventDefault();
                 handleLogIn();
               }}
             >
-              <label htmlFor="username">Username:</label>
-              <input type="text" name="username" id="username" />
+              <label htmlFor="username"></label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                className="login-input"
+                placeholder="Username"
+              />
 
-              <label htmlFor="password">Password:</label>
-              <input type="password" name="password" id="password" />
+              <label htmlFor="password"></label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                className="login-input"
+                placeholder="Password"
+              />
 
-              <button type="submit">Log in</button>
+              <button type="submit" className="login-submit-button">
+                Log In
+              </button>
             </form>
-            <p>
+            <p className="login-p">
               New to iJournal?
-              <span onClick={changeLogIn}> Sign up here</span>
+              <span onClick={changeLogIn} className="login-switch">
+                {" "}
+                Sign up here
+              </span>
             </p>
           </div>
         ) : (
-          <div>
-            <h3>Create an account</h3>
+          <div className="signup-form-div">
             <form
               action=""
               onChange={handleFormChange}
@@ -65,25 +93,51 @@ const Landing = ({
                 e.preventDefault();
                 handleSignUp();
               }}
+              className="signup-form"
             >
-              <label htmlFor="username">Username:</label>
-              <input type="text" name="username" id="username" />
+              <label htmlFor="username"></label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                className="signup-input"
+                placeholder="Username"
+              />
               {usernameMessage}
-
-              <label htmlFor="password">Password:</label>
-              <input type="password" name="password" id="password" />
-
-              <label htmlFor="firstname">First name:</label>
-              <input type="text" name="firstname" id="firstname" />
-
-              <label htmlFor="lastname">Last name:</label>
-              <input type="text" name="lastname" id="lastname" />
-
-              <button type="submit">Sign up</button>
+              <label htmlFor="password"></label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                className="signup-input"
+                placeholder="Password"
+              />
+              <label htmlFor="firstname"></label>
+              <input
+                type="text"
+                name="firstname"
+                id="firstname"
+                className="signup-input"
+                placeholder="First Name"
+              />
+              <label htmlFor="lastname"></label>
+              <input
+                type="text"
+                name="lastname"
+                id="lastname"
+                className="signup-input"
+                placeholder="Last Name"
+              />
+              <button type="submit" className="signup-submit-button">
+                Sign up
+              </button>
             </form>
-            <p>
+            <p className="signup-p">
               Already have an account?
-              <span onClick={changeLogIn}> Log in here</span>
+              <span onClick={changeLogIn} className="signup-switch">
+                {" "}
+                Log in here
+              </span>
             </p>
           </div>
         )}
