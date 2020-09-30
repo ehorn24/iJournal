@@ -1,14 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Montserrat&display=swap");
+
 * {
   margin: 0;
   padding: 0;
+  background-color: #3b8beb;
 }
 
 body {
   @import "landing";
-  @import "maindisplay";
-  @import "sidebar";
   @import "header";
+  @import "sidebar";
   @import "tagsinput";
-  @import "entrymodal";
-  @import "new";
 }
