@@ -3,7 +3,6 @@
 * {
   margin: 0;
   padding: 0;
-  background-color: #3b8beb;
 }
 
 body {
@@ -11,4 +10,6 @@ body {
   @import "header";
   @import "sidebar";
   @import "tagsinput";
+  @import "maindisplay";
+  background-color: #3b8beb;
 }
