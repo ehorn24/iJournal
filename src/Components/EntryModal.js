@@ -3,7 +3,10 @@ import React from "react";
 const EntryModal = ({ entryModal, entryToShow, closeEntryModal }) => {
   return (
     <div className={entryModal ? "modal show-entry" : "modal hide-entry"}>
-      <button className="modal-close" onClick={closeEntryModal}>
+      <button
+        className={entryModal ? "modal-close show" : "modal-close hide"}
+        onClick={closeEntryModal}
+      >
         X
       </button>
       <div className="modal-page">

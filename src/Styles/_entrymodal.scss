@@ -16,25 +16,28 @@
   margin-left: auto;
   display: flex;
   background-color: lightyellow;
-}
-
-.show-entry {
-  opacity: 1;
-}
-
-.hide-entry {
-  transform: translateY(-100vh);
-  opacity: 0;
-}
-
-.modal-close {
-  background-color: white;
-  position: fixed;
-  height: 30px;
-  width: 30px;
-  right: 80px;
-  top: 35px;
-  cursor: pointer;
+  .show-entry {
+    opacity: 1;
+  }
+  .hide-entry {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  .modal-close {
+    background-color: white;
+    position: fixed;
+    height: 30px;
+    width: 30px;
+    right: 80px;
+    top: 35px;
+    cursor: pointer;
+  }
+  .hide {
+    visibility: hidden;
+  }
+  .show {
+    visibility: visible;
+  }
 }
 
 .modal-page {
