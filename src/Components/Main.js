@@ -211,7 +211,10 @@ export default class Main extends Component {
     }
     return (
       <>
-        <Header user={this.props.userInfo.firstname} />
+        <Header
+          user={this.props.userInfo.firstname}
+          handleLogOut={this.props.handleLogOut}
+        />
         <Route
           exact
           path="/"
