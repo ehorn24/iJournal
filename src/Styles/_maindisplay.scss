@@ -1,66 +1,98 @@
-.home-header {
-  text-align: center;
-  color: red;
-}
-
-.maindisplay-main {
-  .my-journals {
-    float: left;
-    border: 1px solid black;
-    border-left: none;
-    width: 69%;
-    height: 600px;
-    .maindisplay-header {
-      font-size: 28px;
-      margin: 20px;
-      text-align: center;
-    }
-    .addjournal-button {
-      text-decoration: none;
-      color: black;
-      background-color: white;
-      display: block;
-      margin: 0 auto;
-      width: 80px;
-      padding: 8px;
+.maindisplay-div {
+  background-color: #ffffff;
+  margin: 10px;
+  border-radius: 8px;
+  min-height: 370px;
+  .maindisplay-header {
+    font-family: "Caveat", cursive;
+    text-align: center;
+    font-size: 32px;
+    letter-spacing: 1px;
+    color: #b23850;
+    padding: 8px;
+  }
+  .journals-flex {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+    .journal {
       border: 1px solid black;
-      &:hover {
-        background-color: lightblue;
-      }
+      width: 150px;
+      height: 150px;
+      background-color: #c4dbf6;
+      border-radius: 0 8px 8px 0;
+      text-align: center;
+      text-decoration: none;
+      font-family: "Montserrat", sans-serif;
+      padding-top: 10px;
+      color: #b23850;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
-    .journals-flex {
-      display: flex;
-      justify-content: space-evenly;
-      flex-wrap: wrap;
-      margin-top: 20px;
+  }
+  .no-entries {
+    font-size: 16px;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    width: 70%;
+    margin: 5px auto;
+    line-height: 22px;
+  }
+  .dropdown-container {
+    display: inline-block;
+    position: absolute;
+    text-align: center;
+    width: 40px;
+    top: 330px;
+    left: 20px;
+    background-color: #c4dbf6;
+    border-radius: 5px;
+    input + span {
+      cursor: pointer;
+      display: block;
+      border: 2px solid #3b8beb;
+      padding: 5px;
+      border-radius: 5px;
+    }
+    input:checked + span,
+    input + span:hover {
+      background-color: #c4dbf6;
+    }
+    input:checked + span {
+      border-bottom: 0;
+    }
+    input {
+      display: none;
+    }
+    input ~ .dropdown-menu {
+      display: none;
+    }
+    input:checked ~ .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu {
+      border: 1px solid #ccc;
+      background-color: #c4dbf6;
+      border-top: 0;
+      width: 130px;
+      padding: 5px;
       a {
-        font-size: 24px;
-        border: 1px solid black;
-        width: 200px;
-        height: 200px;
-        text-align: center;
-        padding: 10px;
-        margin: 15px;
+        display: block;
         text-decoration: none;
+        padding: 5px;
         color: black;
+        font-family: "Montserrat", sans-serif;
         &:hover {
-          background-color: lightblue;
+          color: #fff;
         }
       }
-    }
-    .maindisplay-entries {
-      .entry {
-        width: 90%;
-        border: 1px solid black;
-        margin: 20px auto;
-        padding: 10px;
-        cursor: pointer;
+      .delete-journal-span {
+        padding: 8px 0;
+        font-family: "Montserrat", sans-serif;
+        margin: 5px 0;
         &:hover {
-          background-color: lightblue;
+          color: #fff;
         }
-      }
-      .entry-error {
-        text-align: center;
       }
     }
   }

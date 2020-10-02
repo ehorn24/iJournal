@@ -82,65 +82,71 @@ const MainDisplay = ({
       //Display all journals if no entries selected
       if (Object.keys(currentFilters).length === 0) {
         return (
-          <main className="maindisplay-main">
-            <section className="my-journals">
-              <h4 className="maindisplay-header">My Journals</h4>
-              <Link to="/new/journal" className="addjournal-button">
-                New Journal +
-              </Link>
-              <div className="journals-flex">
-                {journals.map((journal, i) => {
-                  return (
-                    <Link
-                      to={`/journal/${journal.id}/${journal.journal_name}`}
-                      className="journal"
-                      key={i}
-                    >
-                      {journal.journal_name}
-                    </Link>
-                  );
-                })}
-              </div>
-            </section>
-          </main>
+          <div className="maindisplay-div">
+            <main className="maindisplay-main">
+              <section className="my-journals">
+                <h4 className="maindisplay-header">My Journals</h4>
+                <Link to="/new/journal" className="addjournal-button">
+                  New Journal +
+                </Link>
+                <div className="journals-flex">
+                  {journals.map((journal, i) => {
+                    return (
+                      <Link
+                        to={`/journal/${journal.id}/${journal.journal_name}`}
+                        className="journal"
+                        key={i}
+                      >
+                        {journal.journal_name}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </section>
+            </main>
+          </div>
         );
         //If user has selected filters
       } else {
         return (
-          <main className="maindisplay-main">
-            <section className="my-journals">
-              <h4 className="maindisplay-header">
-                Find what you're looking for?
-              </h4>
-              <div className="maindisplay-entries">
-                {mEntries.length !== null && mEntries.length !== 0 ? (
-                  mEntries.map((x, i) => {
-                    return (
-                      <EntryDisplay
-                        key={i}
-                        title={x.entry_title}
-                        month={x.month}
-                        date={x.date}
-                        year={x.year}
-                        tags={x.tags}
-                        id={x.id}
-                        journal={x.journal}
-                        openEntryModal={openEntryModal}
-                        handleDeleteEntry={handleDeleteEntry}
-                      />
-                    );
-                  })
-                ) : (
-                  <p>There were no matching entries</p>
-                )}
-              </div>
-            </section>
-            <EntryModal
-              entryModal={entryModal}
-              entryToShow={entryToShow}
-              closeEntryModal={closeEntryModal}
-            />
-          </main>
+          <div className="maindisplay-div">
+            <main className="maindisplay-main">
+              <section className="my-journals">
+                <h4 className="maindisplay-header">
+                  Find what you're looking for?
+                </h4>
+                <div className="maindisplay-entries">
+                  {mEntries.length !== null && mEntries.length !== 0 ? (
+                    mEntries.map((x, i) => {
+                      return (
+                        <EntryDisplay
+                          key={i}
+                          title={x.entry_title}
+                          month={x.month}
+                          date={x.date}
+                          year={x.year}
+                          tags={x.tags}
+                          id={x.id}
+                          journal={x.journal}
+                          openEntryModal={openEntryModal}
+                          handleDeleteEntry={handleDeleteEntry}
+                        />
+                      );
+                    })
+                  ) : (
+                    <p className="no-entries">
+                      There were no entries matching your filters!
+                    </p>
+                  )}
+                </div>
+              </section>
+              <EntryModal
+                entryModal={entryModal}
+                entryToShow={entryToShow}
+                closeEntryModal={closeEntryModal}
+              />
+            </main>
+          </div>
         );
       }
     case "journal":
@@ -151,60 +157,66 @@ const MainDisplay = ({
       //Display all entries in selected journal if no filters are selected
       if (Object.keys(currentFilters).length === 0) {
         return (
-          <main className="maindisplay-main">
-            <section className="my-journals">
-              <h4 className="maindisplay-header">
-                {match.params.journal_name}
-              </h4>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleDeleteJournal(match.params.journal_id);
-                }}
-              >
-                Delete
-              </button>
-              <Link to={`/edit/journal/${match.params.journal_id}`}>
-                Edit Journal
-              </Link>
-              <Link
-                to={`/new/entry/${match.params.journal_id}`}
-                className="addjournal-button"
-              >
-                New Entry +
-              </Link>
-              <div className="maindisplay-entries">
-                {journalEntries.length === 0 ? (
-                  <h3>
-                    This journal doesn't have any entries yet. Click "New" to
-                    start one!
-                  </h3>
-                ) : (
-                  journalEntries.map((x, i) => {
-                    return (
-                      <EntryDisplay
-                        key={i}
-                        title={x.entry_title}
-                        month={x.month}
-                        date={x.date}
-                        year={x.year}
-                        tags={x.tags}
-                        id={x.id}
-                        journal={x.journal}
-                        openEntryModal={openEntryModal}
-                        handleDeleteEntry={handleDeleteEntry}
-                      />
-                    );
-                  })
-                )}
-              </div>
-            </section>
-            <EntryModal
-              entryModal={entryModal}
-              entryToShow={entryToShow}
-              closeEntryModal={closeEntryModal}
-            />
-          </main>
+          <div className="maindisplay-div">
+            <main className="maindisplay-main">
+              <section className="my-journals">
+                <label className="dropdown-container">
+                  <input type="checkbox" />
+                  <span>•••</span>
+                  <span className="dropdown-menu">
+                    <Link to={`/edit/journal/${match.params.journal_id}`}>
+                      Edit Journal
+                    </Link>
+                    <Link to={`/new/entry/${match.params.journal_id}`}>
+                      New Entry
+                    </Link>
+                    <span
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleDeleteJournal(match.params.journal_id);
+                      }}
+                      className="delete-journal-span"
+                    >
+                      Delete Journal
+                    </span>
+                  </span>
+                </label>
+                <h4 className="maindisplay-header">
+                  {match.params.journal_name}
+                </h4>
+
+                <div className="maindisplay-entries">
+                  {journalEntries.length === 0 ? (
+                    <h3 className="no-entries">
+                      This journal doesn't have any entries yet. Add one!
+                    </h3>
+                  ) : (
+                    journalEntries.map((x, i) => {
+                      return (
+                        <EntryDisplay
+                          key={i}
+                          title={x.entry_title}
+                          month={x.month}
+                          date={x.date}
+                          year={x.year}
+                          tags={x.tags}
+                          id={x.id}
+                          journal={x.journal}
+                          openEntryModal={openEntryModal}
+                          handleDeleteEntry={handleDeleteEntry}
+                        />
+                      );
+                    })
+                  )}
+                </div>
+              </section>
+              <EntryModal
+                entryModal={entryModal}
+                entryToShow={entryToShow}
+                closeEntryModal={closeEntryModal}
+              />
+            </main>
+          </div>
         );
         //If user has selected filters, display matching entries
       } else {
