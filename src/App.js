@@ -151,17 +151,13 @@ export default class App extends Component {
         {this.state.loggedIn &&
         this.state.userInfo &&
         this.state.userInfo.id ? (
-          <>
-            <Main
-              userInfo={this.state.userInfo}
-              journals={this.state.journals}
-              entries={this.state.entries}
-              setParentState={(obj) => this.setState(obj)}
-            />
-            <button onClick={this.handleLogOut}>
-              <Link to="/">LOG OUT</Link>
-            </button>
-          </>
+          <Main
+            userInfo={this.state.userInfo}
+            journals={this.state.journals}
+            entries={this.state.entries}
+            setParentState={(obj) => this.setState(obj)}
+            handleLogOut={this.handleLogOut}
+          />
         ) : (
           <Landing
             page={this.state.signup ? "signup" : "login"}

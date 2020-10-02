@@ -1,3 +1,58 @@
+.logout-icon-div {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.logout-icon {
+  width: 40px;
+  height: 40px;
+  color: white;
+}
+.logout-dropdown-container {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+  width: 40px;
+  top: 10px;
+  left: 5px;
+  input + span {
+    cursor: pointer;
+    display: block;
+    border: 2px solid #c4dbf6;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  input:checked + span,
+  input + span:hover {
+    background-color: #c4dbf6;
+  }
+  input:checked + span {
+    border-bottom: 0;
+  }
+  input {
+    display: none;
+  }
+  input ~ .logout-menu {
+    display: none;
+  }
+  input:checked ~ .logout-menu {
+    display: block;
+  }
+  .logout-menu {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #eef;
+    border-top: 0;
+    width: 90px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    padding: 3px;
+    color: #b23850;
+  }
+}
+
 .ijournal-header {
   text-align: center;
   margin: 8px;
