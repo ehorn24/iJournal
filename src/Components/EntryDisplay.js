@@ -14,33 +14,38 @@ const EntryDisplay = ({
   return (
     <>
       <div
-        className="entry"
+        className="entry-div"
         onClick={(e) => {
           e.preventDefault();
           openEntryModal(id);
         }}
       >
-        <h3>{title}</h3>
-        <p>
-          {month.slice(0, 2)}-{date.slice(0, 2)}-{year}
-        </p>
-        <p>
-          Tags:{" "}
-          {tags && tags.length > 0
-            ? tags.map((t) => {
-                return t + "/";
-              })
-            : null}
-        </p>
+        <div className="entry-info">
+          <h3 className="entry-title">
+            {title}{" "}
+            <span className="entry-date">
+              {month.slice(0, 2)}-{date.slice(0, 2)}-{year}
+            </span>
+          </h3>
+          <p className="entry-tags">
+            Tags:{" "}
+            {tags && tags.length > 0
+              ? tags.map((t, i) => {
+                  return <span key={i}> {t} </span>;
+                })
+              : null}
+          </p>
+        </div>
+        <button
+          className="entry-delete-button"
+          onClick={(e) => {
+            e.preventDefault();
+            handleDeleteEntry(id, journal);
+          }}
+        >
+          X
+        </button>
       </div>
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          handleDeleteEntry(id, journal);
-        }}
-      >
-        Delete
-      </button>
     </>
   );
 };
