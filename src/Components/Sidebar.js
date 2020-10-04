@@ -157,11 +157,7 @@ const Sidebar = ({
               </li>
             </ul>
             <div className="sidebar-button-flex">
-              <input
-                type="reset"
-                value="Clear All Filters"
-                className="sidebar-button"
-              />
+              <input type="reset" value="Clear" className="sidebar-button" />
             </div>
           </form>
         </div>
