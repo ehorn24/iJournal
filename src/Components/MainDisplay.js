@@ -87,7 +87,7 @@ const MainDisplay = ({
               <section className="my-journals">
                 <h4 className="maindisplay-header">My Journals</h4>
                 <Link to="/new/journal" className="addjournal-button">
-                  New Journal +
+                  New +
                 </Link>
                 <div className="journals-flex">
                   {journals.map((journal, i) => {
@@ -96,8 +96,18 @@ const MainDisplay = ({
                         to={`/journal/${journal.id}/${journal.journal_name}`}
                         className="journal"
                         key={i}
+                        style={
+                          journal.journal_cover !== null
+                            ? {
+                                backgroundImage: `url(${journal.journal_cover})`,
+                                backgroundSize: "cover",
+                              }
+                            : { backgroundColor: "white" }
+                        }
                       >
-                        {journal.journal_name}
+                        <span className="journal-title">
+                          {journal.journal_name}
+                        </span>
                       </Link>
                     );
                   })}
@@ -135,7 +145,7 @@ const MainDisplay = ({
                     })
                   ) : (
                     <p className="no-entries">
-                      There were no entries matching your filters!
+                      ...If not, please try different filters.
                     </p>
                   )}
                 </div>

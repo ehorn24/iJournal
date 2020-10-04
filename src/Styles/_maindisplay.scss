@@ -1,98 +1,120 @@
-.maindisplay-div {
-  background-color: #ffffff;
-  margin: 10px;
-  border-radius: 8px;
-  min-height: 370px;
-  .maindisplay-header {
-    font-family: "Caveat", cursive;
-    text-align: center;
-    font-size: 32px;
-    letter-spacing: 1px;
-    color: #b23850;
-    padding: 8px;
-  }
-  .journals-flex {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 30px;
-    .journal {
-      border: 1px solid black;
-      width: 150px;
-      height: 150px;
-      background-color: #c4dbf6;
-      border-radius: 0 8px 8px 0;
-      text-align: center;
-      text-decoration: none;
-      font-family: "Montserrat", sans-serif;
-      padding-top: 10px;
-      color: #b23850;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-  }
-  .no-entries {
-    font-size: 16px;
-    text-align: center;
-    font-family: "Montserrat", sans-serif;
-    width: 70%;
-    margin: 5px auto;
-    line-height: 22px;
-  }
-  .dropdown-container {
-    display: inline-block;
-    position: absolute;
-    text-align: center;
-    width: 40px;
-    top: 330px;
-    left: 20px;
+.maindisplay-header {
+  font-family: "Bad Script", cursive;
+  text-align: center;
+  font-size: 32px;
+  color: white;
+}
+.addjournal-button {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  text-decoration: none;
+  position: absolute;
+  display: block;
+  top: 355px;
+  left: 318px;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+  border: 1px solid #b23850;
+  padding: 10px;
+  background-color: #b23850;
+  border-radius: 30px;
+  width: 80px;
+  text-align: center;
+}
+.journals-flex {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  .journal {
+    border: 1px solid black;
+    width: 150px;
+    height: 150px;
     background-color: #c4dbf6;
-    border-radius: 5px;
-    input + span {
-      cursor: pointer;
-      display: block;
-      border: 2px solid #3b8beb;
+    border-radius: 0 8px 8px 0;
+    text-align: center;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    .journal-title {
+      background-color: white;
       padding: 5px;
+      color: black;
       border-radius: 5px;
+      display: inline-block;
+      margin-top: 5px;
+      width: 135px;
     }
-    input:checked + span,
-    input + span:hover {
-      background-color: #c4dbf6;
-    }
-    input:checked + span {
-      border-bottom: 0;
-    }
-    input {
-      display: none;
-    }
-    input ~ .dropdown-menu {
-      display: none;
-    }
-    input:checked ~ .dropdown-menu {
+  }
+}
+.no-entries {
+  font-size: 16px;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  width: 70%;
+  margin: 5px auto;
+  line-height: 22px;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.dropdown-container {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+  width: 40px;
+  right: 60px;
+  top: 360px;
+  background-color: #c4dbf6;
+  border-radius: 5px;
+  input + span {
+    cursor: pointer;
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  input:checked + span,
+  input + span:hover {
+    background-color: #c4dbf6;
+  }
+  input:checked + span {
+    border-bottom: 0;
+  }
+  input {
+    display: none;
+  }
+  input ~ .dropdown-menu {
+    display: none;
+  }
+  input:checked ~ .dropdown-menu {
+    display: block;
+  }
+  .dropdown-menu {
+    border: 1px solid #ccc;
+    background-color: #c4dbf6;
+    border-top: 0;
+    width: 130px;
+    padding: 5px;
+    a {
       display: block;
-    }
-    .dropdown-menu {
-      border: 1px solid #ccc;
-      background-color: #c4dbf6;
-      border-top: 0;
-      width: 130px;
+      text-decoration: none;
       padding: 5px;
-      a {
-        display: block;
-        text-decoration: none;
-        padding: 5px;
-        color: black;
-        font-family: "Montserrat", sans-serif;
-        &:hover {
-          color: #fff;
-        }
+      color: black;
+      font-family: "Montserrat", sans-serif;
+      &:hover {
+        color: #fff;
       }
-      .delete-journal-span {
-        padding: 8px 0;
-        font-family: "Montserrat", sans-serif;
-        margin: 5px 0;
-        &:hover {
-          color: #fff;
-        }
+    }
+    .delete-journal-span {
+      padding: 8px 0;
+      font-family: "Montserrat", sans-serif;
+      margin: 5px 0;
+      &:hover {
+        color: #fff;
       }
     }
   }
