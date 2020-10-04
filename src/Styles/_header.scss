@@ -20,13 +20,13 @@
   input + span {
     cursor: pointer;
     display: block;
-    border: 2px solid #c4dbf6;
+    border: 2px solid white;
     padding: 5px;
     border-radius: 5px;
   }
   input:checked + span,
   input + span:hover {
-    background-color: #c4dbf6;
+    background-color: white;
   }
   input:checked + span {
     border-bottom: 0;
@@ -41,9 +41,9 @@
     display: block;
   }
   .logout-menu {
-    border: 1px solid #ccc;
+    border: 1px solid white;
     border-radius: 5px;
-    background-color: #eef;
+    background-color: white;
     border-top: 0;
     width: 90px;
     font-family: "Montserrat", sans-serif;
