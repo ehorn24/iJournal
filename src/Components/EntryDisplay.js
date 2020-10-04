@@ -22,7 +22,7 @@ const EntryDisplay = ({
       >
         <h3>{title}</h3>
         <p>
-          {month.slice(1, 2)}-{date.slice(1, 2)}-{year}
+          {month.slice(0, 2)}-{date.slice(0, 2)}-{year}
         </p>
         <p>
           Tags:{" "}
