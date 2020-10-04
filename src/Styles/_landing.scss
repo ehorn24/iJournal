@@ -1,3 +1,4 @@
+//Mobile
 .landing-main {
   .book {
     position: absolute;
@@ -5,7 +6,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    margin: 160px auto;
+    margin: 200px auto;
     width: 18.5rem;
     height: 12.5rem;
     perspective: 70rem;
@@ -119,103 +120,125 @@
   }
   .landing-header {
     font-family: "Montserrat", sans-serif;
-    text-align: center;
     font-size: 32px;
-    margin-top: 70px;
+    margin: 50px 0 0 20px;
+    color: #b23850;
+    letter-spacing: 0px;
+    padding: 0;
+    z-index: -1;
+  }
+  .title-span {
+    display: block;
+    font-family: "Bad Script", cursive;
+    font-size: 108px;
+    letter-spacing: 3px;
+    font-weight: normal;
     color: white;
-    letter-spacing: 2px;
-    .title-span {
-      font-family: "Caveat", cursive;
-      font-size: 58px;
-      letter-spacing: 0;
-    }
+    position: relative;
+    bottom: 75px;
+    text-align: center;
+    z-index: -5;
   }
   .login-form-div {
-    margin-top: 280px;
-    .login-header {
-      text-align: center;
-      font-family: "Montserrat", sans-serif;
-      font-size: 22px;
-      color: white;
-      letter-spacing: 2px;
-    }
+    margin-top: 140px;
     .login-form {
       width: 60%;
       margin: 10px auto;
       text-align: center;
       .login-input {
         padding: 10px;
-        background-color: #c4dbf6;
-        border: 1px solid #c4dbf6;
-        border-radius: 30px;
-        margin: 8px;
+        background-color: transparent;
+        border-bottom: 3px solid #b23850;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        margin: 5px;
         text-align: center;
         outline: none;
+        color: white;
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        letter-spacing: 1px;
         &::placeholder {
-          color: #b23850;
+          color: white;
           font-family: "Montserrat", sans-serif;
-          font-size: 16px;
+          font-size: 18px;
         }
       }
       .login-submit-button {
         display: block;
-        padding: 5px;
-        border: none;
-        font-family: "Caveat", cursive;
-        color: #b23850;
-        font-size: 40px;
+        padding: 8px;
+        width: 120px;
+        border: 2px solid #b23850;
+        background: #b23850;
+        border-radius: 30px;
+        font-family: "Montserrat", sans-serif;
+        color: white;
+        font-size: 16px;
         font-weight: bold;
-        margin: 0px auto;
+        margin: 15px auto;
         cursor: pointer;
-        background-color: #3b8beb;
-
+        letter-spacing: 1px;
         &:hover {
-          font-size: 30px;
+          border: 2px solid white;
         }
       }
     }
     .login-p {
-      margin-top: 20px;
+      margin-top: 40px;
       text-align: center;
-      color: white;
+      color: #b23850;
       font-family: "Montserrat", sans-serif;
+      letter-spacing: 1px;
       .login-switch {
         text-decoration: underline;
         cursor: pointer;
+        font-weight: bold;
       }
     }
   }
   .signup-form-div {
-    margin-top: 250px;
+    margin-top: 120px;
     .signup-form {
       width: 60%;
       margin: 10px auto;
       text-align: center;
       .signup-input {
         padding: 10px;
-        background-color: #c4dbf6;
-        border: 1px solid #c4dbf6;
-        border-radius: 30px;
-        margin: 8px;
+        background-color: transparent;
+        border-bottom: 3px solid #b23850;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        margin: 5px;
         text-align: center;
         outline: none;
+        color: white;
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        letter-spacing: 1px;
         &::placeholder {
-          color: #b23850;
+          color: white;
           font-family: "Montserrat", sans-serif;
-          font-size: 16px;
+          font-size: 18px;
         }
       }
       .signup-submit-button {
         display: block;
-        padding: 5px;
-        border: none;
-        font-family: "Caveat", cursive;
+        padding: 8px;
+        width: 120px;
+        border: 2px solid #b23850;
+        background: #b23850;
+        border-radius: 30px;
+        font-family: "Montserrat", sans-serif;
         color: white;
-        font-size: 25px;
-        margin: 0 auto;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 15px auto;
         cursor: pointer;
+        letter-spacing: 1px;
         &:hover {
-          font-size: 30px;
+          border: 2px solid white;
         }
       }
     }
@@ -223,11 +246,13 @@
   .signup-p {
     margin-top: 20px;
     text-align: center;
-    color: white;
+    color: #b23850;
     font-family: "Montserrat", sans-serif;
+    letter-spacing: 1px;
     .signup-switch {
       text-decoration: underline;
       cursor: pointer;
+      font-weight: bold;
     }
   }
 }

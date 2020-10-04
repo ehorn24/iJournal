@@ -29,9 +29,8 @@ const Landing = ({
 
   return (
     <main className="landing-main">
-      <h1 className="landing-header">
-        Welcome to <span className="title-span">iJournal</span>
-      </h1>
+      <h1 className="landing-header">Welcome to</h1>{" "}
+      <h1 className="title-span"> iJournal</h1>
       <div className="book">
         <span className="page turn"></span>
         <span className="page turn"></span>
