@@ -93,11 +93,7 @@ const Sidebar = ({
                 </div>
               </li>
             </ul>
-            <input
-              type="reset"
-              value="Clear All Filters"
-              className="sidebar-button"
-            />
+            <input type="reset" value="Clear" className="sidebar-button" />
           </form>
         </div>
       );
