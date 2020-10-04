@@ -14,17 +14,22 @@ body {
   align-items: flex-start;
   flex-wrap: wrap;
   min-height: 30px;
-  width: 240px;
+  width: 230px;
   padding: 0 8px;
-  border: 2px solid white;
-  border-radius: 6px;
+  border-bottom: 3px solid #b23850;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   margin-top: 0px;
-  background-color: #c4dbf6;
+  background-color: transparent;
   font-family: "Montserrat", sans-serif;
   &:focus-within {
-    border: 1px solid #0052cc;
-    background-color: #c4dbf6;
-    color: #b23850;
+    background-color: transparent;
+    color: white;
+    border-bottom: 3px solid #b23850;
+    border-top: none;
+    border-left: none;
+    border-right: none;
   }
   input {
     flex: 1;
@@ -32,11 +37,14 @@ body {
     height: 30px;
     font-size: 14px;
     padding: 4px 0 0 0;
-    background-color: #c4dbf6;
-    color: #b23850;
+    background-color: transparent;
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    letter-spacing: 1px;
     &::placeholder {
       font-family: "Montserrat", sans-serif;
-      color: #b23850;
+      color: white;
+      letter-spacing: 1px;
     }
     &:focus {
       outline: transparent;
@@ -49,7 +57,7 @@ body {
   flex-wrap: wrap;
   padding: 0;
   margin: 3px 0 0 0;
-  background: #e7e3d4;
+  background: #c4dbf6;
   border-radius: 6px;
   color: #b23850;
 }
@@ -65,13 +73,14 @@ body {
   list-style: none;
   border-radius: 6px;
   margin: 0 5px 5px 0;
-  border: 1px solid #e7e3d4;
-  background-color: #e7e3d4;
+  border: 1px solid #c4dbf6;
+  background-color: #c4dbf6;
   color: #b23850;
 
   .tag-title {
     margin-top: 3px;
-    background-color: #e7e3d4;
+    background-color: #c4dbf6;
+    font-weight: bold;
   }
   .tag-close-icon {
     display: block;
@@ -82,7 +91,7 @@ body {
     font-size: 14px;
     margin-left: 8px;
     border-radius: 50%;
-    background: #fff;
+    background: white;
     cursor: pointer;
   }
 }
