@@ -97,10 +97,13 @@ export default class Main extends Component {
         if (!res.error) {
           const withNewJ = this.props.journals;
           withNewJ.push(res);
-          this.setState({ redirect: "/", newJournalError: false }, () => {
-            this.setState({ redirect: null });
-            this.props.setParentState({ journals: withNewJ });
-          });
+          this.setState(
+            { redirect: "/", newJournalError: false, newJournalCover: "" },
+            () => {
+              this.setState({ redirect: null });
+              this.props.setParentState({ journals: withNewJ });
+            }
+          );
         }
       });
     }
