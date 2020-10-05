@@ -1,0 +1,84 @@
+.new-journal {
+  .new-journal-form {
+    width: 95%;
+    margin: 20px auto;
+    .journal-cover-preview {
+      width: 200px;
+      height: 200px;
+      border: 2px solid #b23850;
+      border-radius: 5px;
+      text-align: center;
+      margin: 10px auto;
+      .preview-span {
+        display: inline-block;
+        font-family: "Montserrat", sans-serif;
+        color: #b23850;
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-top: 45%;
+      }
+    }
+    ul {
+      list-style: none;
+      li {
+        padding: 10px;
+        margin: 15px;
+        label {
+          font-family: "Montserrat", sans-serif;
+          color: white;
+          font-size: 18px;
+          font-weight: bold;
+          letter-spacing: 1px;
+          display: inline-block;
+          width: 70px;
+          text-align: right;
+          margin-right: 10px;
+        }
+        input {
+          background-color: transparent;
+          border-bottom: 3px solid #b23850;
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          width: 250px;
+          font-family: "Montserrat", sans-serif;
+          color: white;
+          font-size: 16px;
+          font-weight: bold;
+          letter-spacing: 1px;
+          outline: none;
+          &::placeholder {
+            font-family: "Montserrat", sans-serif;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 1px;
+          }
+        }
+        .image-tip {
+          font-family: "Montserrat", sans-serif;
+          color: white;
+          font-size: 16px;
+          font-weight: bold;
+          letter-spacing: 1px;
+          margin: 10px 0 0 80px;
+        }
+      }
+      .new-journal-button {
+        border: 1px solid #b23850;
+        padding: 10px;
+        display: block;
+        margin: 40px auto;
+        background-color: #b23850;
+        border-radius: 30px;
+        font-family: "Montserrat", sans-serif;
+        color: white;
+        font-weight: bold;
+        letter-spacing: 1px;
+        width: 150px;
+        font-size: 14px;
+      }
+    }
+  }
+}

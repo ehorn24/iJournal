@@ -1,22 +1,16 @@
 import React from "react";
 
-const NewJournal = ({ createNewJournal, handleFormChange }) => {
+const NewJournal = ({ createNewJournal, handleFormChange, journalCover }) => {
   return (
-    <div>
-      <form action="" onChange={handleFormChange}>
-        <div className="journal-cover-preview">Journal Cover Image</div>
+    <div className="new-journal">
+      <form action="" onChange={handleFormChange} className="new-journal-form">
         <ul>
           <li>
-            <label htmlFor="">Journal cover:</label>
-            <input type="text" name="newJournalCover" id="newJournalCover" />
-            <p className="image-tip">*Please use a photo URL</p>
-          </li>
-          <li>
-            <label htmlFor="">Journal name:</label>
+            <label htmlFor="">Name</label>
             <input type="text" name="newJournalName" id="newJournalName" />
           </li>
           <li>
-            <label htmlFor="date">Date created:</label>
+            <label htmlFor="date">Date</label>
             <input
               type="text"
               name="journal-date"
@@ -25,6 +19,24 @@ const NewJournal = ({ createNewJournal, handleFormChange }) => {
               placeholder={new Date().toDateString()}
             />
           </li>
+          <li>
+            <label htmlFor="">Cover</label>
+            <input type="text" name="newJournalCover" id="newJournalCover" />
+            <p className="image-tip">*Please use a photo URL</p>
+          </li>
+          <div
+            className="journal-cover-preview"
+            style={
+              journalCover !== ""
+                ? {
+                    backgroundImage: `url(${journalCover})`,
+                    backgroundSize: "cover",
+                  }
+                : { backgroundColor: "white" }
+            }
+          >
+            <span className="preview-span">Cover Preview</span>
+          </div>
           <button
             className="new-journal-button"
             onClick={(e) => {
