@@ -1,4 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Montserrat&display=swap");
+/*Fonts & colors
+Montserrat: font-family: "Montserrat", sans-serif;
+Bad Script: font-family: "Bad Script", cursive;
+Dark blue: #3b8beb
+Light blue: #c4dbf6
+Red: #b23850
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Caveat&family=Montserrat&family=Mr+Dafoe&family=Raleway&family=Yellowtail&display=swap");
 
 * {
   margin: 0;
@@ -6,10 +14,16 @@
 }
 
 body {
+  background: url("https://i.imgur.com/KwNBROd.png");
+  background-attachment: fixed;
   @import "landing";
   @import "header";
   @import "sidebar";
   @import "tagsinput";
   @import "maindisplay";
-  background-color: #3b8beb;
+  @import "entrydisplay";
+  @import "entrymodal";
+  @import "new";
+  @import "newentry";
+  @import "newjournal";
 }
