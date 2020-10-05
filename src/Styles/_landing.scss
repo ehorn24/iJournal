@@ -240,6 +240,7 @@
         color: white;
         font-family: "Montserrat", sans-serif;
         font-size: 16px;
+        letter-spacing: 1px;
       }
       .signup-submit-button {
         display: block;
@@ -255,6 +256,7 @@
         margin: 15px auto;
         cursor: pointer;
         letter-spacing: 1px;
+        outline: none;
         &:hover {
           border: 2px solid white;
         }
@@ -330,6 +332,10 @@
             font-size: 28px;
           }
         }
+        .login-error-message {
+          font-size: 24px;
+          line-height: 28px;
+        }
         .login-submit-button {
           margin-top: 40px;
           width: 160px;
@@ -364,9 +370,28 @@
           width: 160px;
           font-size: 24px;
         }
+        .signup-error-message {
+          font-size: 24px;
+          line-height: 28px;
+        }
       }
       .signup-p {
         font-size: 24px;
+      }
+    }
+    .test-account {
+      text-align: center;
+      color: #b23850;
+      h4 {
+        font-family: "Bad Script", cursive;
+        font-size: 50px;
+      }
+      p {
+        margin: 0 50px 50px 50px;
+        font-size: 24px;
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: 1px;
+        line-height: 30px;
       }
     }
   }
@@ -403,6 +428,10 @@
             font-size: 36px;
           }
         }
+        .login-error-message {
+          font-size: 32px;
+          line-height: 36px;
+        }
         .login-submit-button {
           margin-top: 50px;
           width: 180px;
@@ -437,9 +466,23 @@
           width: 180px;
           font-size: 32px;
         }
+        .signup-error-message {
+          font-size: 32px;
+          line-height: 36px;
+        }
       }
       .signup-p {
         font-size: 32px;
+      }
+    }
+    .test-account {
+      h4 {
+        font-size: 60px;
+      }
+      p {
+        font-size: 28px;
+        line-height: 32px;
+        margin: 0 70px 50px 70px;
       }
     }
   }
