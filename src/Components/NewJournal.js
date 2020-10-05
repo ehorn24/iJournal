@@ -13,8 +13,11 @@ const NewJournal = ({
           <li>
             <label htmlFor="">Name</label>
             <input type="text" name="newJournalName" id="newJournalName" />
+            {journalError ? (
+              <p className="journal-error">Journal name is required.</p>
+            ) : null}
           </li>
-          {journalError ? <p>Journal name is required.</p> : null}
+
           <li>
             <label htmlFor="date">Date</label>
             <input
