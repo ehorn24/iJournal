@@ -17,7 +17,6 @@ const Sidebar = ({
     years.add(sliceYear);
   });
   years = [...years];
-
   switch (page) {
     case "main":
       return (
@@ -36,13 +35,15 @@ const Sidebar = ({
                 </label>
                 <select name="journal" id="journal" className="sidebar-select">
                   <option value=""></option>
-                  {journals.map((j, i) => {
-                    return (
-                      <option value={j.id} key={i}>
-                        {j.journal_name}
-                      </option>
-                    );
-                  })}
+                  {journals.length > 0
+                    ? journals.map((j, i) => {
+                        return (
+                          <option value={j.id} key={i}>
+                            {j.journal_name}
+                          </option>
+                        );
+                      })
+                    : null}
                 </select>
               </li>
               <li className="sidebar-li">
@@ -71,13 +72,15 @@ const Sidebar = ({
                 </label>
                 <select name="year" id="year" className="sidebar-select">
                   <option value=""></option>
-                  {years.map((year, i) => {
-                    return (
-                      <option value={year} key={i}>
-                        {year}
-                      </option>
-                    );
-                  })}
+                  {years.length > 0
+                    ? years.map((year, i) => {
+                        return (
+                          <option value={year} key={i}>
+                            {year}
+                          </option>
+                        );
+                      })
+                    : null}
                 </select>
               </li>
               <li className="sidebar-li tags-li">
@@ -134,13 +137,15 @@ const Sidebar = ({
                 </label>
                 <select name="year" id="year" className="sidebar-select">
                   <option value=""></option>
-                  {years.map((year, i) => {
-                    return (
-                      <option value={year} key={i}>
-                        {year}
-                      </option>
-                    );
-                  })}
+                  {years.length > 0
+                    ? years.map((year, i) => {
+                        return (
+                          <option value={year} key={i}>
+                            {year}
+                          </option>
+                        );
+                      })
+                    : null}
                 </select>
               </li>
               <li className="sidebar-li tags-li">
