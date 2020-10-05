@@ -14,15 +14,24 @@
   display: inline-block;
   position: absolute;
   text-align: center;
-  width: 40px;
+  width: 35px;
   top: 10px;
   left: 5px;
+  a {
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    padding: 3px;
+    color: #b23850;
+    display: block;
+  }
   input + span {
     cursor: pointer;
     display: block;
     border: 2px solid white;
     padding: 5px;
     border-radius: 5px;
+    display: block;
   }
   input:checked + span,
   input + span:hover {

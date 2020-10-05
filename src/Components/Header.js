@@ -11,8 +11,8 @@ const Header = ({ user, handleLogOut }) => {
           src="https://peopleshub.org/wp-content/uploads/2018/04/person-icon-white.png"
           alt=""
         />
-
         <span className="logout-menu">
+          <Link to="/">Home</Link>
           <span className="logout-button" onClick={handleLogOut}>
             Log Out
           </span>
