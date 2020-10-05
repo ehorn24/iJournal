@@ -11,14 +11,15 @@ const journalServices = {
     }).then((res) => res.json());
   },
 
-  addNewJournal(user_id, journal_name) {
+  addNewJournal(user_id, journal_name, journal_cover) {
     return fetch(`${journalURL}/u/${user_id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        journal_name: journal_name,
+        journal_name,
+        journal_cover,
       }),
     }).then((res) => res.json());
   },
@@ -30,8 +31,8 @@ const journalServices = {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        journal_name: journal_name,
-        journal_cover: journal_cover,
+        journal_name,
+        journal_cover,
       }),
     });
   },
