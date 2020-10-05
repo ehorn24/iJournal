@@ -151,7 +151,9 @@ const Landing = ({
                 placeholder="Last Name"
               />
               {signupError ? (
-                <p>All fields are required. Please check and try again.</p>
+                <p className="signup-error-message">
+                  All fields are required. Please check and try again.
+                </p>
               ) : null}
               <button type="submit" className="signup-submit-button">
                 Sign up

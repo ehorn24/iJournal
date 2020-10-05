@@ -167,6 +167,15 @@
           font-weight: bold;
         }
       }
+      .login-error-message {
+        font-family: "Montserrat", sans-serif;
+        color: #b23850;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        letter-spacing: 1px;
+        line-height: 20px;
+      }
       .login-submit-button {
         display: block;
         padding: 8px;
@@ -249,6 +258,15 @@
         &:hover {
           border: 2px solid white;
         }
+      }
+      .signup-error-message {
+        font-family: "Montserrat", sans-serif;
+        color: #b23850;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        letter-spacing: 1px;
+        line-height: 20px;
       }
     }
   }
