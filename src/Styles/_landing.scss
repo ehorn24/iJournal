@@ -282,6 +282,21 @@
       font-weight: bold;
     }
   }
+  .test-account {
+    text-align: center;
+    color: #b23850;
+    h4 {
+      font-family: "Bad Script", cursive;
+      font-size: 30px;
+    }
+    p {
+      margin: 0 20px 50px 20px;
+      font-size: 16px;
+      font-family: "Montserrat", sans-serif;
+      letter-spacing: 1px;
+      line-height: 20px;
+    }
+  }
 }
 
 //Tablet

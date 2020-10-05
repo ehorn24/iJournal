@@ -169,6 +169,14 @@ const Landing = ({
           </div>
         )}
       </div>
+      <div className="test-account">
+        <h4>Here to test out the app?</h4>
+        <p>
+          A test account was set up just for you! The username is "icecube",
+          password is "chillin". Just don't tell Ice Cube I gave away his
+          journal credentials...
+        </p>
+      </div>
     </main>
   );
 };
