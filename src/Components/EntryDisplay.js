@@ -11,13 +11,24 @@ const EntryDisplay = ({
   openEntryModal,
   handleDeleteEntry,
 }) => {
+  const openEntry = (e) => {
+    e.cancelBubble = true;
+    if (e.stopPropagation) e.stopPropagation();
+    openEntryModal(id);
+  };
+
+  const deleteEntry = (e) => {
+    e.cancelBubble = true;
+    if (e.stopPropagation) e.stopPropagation();
+    handleDeleteEntry(id, journal);
+  };
+
   return (
     <>
       <div
         className="entry-div"
         onClick={(e) => {
-          e.preventDefault();
-          openEntryModal(id);
+          openEntry(e);
         }}
       >
         <div className="entry-info">
@@ -39,11 +50,10 @@ const EntryDisplay = ({
         <button
           className="entry-delete-button"
           onClick={(e) => {
-            e.preventDefault();
-            handleDeleteEntry(id, journal);
+            deleteEntry(e);
           }}
         >
-          X
+          &times;
         </button>
       </div>
     </>
