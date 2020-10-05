@@ -84,18 +84,20 @@ export default class Main extends Component {
 
   //Journal Functions
   createNewJournal = () => {
-    addNewJournal(this.props.userInfo.id, this.state.newJournalName).then(
-      (res) => {
-        if (!res.error) {
-          const withNewJ = this.props.journals;
-          withNewJ.push(res);
-          this.setState({ redirect: "/" }, () => {
-            this.setState({ redirect: null });
-            this.props.setParentState({ journals: withNewJ });
-          });
-        }
+    addNewJournal(
+      this.props.userInfo.id,
+      this.state.newJournalName,
+      this.state.newJournalCover
+    ).then((res) => {
+      if (!res.error) {
+        const withNewJ = this.props.journals;
+        withNewJ.push(res);
+        this.setState({ redirect: "/" }, () => {
+          this.setState({ redirect: null });
+          this.props.setParentState({ journals: withNewJ });
+        });
       }
-    );
+    });
   };
 
   editJournalItem = (id) => {
@@ -295,6 +297,7 @@ export default class Main extends Component {
                 tags={this.state.tags}
                 addTags={this.addTags}
                 removeTags={this.removeTags}
+                journalCover={this.state.newJournalCover}
               />
             </>
           )}
@@ -307,6 +310,7 @@ export default class Main extends Component {
               action="edit"
               handleFormChange={this.handleFormChange}
               editJournalItem={this.editJournalItem}
+              editJournalCover={this.state.editJournalCover}
             />
           )}
         />
