@@ -113,7 +113,7 @@ const MainDisplay = ({
                       );
                     })
                   ) : (
-                    <p>
+                    <p className="no-journals-message">
                       You haven't created any journals yet. Click the New button
                       to get started!
                     </p>

@@ -51,7 +51,8 @@
     }
   }
 }
-.no-entries {
+.no-entries,
+.no-journals-message {
   font-size: 16px;
   text-align: center;
   font-family: "Montserrat", sans-serif;
@@ -99,6 +100,9 @@
     border-top: 0;
     width: 130px;
     padding: 5px;
+    position: absolute;
+    right: 0;
+    margin-top: -2px;
     a {
       display: block;
       text-decoration: none;
