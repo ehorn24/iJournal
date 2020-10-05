@@ -12,6 +12,8 @@ const New = ({
   tags,
   addTags,
   removeTags,
+  journalCover,
+  editJournalCover,
 }) => {
   const { type, id } = match.params;
 
@@ -19,11 +21,14 @@ const New = ({
     case "new":
       return (
         <main className="new-journal-main">
-          <h2>Create a new {type === "journal" ? "Journal" : "Entry"}</h2>
+          <h2 className="new-header">
+            Create a new {type === "journal" ? "journal!" : "entry!"}
+          </h2>
           {type === "journal" ? (
             <NewJournal
               createNewJournal={createNewJournal}
               handleFormChange={handleFormChange}
+              journalCover={journalCover}
             />
           ) : (
             <NewEntry
@@ -40,8 +45,9 @@ const New = ({
     case "edit":
       return (
         <main className="new-journal-main">
-          <h2>Edit Journal</h2>
+          <h2 className="new-header">Edit Journal</h2>
           <form
+            className="edit-journal-form"
             action=""
             onChange={handleFormChange}
             onSubmit={(e) => {
@@ -49,10 +55,17 @@ const New = ({
               editJournalItem(match.params.id);
             }}
           >
-            <div className="journal-cover-preview">Journal cover image</div>
             <ul>
               <li>
-                <label htmlFor="journal-image">Journal cover:</label>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  name="editJournalName"
+                  id="editJournalName"
+                />
+              </li>
+              <li>
+                <label htmlFor="journal-image">Cover</label>
                 <input
                   type="text"
                   name="editJournalCover"
@@ -60,16 +73,20 @@ const New = ({
                 />
                 <p className="image-tip">*Please use a photo URL</p>
               </li>
-              <li>
-                <label htmlFor="name">Journal name:</label>
-                <input
-                  type="text"
-                  name="editJournalName"
-                  id="editJournalName"
-                />
-              </li>
-
-              <button className="new-journal-button">Submit Changes</button>
+              <div
+                className="journal-cover-preview"
+                style={
+                  editJournalCover !== ""
+                    ? {
+                        backgroundImage: `url(${editJournalCover})`,
+                        backgroundSize: "cover",
+                      }
+                    : { backgroundColor: "white" }
+                }
+              >
+                <span className="preview-span">Cover Preview</span>
+              </div>
+              <button className="edit-journal-button">Submit Changes</button>
             </ul>
           </form>
         </main>

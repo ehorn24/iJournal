@@ -1,50 +1,89 @@
 .new-journal-main {
-  border: 1px solid blue;
-  height: 550px;
-  h2 {
+  .new-header {
+    font-family: "Bad Script", cursive;
+    color: white;
+    letter-spacing: 1px;
     text-align: center;
-    margin: 30px;
   }
-  form {
-    .journal-cover-preview {
-      border: 1px solid black;
-      width: 400px;
-      height: 400px;
-      margin-left: 150px;
-      margin-right: 100px;
-      float: left;
-    }
+  .edit-journal-form {
+    width: 95%;
+    margin: 20px auto;
     ul {
-      display: flex;
-      width: 400px;
       list-style: none;
-      flex-direction: column;
       li {
-        padding: 5px;
-        margin: 10px;
-        .image-tip {
-          padding: 3px;
-          margin-left: 120px;
-        }
+        padding: 10px;
+        margin: 15px;
         label {
+          font-family: "Montserrat", sans-serif;
+          color: white;
+          font-size: 18px;
+          font-weight: bold;
+          letter-spacing: 1px;
           display: inline-block;
-          width: 120px;
+          width: 70px;
+          text-align: right;
+          margin-right: 10px;
         }
         input {
-          padding: 8px;
+          background-color: transparent;
+          border-bottom: 3px solid #b23850;
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          width: 250px;
+          font-family: "Montserrat", sans-serif;
+          color: white;
+          font-size: 16px;
+          font-weight: bold;
+          letter-spacing: 1px;
+          outline: none;
+          &::placeholder {
+            font-family: "Montserrat", sans-serif;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 1px;
+          }
         }
       }
-      .new-journal-button {
-        margin: 30px auto;
-        background-color: white;
-        padding: 8px;
-        border: 1px solid black;
-        cursor: pointer;
+      .journal-cover-preview {
+        width: 200px;
+        height: 200px;
+        border: 2px solid #b23850;
+        border-radius: 5px;
         text-align: center;
-        width: 120px;
-        &:hover {
-          background-color: lightblue;
+        margin: 10px auto;
+        .preview-span {
+          display: inline-block;
+          font-family: "Montserrat", sans-serif;
+          color: #b23850;
+          font-size: 18px;
+          font-weight: bold;
+          letter-spacing: 1px;
+          margin-top: 45%;
         }
+      }
+      .image-tip {
+        font-family: "Montserrat", sans-serif;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin: 10px 0 0 80px;
+      }
+      .edit-journal-button {
+        border: 1px solid #b23850;
+        padding: 10px;
+        display: block;
+        margin: 40px auto;
+        background-color: #b23850;
+        border-radius: 30px;
+        font-family: "Montserrat", sans-serif;
+        color: white;
+        font-weight: bold;
+        letter-spacing: 1px;
+        width: 170px;
+        font-size: 14px;
       }
     }
   }
