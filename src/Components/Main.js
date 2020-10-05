@@ -30,6 +30,8 @@ export default class Main extends Component {
     entryToShow: "",
     newEntryTitle: "",
     newEntryText: "",
+    newJournalError: false,
+    newEntryError: false,
   };
 
   componentDidMount() {
@@ -84,20 +86,24 @@ export default class Main extends Component {
 
   //Journal Functions
   createNewJournal = () => {
-    addNewJournal(
-      this.props.userInfo.id,
-      this.state.newJournalName,
-      this.state.newJournalCover
-    ).then((res) => {
-      if (!res.error) {
-        const withNewJ = this.props.journals;
-        withNewJ.push(res);
-        this.setState({ redirect: "/" }, () => {
-          this.setState({ redirect: null });
-          this.props.setParentState({ journals: withNewJ });
-        });
-      }
-    });
+    if (this.state.newJournalName === "") {
+      this.setState({ newJournalError: true });
+    } else {
+      addNewJournal(
+        this.props.userInfo.id,
+        this.state.newJournalName,
+        this.state.newJournalCover
+      ).then((res) => {
+        if (!res.error) {
+          const withNewJ = this.props.journals;
+          withNewJ.push(res);
+          this.setState({ redirect: "/", newJournalError: false }, () => {
+            this.setState({ redirect: null });
+            this.props.setParentState({ journals: withNewJ });
+          });
+        }
+      });
+    }
   };
 
   editJournalItem = (id) => {
@@ -160,25 +166,32 @@ export default class Main extends Component {
       }
       return journal_name;
     });
-    addNewEntry(
-      this.props.userInfo.id,
-      journal_id,
-      this.state.newEntryTitle,
-      this.state.tags,
-      this.state.newEntryText
-    ).then((res) => {
-      if (!res.error) {
-        const withNewE = this.props.entries;
-        withNewE.push(res);
-        this.setState(
-          { redirect: `/journal/${journal_id}/${journal_name}` },
-          () => {
-            this.setState({ redirect: null, tags: [] });
-            this.props.setParentState({ entries: withNewE });
-          }
-        );
-      }
-    });
+    if (this.state.newEntryTitle === "" || this.state.newEntryText === "") {
+      this.setState({ newEntryError: true });
+    } else {
+      addNewEntry(
+        this.props.userInfo.id,
+        journal_id,
+        this.state.newEntryTitle,
+        this.state.tags,
+        this.state.newEntryText
+      ).then((res) => {
+        if (!res.error) {
+          const withNewE = this.props.entries;
+          withNewE.push(res);
+          this.setState(
+            {
+              redirect: `/journal/${journal_id}/${journal_name}`,
+              newEntryError: false,
+            },
+            () => {
+              this.setState({ redirect: null, tags: [] });
+              this.props.setParentState({ entries: withNewE });
+            }
+          );
+        }
+      });
+    }
   };
 
   handleDeleteEntry = (entry_id, journal_id) => {
@@ -298,6 +311,8 @@ export default class Main extends Component {
                 addTags={this.addTags}
                 removeTags={this.removeTags}
                 journalCover={this.state.newJournalCover}
+                journalError={this.state.newJournalError}
+                entryError={this.state.newEntryError}
               />
             </>
           )}

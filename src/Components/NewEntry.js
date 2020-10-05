@@ -8,6 +8,7 @@ const NewEntry = ({
   tags,
   addTags,
   removeTags,
+  entryError,
 }) => {
   return (
     <div className="new-entry-div">
@@ -62,6 +63,11 @@ const NewEntry = ({
                 }}
               ></textarea>
             </li>
+            {entryError ? (
+              <p>
+                Title and text are required fields. Please check and try again.
+              </p>
+            ) : null}
             <button
               className="add-entry-button"
               type="button"

@@ -14,6 +14,8 @@ const New = ({
   removeTags,
   journalCover,
   editJournalCover,
+  journalError,
+  entryError,
 }) => {
   const { type, id } = match.params;
 
@@ -29,6 +31,7 @@ const New = ({
               createNewJournal={createNewJournal}
               handleFormChange={handleFormChange}
               journalCover={journalCover}
+              journalError={journalError}
             />
           ) : (
             <NewEntry
@@ -38,6 +41,7 @@ const New = ({
               tags={tags}
               addTags={addTags}
               removeTags={removeTags}
+              entryError={entryError}
             />
           )}
         </main>

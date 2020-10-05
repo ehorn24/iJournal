@@ -1,6 +1,11 @@
 import React from "react";
 
-const NewJournal = ({ createNewJournal, handleFormChange, journalCover }) => {
+const NewJournal = ({
+  createNewJournal,
+  handleFormChange,
+  journalCover,
+  journalError,
+}) => {
   return (
     <div className="new-journal">
       <form action="" onChange={handleFormChange} className="new-journal-form">
@@ -9,6 +14,7 @@ const NewJournal = ({ createNewJournal, handleFormChange, journalCover }) => {
             <label htmlFor="">Name</label>
             <input type="text" name="newJournalName" id="newJournalName" />
           </li>
+          {journalError ? <p>Journal name is required.</p> : null}
           <li>
             <label htmlFor="date">Date</label>
             <input
@@ -22,7 +28,9 @@ const NewJournal = ({ createNewJournal, handleFormChange, journalCover }) => {
           <li>
             <label htmlFor="">Cover</label>
             <input type="text" name="newJournalCover" id="newJournalCover" />
-            <p className="image-tip">*Please use a photo URL</p>
+            <p className="image-tip">
+              *Please use a photo URL. Cover image is optional.
+            </p>
           </li>
           <div
             className="journal-cover-preview"
