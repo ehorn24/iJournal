@@ -27,3 +27,10 @@ body {
   @import "newentry";
   @import "newjournal";
 }
+
+//Tablet size and up
+@media screen and (min-width: 1000px) {
+  body {
+    background-size: cover;
+  }
+}

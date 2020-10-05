@@ -9,12 +9,14 @@ const Landing = ({
   existingUsernames,
   username,
 }) => {
-  let existingUsers = existingUsernames.map((u) => u.username);
-
+  let existingUsers = existingUsernames.map((u) => u.username.toLowerCase());
   //check if username is available
   let usernameAvailable = true;
   let renderMessage = false;
-  if (username.length > 0 && existingUsers.indexOf(username) > -1) {
+  if (
+    username.length > 0 &&
+    existingUsers.indexOf(username.toLowerCase()) > -1
+  ) {
     usernameAvailable = false;
   }
   if (username.length > 0) {
@@ -22,9 +24,13 @@ const Landing = ({
   }
   let usernameMessage = "";
   if (renderMessage && usernameAvailable) {
-    usernameMessage = <p>This username is available!</p>;
+    usernameMessage = (
+      <p className="username-message">This username is available!</p>
+    );
   } else if (renderMessage && !usernameAvailable) {
-    usernameMessage = <p>This username is taken.</p>;
+    usernameMessage = (
+      <p className="username-message">This username is taken.</p>
+    );
   }
 
   return (

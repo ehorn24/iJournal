@@ -159,10 +159,12 @@
         font-family: "Montserrat", sans-serif;
         font-size: 16px;
         letter-spacing: 1px;
+        font-weight: bold;
         &::placeholder {
           color: white;
           font-family: "Montserrat", sans-serif;
           font-size: 18px;
+          font-weight: bold;
         }
       }
       .login-submit-button {
@@ -185,7 +187,7 @@
       }
     }
     .login-p {
-      margin-top: 40px;
+      margin: 40px 0;
       text-align: center;
       color: #b23850;
       font-family: "Montserrat", sans-serif;
@@ -217,11 +219,18 @@
         font-family: "Montserrat", sans-serif;
         font-size: 16px;
         letter-spacing: 1px;
+        font-weight: bold;
         &::placeholder {
           color: white;
           font-family: "Montserrat", sans-serif;
           font-size: 18px;
+          font-weight: bold;
         }
+      }
+      .username-message {
+        color: white;
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
       }
       .signup-submit-button {
         display: block;
@@ -244,7 +253,7 @@
     }
   }
   .signup-p {
-    margin-top: 20px;
+    margin: 40px 0;
     text-align: center;
     color: #b23850;
     font-family: "Montserrat", sans-serif;
@@ -253,6 +262,152 @@
       text-decoration: underline;
       cursor: pointer;
       font-weight: bold;
+    }
+  }
+}
+
+//Tablet
+@media screen and (min-width: 750px) {
+  .landing-main {
+    .landing-header {
+      font-size: 60px;
+    }
+    .title-span {
+      font-size: 170px;
+      bottom: 120px;
+    }
+    .book {
+      transform: scale(1.7);
+      margin: 350px auto;
+    }
+    .login-form-div {
+      margin-top: 200px;
+      .login-form {
+        text-align: center;
+        .login-input {
+          display: block;
+          margin: 15px auto;
+          width: 300px;
+          font-size: 28px;
+          border-bottom: 5px solid #b23850;
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          &::placeholder {
+            font-size: 28px;
+          }
+        }
+        .login-submit-button {
+          margin-top: 40px;
+          width: 160px;
+          font-size: 24px;
+        }
+      }
+      .login-p {
+        font-size: 24px;
+      }
+    }
+    .signup-form-div {
+      margin-top: 200px;
+      .signup-form {
+        .signup-input {
+          display: block;
+          margin: 15px auto;
+          width: 300px;
+          font-size: 28px;
+          border-bottom: 5px solid #b23850;
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          &::placeholder {
+            font-size: 28px;
+          }
+        }
+        .username-message {
+          font-size: 22px;
+        }
+        .signup-submit-button {
+          margin-top: 40px;
+          width: 160px;
+          font-size: 24px;
+        }
+      }
+      .signup-p {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .landing-main {
+    .landing-header {
+      font-size: 70px;
+      margin-left: 45px;
+    }
+    .title-span {
+      font-size: 240px;
+      bottom: 160px;
+    }
+    .book {
+      transform: scale(2.3);
+      margin: 500px auto;
+    }
+    .login-form-div {
+      margin-top: 300px;
+      .login-form {
+        text-align: center;
+        .login-input {
+          display: block;
+          margin: 15px auto;
+          width: 400px;
+          font-size: 36px;
+          border-bottom: 6px solid #b23850;
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          &::placeholder {
+            font-size: 36px;
+          }
+        }
+        .login-submit-button {
+          margin-top: 50px;
+          width: 180px;
+          font-size: 32px;
+        }
+      }
+      .login-p {
+        font-size: 32px;
+      }
+    }
+    .signup-form-div {
+      margin-top: 280px;
+      .signup-form {
+        .signup-input {
+          display: block;
+          margin: 15px auto;
+          width: 400px;
+          font-size: 36px;
+          border-bottom: 6px solid #b23850;
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          &::placeholder {
+            font-size: 36px;
+          }
+        }
+        .username-message {
+          font-size: 22px;
+        }
+        .signup-submit-button {
+          margin-top: 50px;
+          width: 180px;
+          font-size: 32px;
+        }
+      }
+      .signup-p {
+        font-size: 32px;
+      }
     }
   }
 }
