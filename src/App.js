@@ -11,11 +11,13 @@ import {
 import { getUserJournals } from "./Services/journalServices";
 import { getUserEntries } from "./Services/entryServices";
 import Main from "./Components/Main";
+import { Redirect } from "react-router-dom";
 
 export default class App extends Component {
   state = {
     loggedIn: false,
-    error: false,
+    loginError: false,
+    signupError: false,
     signup: false,
     username: "",
     user_id: "",
@@ -23,9 +25,10 @@ export default class App extends Component {
     firstname: "",
     lastname: "",
     usernames: [],
-    userInfo: [],
+    userInfo: null,
     journals: [],
     entries: [],
+    redirectTo: null,
   };
 
   componentDidMount() {
@@ -82,69 +85,99 @@ export default class App extends Component {
 
   //Log In
   handleLogIn = () => {
-    authenticateUser(this.state.username, this.state.password).then((res) => {
-      if (!res.error) {
-        this.setLocalStorage("username", this.state.username);
-        this.setLocalStorage("loggedIn", true);
-        this.setState({ loggedIn: true, password: "", error: false }, () => {
-          getUserInfo(this.state.username).then((res) => {
-            if (!res.error) {
-              this.setLocalStorage("userInfo", JSON.stringify(res));
-              this.setState({ userInfo: res }, () => {
-                if (this.state.userInfo && this.state.userInfo.id) {
-                  getUserJournals(this.state.userInfo.id).then((res) => {
-                    if (!res.error) {
-                      this.setState({ journals: res });
-                    }
-                  });
-                  getUserEntries(this.state.userInfo.id).then((res) => {
-                    if (!res.error) {
-                      this.setState({ entries: res });
+    if (
+      this.state.username === "" ||
+      this.state.username === null ||
+      this.state.password === "" ||
+      this.state.password === null
+    ) {
+      this.setState({ loginError: "missingfield" });
+    } else {
+      authenticateUser(
+        this.state.username.toLowerCase(),
+        this.state.password
+      ).then((res) => {
+        if (!res.error) {
+          this.setLocalStorage("username", this.state.username.toLowerCase());
+          this.setLocalStorage("loggedIn", true);
+          this.setState(
+            { loggedIn: true, password: "", loginError: false },
+            () => {
+              getUserInfo(this.state.username).then((res) => {
+                if (!res.error) {
+                  this.setLocalStorage("userInfo", JSON.stringify(res));
+                  this.setState({ userInfo: res }, () => {
+                    if (this.state.userInfo && this.state.userInfo.id) {
+                      getUserJournals(this.state.userInfo.id).then((res) => {
+                        if (!res.error) {
+                          this.setState({ journals: res });
+                        }
+                      });
+                      getUserEntries(this.state.userInfo.id).then((res) => {
+                        if (!res.error) {
+                          this.setState({ entries: res });
+                        }
+                      });
                     }
                   });
                 }
               });
             }
-          });
-        });
-      } else {
-        this.setState({ error: true });
-        window.alert("Didn't authenticate");
-      }
-    });
+          );
+        } else {
+          this.setState({ loginError: "invalid" });
+        }
+      });
+    }
   };
 
   //Log Out
   handleLogOut = (e) => {
     e.preventDefault();
-    this.setState({ loggedIn: false, username: "" }, () => {
+    this.setState({ loggedIn: false, username: "", redirectTo: "/" }, () => {
       this.setLocalStorage("loggedIn", false);
       localStorage.setItem("username", "");
       localStorage.setItem("userInfo", "");
+      this.setState({ redirectTo: null });
     });
   };
 
   //Sign Up
   handleSignUp = () => {
-    createNewUser(
-      this.state.username,
-      this.state.password,
-      this.state.firstname,
-      this.state.lastname
-    ).then((res) => {
-      if (res === "ok") {
-        this.setState({ loggedIn: true, password: "", error: false }, () => {
-          this.setLocalStorage("username", this.state.username);
-          this.setLocalStorage("loggedIn", true);
-        });
-      } else {
-        this.setState({ error: true });
-        window.alert("Account not created!");
-      }
-    });
+    if (
+      this.state.username === "" ||
+      this.state.password === "" ||
+      this.state.firstname === "" ||
+      this.state.lastname === ""
+    ) {
+      this.setState({ signupError: true });
+    } else {
+      createNewUser(
+        this.state.username.toLowerCase(),
+        this.state.password,
+        this.state.firstname,
+        this.state.lastname
+      ).then((userInfo) => {
+        if (userInfo && userInfo.id) {
+          this.setState(
+            { loggedIn: true, password: "", signupError: false, userInfo },
+            () => {
+              this.setLocalStorage(
+                "username",
+                this.state.username.toLowerCase()
+              );
+              this.setLocalStorage("loggedIn", true);
+            }
+          );
+        }
+      });
+    }
   };
 
   render() {
+    if (this.state.redirectTo) {
+      return <Redirect to={this.state.redirectTo} />;
+    }
     return (
       <div>
         {this.state.loggedIn &&
@@ -166,6 +199,8 @@ export default class App extends Component {
             handleSignUp={this.handleSignUp}
             existingUsernames={this.state.usernames}
             username={this.state.username}
+            loginError={this.state.loginError}
+            signupError={this.state.signupError}
           />
         )}
       </div>

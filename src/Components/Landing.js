@@ -8,6 +8,8 @@ const Landing = ({
   handleSignUp,
   existingUsernames,
   username,
+  loginError,
+  signupError,
 }) => {
   let existingUsers = existingUsernames.map((u) => u.username.toLowerCase());
   //check if username is available
@@ -30,6 +32,21 @@ const Landing = ({
   } else if (renderMessage && !usernameAvailable) {
     usernameMessage = (
       <p className="username-message">This username is taken.</p>
+    );
+  }
+
+  let loginErrorMessage = null;
+  if (loginError !== false && loginError === "missingfield") {
+    loginErrorMessage = (
+      <p className="login-error-message">
+        Both username and password fields are required.
+      </p>
+    );
+  } else if (loginError !== false && loginError === "invalid") {
+    loginErrorMessage = (
+      <p className="login-error-message">
+        Username or password is invalid. Please check and try again.
+      </p>
     );
   }
 
@@ -76,7 +93,7 @@ const Landing = ({
                 className="login-input"
                 placeholder="Password"
               />
-
+              {loginErrorMessage}
               <button type="submit" className="login-submit-button">
                 Log In
               </button>
@@ -133,6 +150,9 @@ const Landing = ({
                 className="signup-input"
                 placeholder="Last Name"
               />
+              {signupError ? (
+                <p>All fields are required. Please check and try again.</p>
+              ) : null}
               <button type="submit" className="signup-submit-button">
                 Sign up
               </button>
