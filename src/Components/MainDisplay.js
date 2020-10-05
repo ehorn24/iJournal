@@ -90,27 +90,34 @@ const MainDisplay = ({
                   New +
                 </Link>
                 <div className="journals-flex">
-                  {journals.map((journal, i) => {
-                    return (
-                      <Link
-                        to={`/journal/${journal.id}/${journal.journal_name}`}
-                        className="journal"
-                        key={i}
-                        style={
-                          journal.journal_cover !== null
-                            ? {
-                                backgroundImage: `url(${journal.journal_cover})`,
-                                backgroundSize: "cover",
-                              }
-                            : { backgroundColor: "white" }
-                        }
-                      >
-                        <span className="journal-title">
-                          {journal.journal_name}
-                        </span>
-                      </Link>
-                    );
-                  })}
+                  {journals.length > 0 ? (
+                    journals.map((journal, i) => {
+                      return (
+                        <Link
+                          to={`/journal/${journal.id}/${journal.journal_name}`}
+                          className="journal"
+                          key={i}
+                          style={
+                            journal.journal_cover !== null
+                              ? {
+                                  backgroundImage: `url(${journal.journal_cover})`,
+                                  backgroundSize: "cover",
+                                }
+                              : { backgroundColor: "white" }
+                          }
+                        >
+                          <span className="journal-title">
+                            {journal.journal_name}
+                          </span>
+                        </Link>
+                      );
+                    })
+                  ) : (
+                    <p>
+                      You haven't created any journals yet. Click the New button
+                      to get started!
+                    </p>
+                  )}
                 </div>
               </section>
             </main>
