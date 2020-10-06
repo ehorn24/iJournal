@@ -1,12 +1,13 @@
 //Mobile
 .landing-main {
   .book {
+    transform: scale(0.9);
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    margin: 200px auto;
+    margin: 160px auto;
     width: 18.5rem;
     height: 12.5rem;
     perspective: 70rem;
@@ -120,8 +121,8 @@
   }
   .landing-header {
     font-family: "Montserrat", sans-serif;
-    font-size: 32px;
-    margin: 50px 0 0 20px;
+    font-size: 24px;
+    margin: 40px 0 0 20px;
     color: #b23850;
     letter-spacing: 0px;
     padding: 0;
@@ -130,17 +131,17 @@
   .title-span {
     display: block;
     font-family: "Bad Script", cursive;
-    font-size: 108px;
+    font-size: 90px;
     letter-spacing: 3px;
     font-weight: normal;
     color: white;
     position: relative;
-    bottom: 75px;
+    bottom: 60px;
     text-align: center;
     z-index: -5;
   }
   .login-form-div {
-    margin-top: 140px;
+    margin-top: 130px;
     .login-form {
       width: 60%;
       margin: 10px auto;
@@ -157,35 +158,37 @@
         outline: none;
         color: white;
         font-family: "Montserrat", sans-serif;
-        font-size: 16px;
+        font-size: 14px;
+        min-width: 200px;
         letter-spacing: 1px;
         font-weight: bold;
         &::placeholder {
           color: white;
           font-family: "Montserrat", sans-serif;
-          font-size: 18px;
+          font-size: 14px;
           font-weight: bold;
         }
       }
       .login-error-message {
+        margin-top: 8px;
         font-family: "Montserrat", sans-serif;
         color: #b23850;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
         text-align: center;
         letter-spacing: 1px;
-        line-height: 20px;
+        line-height: 18px;
       }
       .login-submit-button {
         display: block;
-        padding: 8px;
-        width: 120px;
+        padding: 6px;
+        width: 100px;
         border: 2px solid #b23850;
         background: #b23850;
         border-radius: 30px;
         font-family: "Montserrat", sans-serif;
         color: white;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
         margin: 15px auto;
         cursor: pointer;
@@ -201,10 +204,11 @@
       color: #b23850;
       font-family: "Montserrat", sans-serif;
       letter-spacing: 1px;
+      font-weight: bold;
+      font-size: 14px;
       .login-switch {
         text-decoration: underline;
         cursor: pointer;
-        font-weight: bold;
       }
     }
   }
@@ -226,49 +230,50 @@
         outline: none;
         color: white;
         font-family: "Montserrat", sans-serif;
-        font-size: 16px;
+        font-size: 14px;
         letter-spacing: 1px;
         font-weight: bold;
+        min-width: 200px;
         &::placeholder {
           color: white;
           font-family: "Montserrat", sans-serif;
-          font-size: 18px;
+          font-size: 14px;
           font-weight: bold;
         }
       }
       .username-message {
         color: white;
         font-family: "Montserrat", sans-serif;
-        font-size: 16px;
+        font-size: 14px;
         letter-spacing: 1px;
       }
       .signup-submit-button {
         display: block;
-        padding: 8px;
-        width: 120px;
+        padding: 6px;
+        width: 100px;
         border: 2px solid #b23850;
         background: #b23850;
         border-radius: 30px;
         font-family: "Montserrat", sans-serif;
         color: white;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
         margin: 15px auto;
         cursor: pointer;
         letter-spacing: 1px;
-        outline: none;
         &:hover {
           border: 2px solid white;
         }
       }
       .signup-error-message {
+        margin-top: 8px;
         font-family: "Montserrat", sans-serif;
         color: #b23850;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
         text-align: center;
         letter-spacing: 1px;
-        line-height: 20px;
+        line-height: 18px;
       }
     }
   }
@@ -278,6 +283,8 @@
     color: #b23850;
     font-family: "Montserrat", sans-serif;
     letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 14px;
     .signup-switch {
       text-decoration: underline;
       cursor: pointer;
@@ -285,18 +292,29 @@
     }
   }
   .test-account {
+    background-color: #c4dbf6;
+    padding: 10px;
     text-align: center;
     color: #b23850;
+    margin: 0px auto 100px auto;
+    border: 2px solid white;
+    border-radius: 5px;
+    width: 90%;
     h4 {
       font-family: "Bad Script", cursive;
-      font-size: 30px;
+      font-size: 26px;
     }
     p {
-      margin: 0 20px 50px 20px;
+      margin: 8px 30px;
       font-size: 16px;
       font-family: "Montserrat", sans-serif;
       letter-spacing: 1px;
-      line-height: 20px;
+      line-height: 24px;
+      font-weight: bold;
+    }
+    .test-span {
+      display: block;
+      padding: 5px 0;
     }
   }
 }
@@ -305,45 +323,46 @@
 @media screen and (min-width: 750px) {
   .landing-main {
     .landing-header {
-      font-size: 60px;
+      margin-top: 60px;
+      font-size: 30px;
+      margin-left: 130px;
     }
     .title-span {
-      font-size: 170px;
-      bottom: 120px;
+      font-size: 120px;
+      bottom: 80px;
     }
     .book {
-      transform: scale(1.7);
-      margin: 350px auto;
+      transform: scale(1.4);
+      margin: 255px auto;
     }
     .login-form-div {
       margin-top: 200px;
       .login-form {
-        text-align: center;
         .login-input {
           display: block;
           margin: 15px auto;
           width: 300px;
-          font-size: 28px;
+          font-size: 18px;
           border-bottom: 5px solid #b23850;
           border-top: none;
           border-left: none;
           border-right: none;
           &::placeholder {
-            font-size: 28px;
+            font-size: 18px;
           }
         }
         .login-error-message {
-          font-size: 24px;
-          line-height: 28px;
+          font-size: 18px;
+          line-height: 24px;
         }
         .login-submit-button {
-          margin-top: 40px;
-          width: 160px;
-          font-size: 24px;
+          margin-top: 30px;
+          width: 140px;
+          font-size: 18px;
         }
       }
       .login-p {
-        font-size: 24px;
+        font-size: 18px;
       }
     }
     .signup-form-div {
@@ -353,45 +372,43 @@
           display: block;
           margin: 15px auto;
           width: 300px;
-          font-size: 28px;
+          font-size: 18px;
           border-bottom: 5px solid #b23850;
           border-top: none;
           border-left: none;
           border-right: none;
           &::placeholder {
-            font-size: 28px;
+            font-size: 18px;
           }
         }
         .username-message {
-          font-size: 22px;
+          font-size: 18px;
         }
         .signup-submit-button {
           margin-top: 40px;
-          width: 160px;
-          font-size: 24px;
+          width: 140px;
+          font-size: 18px;
         }
         .signup-error-message {
-          font-size: 24px;
-          line-height: 28px;
+          font-size: 18px;
+          line-height: 24px;
         }
       }
       .signup-p {
-        font-size: 24px;
+        font-size: 18px;
       }
     }
     .test-account {
-      text-align: center;
-      color: #b23850;
+      width: 80%;
       h4 {
-        font-family: "Bad Script", cursive;
-        font-size: 50px;
+        font-size: 40px;
       }
       p {
-        margin: 0 50px 50px 50px;
-        font-size: 24px;
+        margin: 10px 30px;
+        font-size: 18px;
         font-family: "Montserrat", sans-serif;
         letter-spacing: 1px;
-        line-height: 30px;
+        line-height: 32px;
       }
     }
   }
@@ -400,16 +417,17 @@
 @media screen and (min-width: 1000px) {
   .landing-main {
     .landing-header {
-      font-size: 70px;
-      margin-left: 45px;
+      margin-top: 80px;
+      font-size: 35px;
+      margin-left: 190px;
     }
     .title-span {
-      font-size: 240px;
-      bottom: 160px;
+      font-size: 160px;
+      bottom: 110px;
     }
     .book {
-      transform: scale(2.3);
-      margin: 500px auto;
+      transform: scale(1.9);
+      margin: 380px auto;
     }
     .login-form-div {
       margin-top: 300px;
@@ -418,28 +436,27 @@
         .login-input {
           display: block;
           margin: 15px auto;
-          width: 400px;
-          font-size: 36px;
+          width: 350px;
+          font-size: 18px;
           border-bottom: 6px solid #b23850;
           border-top: none;
           border-left: none;
           border-right: none;
           &::placeholder {
-            font-size: 36px;
+            font-size: 18px;
           }
         }
         .login-error-message {
-          font-size: 32px;
-          line-height: 36px;
+          font-size: 18px;
         }
         .login-submit-button {
           margin-top: 50px;
-          width: 180px;
-          font-size: 32px;
+          width: 140px;
+          font-size: 18px;
         }
       }
       .login-p {
-        font-size: 32px;
+        font-size: 18px;
       }
     }
     .signup-form-div {
@@ -449,40 +466,124 @@
           display: block;
           margin: 15px auto;
           width: 400px;
-          font-size: 36px;
+          font-size: 18px;
           border-bottom: 6px solid #b23850;
           border-top: none;
           border-left: none;
           border-right: none;
           &::placeholder {
-            font-size: 36px;
+            font-size: 18px;
           }
         }
         .username-message {
-          font-size: 22px;
+          font-size: 18px;
         }
         .signup-submit-button {
           margin-top: 50px;
-          width: 180px;
-          font-size: 32px;
+          width: 140px;
+          font-size: 18px;
         }
         .signup-error-message {
-          font-size: 32px;
-          line-height: 36px;
+          font-size: 18px;
         }
       }
       .signup-p {
-        font-size: 32px;
+        font-size: 18px;
       }
     }
     .test-account {
       h4 {
-        font-size: 60px;
+        font-size: 40px;
       }
       p {
-        font-size: 28px;
-        line-height: 32px;
+        font-size: 18px;
+        line-height: 28px;
         margin: 0 70px 50px 70px;
+        letter-spacing: 1px;
+      }
+    }
+  }
+}
+
+//Desktop
+@media screen and (min-width: 1280px) {
+  .landing-main {
+    .landing-header {
+      margin-top: 60px;
+      margin-left: 320px;
+      font-size: 40px;
+    }
+    .title-span {
+      font-size: 150px;
+      bottom: 100px;
+    }
+    .book {
+      position: absolute;
+      top: 330px;
+      left: 200px;
+      transform: scale(1.6);
+      margin: 0;
+    }
+    .login-form-div {
+      width: 50%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      .login-form {
+        margin-top: -30px;
+        .login-input {
+          &::placeholder {
+            font-size: 18px;
+          }
+        }
+        .login-error-message {
+          font-size: 18px;
+        }
+      }
+      .login-p {
+        font-size: 18px;
+      }
+    }
+    .signup-form-div {
+      position: absolute;
+      width: 50%;
+      right: 0;
+      top: -30px;
+      .signup-form {
+        .signup-input {
+          &::placeholder {
+            font-size: 18px;
+          }
+        }
+        .username-message {
+          font-size: 18px;
+        }
+        .signup-submit-button {
+          margin-top: 30px;
+          width: 140px;
+          font-size: 18px;
+        }
+        .signup-error-message {
+          font-size: 18px;
+          line-height: 24px;
+        }
+      }
+      .signup-p {
+        font-size: 18px;
+      }
+    }
+    .test-account {
+      margin-top: 400px;
+      width: 70%;
+      h4 {
+        font-size: 40px;
+      }
+      p {
+        margin: 15px 40px;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: 1px;
+        line-height: 28px;
       }
     }
   }

@@ -170,11 +170,33 @@ const Landing = ({
         )}
       </div>
       <div className="test-account">
-        <h4>Here to test out the app?</h4>
+        <h4>First time here?</h4>
         <p>
-          A test account was set up just for you! The username is "icecube",
-          password is "chillin". Just don't tell Ice Cube I gave away his
-          journal credentials...
+          iJournal is an app designed for all the writers out there - the daily
+          journalers, the pour-your-heart-out-ers, the
+          quick!-write-that-idea-down-so-you-don't-forget-ers.
+        </p>
+        <p>
+          As nice as real pen and paper can be, keeping track of all your
+          journals can be tough. Maybe you moved and lost one in your many
+          boxes, or you threw one away not knowing how much you'd want to
+          re-read it later on!
+        </p>
+        <p>
+          Let iJournal be your one-stop shop for journal writing. Create as many
+          journals as you want with as many entries as you need. Have them all
+          stored in one place for easy access whenever you feel like reading
+          them. You can even add tags to your entries to make finding them later
+          even easier.
+        </p>
+        <p>
+          If you aren't ready to commit, or you're here to test out the app, a
+          test account was set up just for you!
+          <br />
+          <span className="test-span">Username: icecube</span>
+          <span className="test-span">Password: chillin</span>
+          <br />
+          Just don't tell Ice Cube I gave away his journal credentials...
         </p>
       </div>
     </main>
