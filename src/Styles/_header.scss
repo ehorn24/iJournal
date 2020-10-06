@@ -1,13 +1,13 @@
 .logout-icon-div {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   position: absolute;
   top: 0;
   left: 0;
 }
 .logout-icon {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   color: white;
 }
 .logout-dropdown-container {
@@ -61,6 +61,7 @@
     padding: 3px;
     color: #b23850;
     letter-spacing: 1px;
+    font-size: 14px;
   }
 }
 
@@ -70,7 +71,7 @@
   a {
     font-family: "Bad Script", cursive;
     color: white;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bold;
     text-decoration: none;
     cursor: pointer;
@@ -80,28 +81,56 @@
 //Tablet
 @media screen and (min-width: 750px) {
   .logout-icon-div {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
   }
   .logout-icon {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
   }
   .logout-dropdown-container {
     top: 10px;
     left: 15px;
     a {
-      font-size: 22px;
+      font-size: 18px;
     }
     .logout-menu {
       width: 120px;
-      font-size: 22px;
+      font-size: 18px;
     }
   }
   .ijournal-header {
-    margin: 8px;
+    margin: 8px 0 20px 0;
     a {
-      font-size: 55px;
+      font-size: 50px;
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .logout-icon-div {
+    width: 50px;
+    height: 50px;
+  }
+  .logout-icon {
+    width: 50px;
+    height: 50px;
+  }
+  .logout-dropdown-container {
+    top: 10px;
+    left: 15px;
+    a {
+      font-size: 18px;
+    }
+    .logout-menu {
+      width: 120px;
+      font-size: 18px;
+    }
+  }
+  .ijournal-header {
+    margin: 8px 0 20px 0;
+    a {
+      font-size: 60px;
     }
   }
 }
