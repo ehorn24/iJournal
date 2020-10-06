@@ -8,7 +8,7 @@
   }
   .sidebar-form {
     margin-top: 8px;
-    min-height: 220px;
+    min-height: 280px;
     .sidebar-ul {
       list-style: none;
       float: left;
@@ -64,6 +64,40 @@
       letter-spacing: 1px;
       width: 80px;
       font-size: 14px;
+      outline: none;
+    }
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .sidebar {
+    .sidebar-header {
+      font-size: 24px;
+    }
+    .sidebar-form {
+      width: 80%;
+      margin: 20px auto;
+      .sidebar-ul {
+        margin-right: 30px;
+        .sidebar-li {
+          padding: 10px;
+          .sidebar-label {
+            margin: 5px;
+            padding: 0 10px;
+            width: 120px;
+            font-size: 22px;
+          }
+          .sidebar-select {
+            font-size: 22px;
+            min-width: 300px;
+          }
+        }
+      }
+      .sidebar-button {
+        float: right;
+        width: 90px;
+        font-size: 20px;
+      }
     }
   }
 }

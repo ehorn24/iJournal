@@ -8,7 +8,7 @@ const TagsInput = ({ addTags, removeTags, tags }) => {
           <li key={index} id="tag">
             <span className="tag-title">{tag}</span>
             <i className="tag-close-icon" onClick={() => removeTags(index)}>
-              X
+              &times;
             </i>
           </li>
         ))}
