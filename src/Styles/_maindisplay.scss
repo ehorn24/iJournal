@@ -123,3 +123,47 @@
     }
   }
 }
+
+@media screen and (min-width: 750px) {
+  .maindisplay-header {
+    font-size: 40px;
+  }
+  .addjournal-button {
+    width: 90px;
+    font-size: 20px;
+    position: static;
+    float: right;
+    right: 0;
+    margin-top: -60px;
+    margin-right: 75px;
+  }
+  .journals-flex {
+    .journal {
+      width: 300px;
+      height: 300px;
+      .journal-title {
+        width: 180px;
+        font-size: 24px;
+      }
+    }
+  }
+  .no-entries,
+  .no-journals-message {
+    font-size: 24px;
+    line-height: 32px;
+    width: 60%;
+  }
+  .dropdown-container {
+    width: 60px;
+    font-size: 28px;
+    top: 490px;
+    right: 200px;
+
+    .dropdown-menu {
+      border: 1px solid #ccc;
+      background-color: #c4dbf6;
+      border-top: 0;
+      width: 220px;
+    }
+  }
+}
