@@ -1,14 +1,15 @@
 .sidebar {
-  margin-top: 10px;
+  margin-top: 20px;
   .sidebar-header {
     font-family: "Montserrat", sans-serif;
     color: white;
     text-align: center;
     letter-spacing: 1px;
+    font-size: 16px;
   }
   .sidebar-form {
     margin-top: 8px;
-    min-height: 280px;
+    min-height: 210px;
     .sidebar-ul {
       list-style: none;
       float: left;
@@ -24,6 +25,7 @@
           display: inline-block;
           width: 80px;
           text-align: right;
+          font-size: 14px;
         }
         .sidebar-select {
           background-color: transparent;
@@ -65,14 +67,18 @@
       width: 80px;
       font-size: 14px;
       outline: none;
+      &:hover {
+        border: 2px solid white;
+      }
     }
   }
 }
 
+//Tablet
 @media screen and (min-width: 750px) {
   .sidebar {
     .sidebar-header {
-      font-size: 24px;
+      font-size: 18px;
     }
     .sidebar-form {
       width: 80%;
@@ -85,10 +91,10 @@
             margin: 5px;
             padding: 0 10px;
             width: 120px;
-            font-size: 22px;
+            font-size: 18px;
           }
           .sidebar-select {
-            font-size: 22px;
+            font-size: 18px;
             min-width: 300px;
           }
         }
@@ -96,7 +102,51 @@
       .sidebar-button {
         float: right;
         width: 90px;
-        font-size: 20px;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .sidebar {
+    float: left;
+    margin-top: 0px;
+    min-height: 1300px;
+    width: 40%;
+    border-right: 2px solid white;
+    .sidebar-header {
+      font-size: 16px;
+      text-align: center;
+      margin: 20px;
+    }
+    .sidebar-form {
+      margin: 0 auto;
+      margin-top: 8px;
+      .sidebar-ul {
+        .sidebar-li {
+          padding: 5px;
+          .sidebar-label {
+            margin: 3px;
+            padding: 0 5px;
+            width: 80px;
+            font-size: 14px;
+          }
+          .sidebar-select {
+            font-size: 14px;
+            min-width: 200px;
+          }
+        }
+      }
+      .sidebar-button {
+        display: block;
+        position: static;
+        float: left;
+        margin-left: 120px;
+        font-size: 14px;
+        &:hover {
+          border: 2px solid white;
+        }
       }
     }
   }
