@@ -38,11 +38,8 @@
           letter-spacing: 1px;
           outline: none;
           &::placeholder {
-            font-family: "Montserrat", sans-serif;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            letter-spacing: 1px;
+            color: lightgray;
+            font-size: 14px;
           }
         }
       }
@@ -57,7 +54,7 @@
           display: inline-block;
           font-family: "Montserrat", sans-serif;
           color: #b23850;
-          font-size: 18px;
+          font-size: 16px;
           font-weight: bold;
           letter-spacing: 1px;
           margin-top: 45%;
@@ -70,6 +67,14 @@
         font-weight: bold;
         letter-spacing: 1px;
         margin: 10px 0 0 80px;
+      }
+      .edit-error {
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        color: #b23850;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin: 15px 0 0 80px;
       }
       .edit-journal-button {
         border: 1px solid #b23850;
@@ -84,6 +89,131 @@
         letter-spacing: 1px;
         width: 170px;
         font-size: 14px;
+        &:hover {
+          border: 2px solid white;
+        }
+      }
+    }
+  }
+}
+
+//Tablet
+@media screen and (min-width: 750px) {
+  .new-journal-main {
+    .new-header {
+      font-size: 34px;
+    }
+    .edit-journal-form {
+      width: 60%;
+      margin: 20px auto;
+      ul {
+        li {
+          padding: 15px;
+          margin: 15px;
+          label {
+            font-size: 18px;
+          }
+          input {
+            width: 300px;
+            font-size: 18px;
+          }
+        }
+        .journal-cover-preview {
+          margin-top: 30px;
+          width: 350px;
+          height: 350px;
+          .preview-span {
+            font-size: 18px;
+          }
+        }
+        .image-tip {
+          font-size: 18px;
+        }
+        .edit-error {
+          font-size: 20px;
+        }
+        .edit-journal-button {
+          padding: 15px;
+          width: 210px;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .new-journal-main {
+    .edit-journal-form {
+      width: 90%;
+      margin: 20px auto;
+      ul {
+        list-style: none;
+        li {
+          padding: 10px;
+          margin: 15px;
+          label {
+            font-family: "Montserrat", sans-serif;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: inline-block;
+            width: 70px;
+            text-align: right;
+            margin-right: 10px;
+          }
+          input {
+            background-color: transparent;
+            border-bottom: 3px solid #b23850;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            width: 250px;
+            font-family: "Montserrat", sans-serif;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            outline: none;
+          }
+        }
+        .journal-cover-preview {
+          position: absolute;
+          width: 350px;
+          height: 350px;
+          top: 200px;
+          right: 100px;
+          margin: 10px auto;
+          .preview-span {
+            display: inline-block;
+            font-family: "Montserrat", sans-serif;
+            color: #b23850;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-top: 45%;
+          }
+        }
+        .image-tip {
+          font-family: "Montserrat", sans-serif;
+          color: white;
+          font-size: 16px;
+          font-weight: bold;
+          letter-spacing: 1px;
+          margin: 10px 0 0 80px;
+        }
+        .edit-error {
+          font-size: 16px;
+          margin: 15px 0 0 80px;
+          width: 300px;
+        }
+        .edit-journal-button {
+          padding: 10px;
+          margin: 40px 0 0 120px;
+          width: 170px;
+          font-size: 14px;
+        }
       }
     }
   }

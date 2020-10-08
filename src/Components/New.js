@@ -16,8 +16,18 @@ const New = ({
   editJournalCover,
   journalError,
   entryError,
+  editJournalError,
+  journals,
 }) => {
   const { type, id } = match.params;
+  let currJournalInfo = null;
+  if (journals) {
+    journals.forEach((j) => {
+      if (match.params.id && j.id.toString() === match.params.id.toString()) {
+        currJournalInfo = j;
+      }
+    });
+  }
 
   switch (action) {
     case "new":
@@ -49,7 +59,7 @@ const New = ({
     case "edit":
       return (
         <main className="new-journal-main">
-          <h2 className="new-header">Edit Journal</h2>
+          <h2 className="new-header">Edit this journal</h2>
           <form
             className="edit-journal-form"
             action=""
@@ -66,6 +76,9 @@ const New = ({
                   type="text"
                   name="editJournalName"
                   id="editJournalName"
+                  placeholder={
+                    currJournalInfo ? currJournalInfo.journal_name : null
+                  }
                 />
               </li>
               <li>
@@ -74,8 +87,16 @@ const New = ({
                   type="text"
                   name="editJournalCover"
                   id="editJournalCover"
+                  placeholder={
+                    currJournalInfo ? currJournalInfo.journal_cover : null
+                  }
                 />
                 <p className="image-tip">*Please use a photo URL</p>
+                {editJournalError ? (
+                  <p className="edit-error">
+                    At least one field is required. Please check and try again.
+                  </p>
+                ) : null}
               </li>
               <div
                 className="journal-cover-preview"
