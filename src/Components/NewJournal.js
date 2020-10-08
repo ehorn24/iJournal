@@ -13,9 +13,6 @@ const NewJournal = ({
           <li>
             <label htmlFor="">Name</label>
             <input type="text" name="newJournalName" id="newJournalName" />
-            {journalError ? (
-              <p className="journal-error">Journal name is required.</p>
-            ) : null}
           </li>
 
           <li>
@@ -31,10 +28,14 @@ const NewJournal = ({
           <li>
             <label htmlFor="">Cover</label>
             <input type="text" name="newJournalCover" id="newJournalCover" />
-            <p className="image-tip">
-              *Please use a photo URL. Cover image is optional.
-            </p>
+            <p className="image-tip">*Please use a photo URL.</p>
           </li>
+          {journalError ? (
+            <p className="journal-error">
+              Both journal name and cover are required. Please check and try
+              again.
+            </p>
+          ) : null}
           <div
             className="journal-cover-preview"
             style={

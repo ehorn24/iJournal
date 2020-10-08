@@ -13,7 +13,7 @@
         display: inline-block;
         font-family: "Montserrat", sans-serif;
         color: #b23850;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: bold;
         letter-spacing: 1px;
         margin-top: 45%;
@@ -27,7 +27,7 @@
         label {
           font-family: "Montserrat", sans-serif;
           color: white;
-          font-size: 18px;
+          font-size: 16px;
           font-weight: bold;
           letter-spacing: 1px;
           display: inline-block;
@@ -59,10 +59,11 @@
         .image-tip {
           font-family: "Montserrat", sans-serif;
           color: white;
-          font-size: 16px;
+          font-size: 14px;
           font-weight: bold;
           letter-spacing: 1px;
           margin: 10px 0 0 80px;
+          line-height: 24px;
         }
       }
       .new-journal-button {
@@ -78,6 +79,9 @@
         letter-spacing: 1px;
         width: 150px;
         font-size: 14px;
+        &:hover {
+          border: 2px solid white;
+        }
       }
     }
     .journal-error {
@@ -88,7 +92,109 @@
       text-align: center;
       letter-spacing: 1px;
       line-height: 20px;
-      margin: 10px 0 0 60px;
+      margin: 20px;
+    }
+  }
+}
+
+//Tablet
+@media screen and (min-width: 750px) {
+  .new-journal {
+    .new-journal-form {
+      width: 70%;
+      .journal-cover-preview {
+        margin-top: 30px;
+        width: 350px;
+        height: 350px;
+        .preview-span {
+          font-size: 18px;
+        }
+      }
+      ul {
+        li {
+          padding: 18px;
+          label {
+            font-size: 18px;
+            margin-right: 15px;
+          }
+          input {
+            width: 320px;
+            font-size: 18px;
+            &::placeholder {
+              font-size: 18px;
+            }
+          }
+          .image-tip {
+            font-size: 20px;
+          }
+        }
+        .new-journal-button {
+          padding: 15px;
+          width: 200px;
+          font-size: 18px;
+        }
+      }
+      .journal-error {
+        font-size: 18px;
+        line-height: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .new-journal {
+    .new-journal-form {
+      width: 90%;
+      margin: 50px auto;
+      .journal-cover-preview {
+        position: absolute;
+        right: 100px;
+        top: 200px;
+        .preview-span {
+          display: inline-block;
+          font-family: "Montserrat", sans-serif;
+          color: #b23850;
+          font-size: 16px;
+          font-weight: bold;
+          letter-spacing: 1px;
+          margin-top: 45%;
+        }
+      }
+      ul {
+        li {
+          padding: 10px;
+          margin: 15px;
+          label {
+            font-size: 16px;
+            display: inline-block;
+            width: 70px;
+          }
+          input {
+            width: 250px;
+            font-size: 16px;
+            &::placeholder {
+              font-size: 16px;
+            }
+          }
+          .image-tip {
+            font-size: 14px;
+            margin: 10px 0 0 80px;
+          }
+        }
+        .new-journal-button {
+          padding: 10px;
+          margin-left: 130px;
+          width: 150px;
+          font-size: 14px;
+        }
+      }
+      .journal-error {
+        font-size: 14px;
+        text-align: left;
+        width: 250px;
+        margin: 0 0 0 105px;
+      }
     }
   }
 }
