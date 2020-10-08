@@ -9,5 +9,23 @@ Technology used: HTML, CSS, React, JavaScript, Node, Express, PostgreSQL
 Screenshots of iJournal:
 
 Landing page
-![https://imgur.com/c7244e5e-c070-4096-9a8a-f4b2fec5116c]
+![Landing Page](https://i.imgur.com/DU8om7A.png)
+
+Home page 
+![Home Page](https://i.imgur.com/VjfyDmO.png)
+
+Display entries in a journal
+![Display entries](https://i.imgur.com/Eovi7A3.png)
+
+Filter example: Entries written in 2020
+![Filter for Entries](https://i.imgur.com/vQep1iZ.png)
+
+Create a new journal
+![Create new journal](https://i.imgur.com/WIXr0Od.png)
+
+Edit an existing journal
+![Edit a journal](https://i.imgur.com/YVXrciv.png)
+
+Create a new entry 
+![Create an entry](https://i.imgur.com/OiV2q3G.png)
 
