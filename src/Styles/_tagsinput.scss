@@ -107,7 +107,7 @@ body {
     min-height: 30px;
     width: 300px;
     input {
-      font-size: 22px;
+      font-size: 18px;
     }
   }
   #tag {
@@ -130,7 +130,41 @@ body {
     .tag-close-icon {
       width: 20px;
       height: 20px;
-      font-size: 32px;
+      font-size: 18px;
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .tags-input {
+    width: 200px;
+    input {
+      font-size: 14px;
+    }
+  }
+  #tag {
+    .tag-title {
+      font-size: 14px;
+    }
+    .tag-close-icon {
+      font-size: 18px;
+    }
+  }
+}
+
+@media screen and (min-width: 1250px) {
+  .tags-input {
+    width: 200px;
+    input {
+      font-size: 14px;
+    }
+  }
+  #tag {
+    .tag-title {
+      font-size: 14px;
+    }
+    .tag-close-icon {
+      font-size: 18px;
     }
   }
 }
