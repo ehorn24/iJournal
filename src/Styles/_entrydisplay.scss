@@ -15,8 +15,7 @@
     .entry-title {
       font-family: "Bad Script", cursive;
       letter-spacing: 1px;
-      font-size: 24px;
-      padding: 0;
+      font-size: 22px;
     }
     .entry-date {
       float: right;
@@ -35,6 +34,7 @@
         border-radius: 3px;
         font-weight: bold;
         margin: 3px;
+        font-size: 14px;
       }
     }
   }
@@ -48,5 +48,60 @@
     border: none;
     margin-top: -35px;
     outline: none;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .entry-div {
+    margin: 30px 60px;
+    .entry-info {
+      .entry-title {
+        font-size: 32px;
+      }
+      .entry-date {
+        font-size: 22px;
+        padding: 5px;
+      }
+      .entry-tags {
+        font-size: 22px;
+        span {
+          margin: 6px;
+        }
+      }
+    }
+    .entry-delete-button {
+      font-size: 60px;
+      margin-top: -50px;
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .entry-div {
+    border-radius: 5px;
+    margin: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    padding-left: 15px;
+    .entry-info {
+      .entry-title {
+        font-size: 22px;
+      }
+      .entry-date {
+        font-size: 16px;
+      }
+      .entry-tags {
+        margin: 8px 0 15px 0;
+        font-size: 16px;
+        span {
+          margin: 3px;
+          font-size: 14px;
+        }
+      }
+    }
+    .entry-delete-button {
+      font-size: 40px;
+      margin-top: -35px;
+    }
   }
 }
