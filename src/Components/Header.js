@@ -12,7 +12,7 @@ const Header = ({ user, handleLogOut }) => {
           alt=""
         />
         <span className="logout-menu">
-          <Link to="/">Home</Link>
+          <a href="/">Home</a>
           <span className="logout-button" onClick={handleLogOut}>
             Log Out
           </span>
