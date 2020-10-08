@@ -32,6 +32,7 @@ export default class Main extends Component {
     newEntryText: "",
     newJournalError: false,
     newEntryError: false,
+    editJournalError: false,
   };
 
   componentDidMount() {
@@ -86,7 +87,7 @@ export default class Main extends Component {
 
   //Journal Functions
   createNewJournal = () => {
-    if (this.state.newJournalName === "") {
+    if (this.state.newJournalName === "" || this.state.newJournalCover === "") {
       this.setState({ newJournalError: true });
     } else {
       addNewJournal(
@@ -110,26 +111,34 @@ export default class Main extends Component {
   };
 
   editJournalItem = (id) => {
-    editJournal(
-      id,
-      this.state.editJournalName,
-      this.state.editJournalCover
-    ).then((res) => {
-      if (res && res.error) {
-        window.alert("Journal was not updated. Please try again.");
-      }
-      this.setState(
-        {
-          redirect: `/journal/${id}/${this.state.editJournalName}`,
-        },
-        () => {
-          this.setState({ redirect: null });
-          getUserJournals(this.props.userInfo.id).then((res) => {
-            this.props.setParentState({ journals: res });
-          });
+    if (
+      this.state.editJournalName === "" &&
+      this.state.editJournalCover === ""
+    ) {
+      this.setState({ editJournalError: true });
+    } else {
+      editJournal(
+        id,
+        this.state.editJournalName,
+        this.state.editJournalCover
+      ).then((res) => {
+        if (res && res.error) {
+          window.alert("Journal was not updated. Please try again.");
         }
-      );
-    });
+        this.setState(
+          {
+            redirect: `/journal/${id}/${this.state.editJournalName}`,
+            editJournalError: false,
+          },
+          () => {
+            this.setState({ redirect: null });
+            getUserJournals(this.props.userInfo.id).then((res) => {
+              this.props.setParentState({ journals: res });
+            });
+          }
+        );
+      });
+    }
   };
 
   handleDeleteJournal = (journal_id) => {
@@ -329,6 +338,8 @@ export default class Main extends Component {
               handleFormChange={this.handleFormChange}
               editJournalItem={this.editJournalItem}
               editJournalCover={this.state.editJournalCover}
+              editJournalError={this.state.editJournalError}
+              journals={this.props.journals}
             />
           )}
         />
