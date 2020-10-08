@@ -9,5 +9,5 @@ Technology used: HTML, CSS, React, JavaScript, Node, Express, PostgreSQL
 Screenshots of iJournal:
 
 Landing page
-![Image of Landing Page]
-(https://imgur.com/c7244e5e-c070-4096-9a8a-f4b2fec5116c)
+![https://imgur.com/c7244e5e-c070-4096-9a8a-f4b2fec5116c]
+
