@@ -7,7 +7,7 @@ const EntryModal = ({ entryModal, entryToShow, closeEntryModal }) => {
         className={entryModal ? "modal-close show" : "modal-close hide"}
         onClick={closeEntryModal}
       >
-        X
+        &times;
       </button>
       <div className="modal-page">
         {entryToShow ? (
