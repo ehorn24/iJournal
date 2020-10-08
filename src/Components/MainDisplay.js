@@ -103,7 +103,7 @@ const MainDisplay = ({
                                   backgroundImage: `url(${journal.journal_cover})`,
                                   backgroundSize: "cover",
                                 }
-                              : { backgroundColor: "white" }
+                              : { background: "white" }
                           }
                         >
                           <span className="journal-title">
@@ -265,7 +265,9 @@ const MainDisplay = ({
                     return null;
                   })
                 ) : (
-                  <p>There were no matching entries</p>
+                  <p className="no-entries">
+                    ...If not, please try different filters.
+                  </p>
                 )}
               </div>
             </section>

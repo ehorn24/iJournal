@@ -1,7 +1,7 @@
 .maindisplay-header {
   font-family: "Bad Script", cursive;
   text-align: center;
-  font-size: 32px;
+  font-size: 28px;
   color: white;
 }
 .addjournal-button {
@@ -10,7 +10,7 @@
   text-decoration: none;
   position: absolute;
   display: block;
-  top: 355px;
+  top: 340px;
   left: 318px;
   font-weight: bold;
   font-size: 14px;
@@ -21,6 +21,9 @@
   border-radius: 30px;
   width: 80px;
   text-align: center;
+  &:hover {
+    border: 2px solid white;
+  }
 }
 .journals-flex {
   display: flex;
@@ -31,7 +34,6 @@
     border: 1px solid black;
     width: 150px;
     height: 150px;
-    background-color: #c4dbf6;
     border-radius: 0 8px 8px 0;
     text-align: center;
     text-decoration: none;
@@ -48,12 +50,13 @@
       display: inline-block;
       margin-top: 5px;
       width: 135px;
+      font-size: 14px;
     }
   }
 }
 .no-entries,
 .no-journals-message {
-  font-size: 16px;
+  font-size: 14px;
   text-align: center;
   font-family: "Montserrat", sans-serif;
   width: 70%;
@@ -68,10 +71,11 @@
   position: absolute;
   text-align: center;
   width: 40px;
-  right: 60px;
-  top: 360px;
+  left: 30px;
+  top: 345px;
   background-color: #c4dbf6;
   border-radius: 5px;
+  color: #b23850;
   input + span {
     cursor: pointer;
     display: block;
@@ -101,8 +105,10 @@
     width: 130px;
     padding: 5px;
     position: absolute;
-    right: 0;
+    left: 0;
     margin-top: -2px;
+    font-size: 16px;
+    color: black;
     a {
       display: block;
       text-decoration: none;
@@ -111,6 +117,10 @@
       font-family: "Montserrat", sans-serif;
       &:hover {
         color: #fff;
+      }
+      &:visited,
+      &:active {
+        color: black;
       }
     }
     .delete-journal-span {
@@ -124,13 +134,17 @@
   }
 }
 
+//Tablet
 @media screen and (min-width: 750px) {
+  .maindisplay-div {
+    margin-top: 50px;
+  }
   .maindisplay-header {
-    font-size: 40px;
+    font-size: 35px;
   }
   .addjournal-button {
     width: 90px;
-    font-size: 20px;
+    font-size: 18px;
     position: static;
     float: right;
     right: 0;
@@ -139,31 +153,157 @@
   }
   .journals-flex {
     .journal {
-      width: 300px;
-      height: 300px;
+      width: 250px;
+      height: 250px;
+      margin: 10px;
       .journal-title {
         width: 180px;
-        font-size: 24px;
+        font-size: 18px;
       }
     }
   }
   .no-entries,
   .no-journals-message {
-    font-size: 24px;
-    line-height: 32px;
-    width: 60%;
+    font-size: 18px;
   }
   .dropdown-container {
     width: 60px;
     font-size: 28px;
-    top: 490px;
-    right: 200px;
-
+    top: 440px;
+    left: 100px;
     .dropdown-menu {
       border: 1px solid #ccc;
       background-color: #c4dbf6;
       border-top: 0;
-      width: 220px;
+      width: 190px;
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .maindisplay-div {
+    float: right;
+    width: 59%;
+    margin-top: 10px;
+  }
+  .maindisplay-header {
+    margin-top: 0;
+    font-size: 28px;
+  }
+  .addjournal-button {
+    position: static;
+    margin-top: -50px;
+    margin-right: 110px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    border: 1px solid #b23850;
+    padding: 10px;
+    background-color: #b23850;
+    border-radius: 30px;
+    width: 80px;
+    text-align: center;
+    &:hover {
+      border: 2px solid white;
+    }
+  }
+  .journals-flex {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    .journal {
+      border: 1px solid black;
+      width: 150px;
+      height: 150px;
+      background-color: #c4dbf6;
+      border-radius: 0 8px 8px 0;
+      text-align: center;
+      text-decoration: none;
+      font-family: "Montserrat", sans-serif;
+      padding-top: 10px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      .journal-title {
+        background-color: white;
+        padding: 5px;
+        color: black;
+        border-radius: 5px;
+        display: inline-block;
+        margin-top: 5px;
+        width: 135px;
+        font-size: 14px;
+      }
+    }
+  }
+  .no-entries,
+  .no-journals-message {
+    font-size: 14px;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    width: 70%;
+    margin: 5px auto;
+    line-height: 22px;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .dropdown-container {
+    position: static;
+    float: left;
+    text-align: center;
+    width: 50px;
+    background-color: #c4dbf6;
+    border-radius: 5px;
+    input + span {
+      cursor: pointer;
+      display: block;
+      padding: 5px;
+      border-radius: 5px;
+    }
+    input:checked + span,
+    input + span:hover {
+      background-color: #c4dbf6;
+    }
+    input:checked + span {
+      border-bottom: 0;
+    }
+    input {
+      display: none;
+    }
+    input ~ .dropdown-menu {
+      display: none;
+    }
+    input:checked ~ .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu {
+      border: 1px solid #ccc;
+      background-color: #c4dbf6;
+      border-top: 0;
+      width: 150px;
+      padding: 5px;
+      position: static;
+      margin-top: -2px;
+      font-size: 18px;
+      a {
+        display: block;
+        text-decoration: none;
+        padding: 5px;
+        color: black;
+        font-family: "Montserrat", sans-serif;
+        &:hover {
+          color: #fff;
+        }
+      }
+      .delete-journal-span {
+        padding: 8px 0;
+        font-family: "Montserrat", sans-serif;
+        margin: 5px 0;
+        &:hover {
+          color: #fff;
+        }
+      }
     }
   }
 }
