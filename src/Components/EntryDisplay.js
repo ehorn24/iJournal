@@ -10,6 +10,9 @@ const EntryDisplay = ({
   journal,
   openEntryModal,
   handleDeleteEntry,
+  confDelEntry,
+  closeConfirmEntry,
+  confirmDeleteEntry,
 }) => {
   const openEntry = (e) => {
     e.cancelBubble = true;
@@ -23,8 +26,43 @@ const EntryDisplay = ({
     handleDeleteEntry(id, journal);
   };
 
+  const openConfirmation = (e) => {
+    e.cancelBubble = true;
+    if (e.stopPropagation) e.stopPropagation();
+    confDelEntry();
+  };
+
   return (
     <>
+      <div
+        className={
+          confirmDeleteEntry
+            ? "confirm-delete-entry show-confirm"
+            : "confirm-delete-entry hide-confirm"
+        }
+      >
+        <p>
+          Are you sure you want to delete this entry? You can never get it
+          back...
+        </p>
+        <button
+          className="keep-entry"
+          onClick={(e) => {
+            e.preventDefault();
+            closeConfirmEntry();
+          }}
+        >
+          No, I'll keep it
+        </button>
+        <button
+          className="delete-entry"
+          onClick={(e) => {
+            deleteEntry(e);
+          }}
+        >
+          Yes, delete it
+        </button>
+      </div>
       <div
         className="entry-div"
         onClick={(e) => {
@@ -50,7 +88,7 @@ const EntryDisplay = ({
         <button
           className="entry-delete-button"
           onClick={(e) => {
-            deleteEntry(e);
+            openConfirmation(e);
           }}
         >
           &times;
