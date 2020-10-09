@@ -83,7 +83,7 @@ export default class App extends Component {
     this.setState({ signup: !this.state.signup });
   };
 
-  //Log In
+  //Log in and log out
   handleLogIn = () => {
     if (
       this.state.username === "" ||
@@ -131,7 +131,6 @@ export default class App extends Component {
     }
   };
 
-  //Log Out
   handleLogOut = (e) => {
     e.preventDefault();
     this.setState({ loggedIn: false, username: "", redirectTo: "/" }, () => {

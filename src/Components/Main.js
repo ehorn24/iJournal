@@ -87,7 +87,7 @@ export default class Main extends Component {
     });
   };
 
-  //Journal Functions
+  //Journal functions
   createNewJournal = () => {
     if (this.state.newJournalName === "" || this.state.newJournalCover === "") {
       this.setState({ newJournalError: true });

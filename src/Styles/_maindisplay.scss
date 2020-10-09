@@ -67,6 +67,7 @@
   letter-spacing: 1px;
 }
 .dropdown-container {
+  max-height: 43px;
   display: inline-block;
   position: absolute;
   text-align: center;
@@ -338,7 +339,7 @@
       border-top: 0;
       width: 150px;
       padding: 5px;
-      position: static;
+      position: relative;
       margin-top: -2px;
       font-size: 18px;
       a {
