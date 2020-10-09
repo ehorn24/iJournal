@@ -59,7 +59,10 @@ const New = ({
     case "edit":
       return (
         <main className="new-journal-main">
-          <h2 className="new-header">Edit this journal</h2>
+          <h2 className="new-header">
+            Edit{" "}
+            {currJournalInfo ? currJournalInfo.journal_name : "this journal"}
+          </h2>
           <form
             className="edit-journal-form"
             action=""
