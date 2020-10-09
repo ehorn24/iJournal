@@ -151,3 +151,52 @@
     }
   }
 }
+
+//Laptop/Desktop
+@media screen and (min-width: 1280px) {
+  .sidebar {
+    .sidebar-header {
+      font-size: 16px;
+    }
+    .sidebar-form {
+      min-height: 210px;
+      .sidebar-ul {
+        list-style: none;
+        float: none;
+        text-align: center;
+        .sidebar-li {
+          padding: 5px;
+          .sidebar-label {
+            margin: 3px;
+            padding: 0 5px;
+            width: 80px;
+            font-size: 14px;
+          }
+          .sidebar-select {
+            padding: 3px;
+            font-size: 14px;
+            min-width: 250px;
+          }
+        }
+      }
+      .sidebar-button {
+        padding: 10px;
+        display: inline-block;
+        position: static;
+        margin: 30px 170px;
+        background-color: #b23850;
+        border-radius: 30px;
+        font-family: "Montserrat", sans-serif;
+        color: white;
+        font-weight: bold;
+        letter-spacing: 1px;
+        width: 80px;
+        font-size: 14px;
+        outline: none;
+        &:hover {
+          border: 2px solid white;
+        }
+      }
+    }
+  }
+}

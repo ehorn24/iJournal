@@ -1,3 +1,4 @@
+//Mobile
 * {
   box-sizing: border-box;
 }
@@ -102,6 +103,7 @@ body {
   }
 }
 
+//Tablet
 @media screen and (min-width: 750px) {
   .tags-input {
     min-height: 30px;
@@ -152,9 +154,10 @@ body {
   }
 }
 
-@media screen and (min-width: 1250px) {
+//Laptop/desktop
+@media screen and (min-width: 1280px) {
   .tags-input {
-    width: 200px;
+    width: 250px;
     input {
       font-size: 14px;
     }

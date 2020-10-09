@@ -307,3 +307,13 @@
     }
   }
 }
+
+//Laptop/desktop
+@media screen and (min-width: 1280px) {
+  .journals-flex {
+    .journal {
+      width: 200px;
+      height: 200px;
+    }
+  }
+}

@@ -59,3 +59,10 @@
 .show-entry {
   visibility: visible;
 }
+
+//Laptop/desktop
+@media screen and (min-width: 1280px) {
+  .modal {
+    top: 55%;
+  }
+}

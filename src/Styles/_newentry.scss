@@ -207,3 +207,55 @@
     }
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .new-entry-div {
+    min-height: 500px;
+    .new-entry-form {
+      width: 90%;
+      margin: 50px auto;
+      ul {
+        li {
+          padding: 10px;
+          margin: 15px;
+          label {
+            font-size: 16px;
+            margin-right: 20px;
+          }
+          .new-entry-input {
+            width: 400px;
+            font-size: 16px;
+            &::placeholder {
+              font-size: 14px;
+            }
+          }
+          .new-entry-tags {
+            display: inline-block;
+          }
+          .new-entry-text-label {
+            display: block;
+            width: auto;
+            text-align: center;
+            margin: 10px 0;
+            position: absolute;
+            top: 200px;
+            right: 230px;
+            font-size: 16px;
+          }
+          .new-entry-textarea {
+            top: 250px;
+            right: 100px;
+            width: 450px;
+            margin: 0 auto;
+            font-size: 16px;
+          }
+        }
+        .add-entry-button {
+          margin: 20px 0px 0 240px;
+          width: 130px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
