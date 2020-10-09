@@ -33,6 +33,8 @@ export default class Main extends Component {
     newJournalError: false,
     newEntryError: false,
     editJournalError: false,
+    confirmDeleteJournal: false,
+    confirmDeleteEntry: false,
   };
 
   componentDidMount() {
@@ -141,6 +143,14 @@ export default class Main extends Component {
     }
   };
 
+  confDelJournal = () => {
+    this.setState({ confirmDeleteJournal: true });
+  };
+
+  closeConfirmJournal = () => {
+    this.setState({ confirmDeleteJournal: false });
+  };
+
   handleDeleteJournal = (journal_id) => {
     deleteJournal(journal_id).then((res) => {
       if (!res.error) {
@@ -150,7 +160,7 @@ export default class Main extends Component {
         const removeEntries = this.props.entries.filter(
           (ent) => !(ent.journal.toString() === journal_id.toString())
         );
-        this.setState({ redirect: "/" }, () => {
+        this.setState({ redirect: "/", confirmDeleteJournal: false }, () => {
           this.setState({ redirect: null });
           this.props.setParentState({ journals: removeJournal });
           this.props.setParentState({ entries: removeEntries });
@@ -206,6 +216,14 @@ export default class Main extends Component {
     }
   };
 
+  confDelEntry = () => {
+    this.setState({ confirmDeleteEntry: true });
+  };
+
+  closeConfirmEntry = () => {
+    this.setState({ confirmDeleteEntry: false });
+  };
+
   handleDeleteEntry = (entry_id, journal_id) => {
     let journal_name = "";
     this.props.journals.map((j) => {
@@ -222,6 +240,7 @@ export default class Main extends Component {
         this.setState(
           {
             redirect: `/journal/${journal_id}/${journal_name}`,
+            confirmDeleteEntry: false,
           },
           () => {
             this.setState({ redirect: null });
@@ -272,6 +291,12 @@ export default class Main extends Component {
                 entryToShow={this.state.entryToShow}
                 handleDeleteEntry={this.handleDeleteEntry}
                 handleDeleteJournal={this.handleDeleteJournal}
+                confirmDeleteJournal={this.state.confirmDeleteJournal}
+                confDelJournal={this.confDelJournal}
+                closeConfirmJournal={this.closeConfirmJournal}
+                confirmDeleteEntry={this.state.confirmDeleteEntry}
+                confDelEntry={this.confDelEntry}
+                closeConfirmEntry={this.closeConfirmEntry}
               />
             </>
           )}
@@ -305,6 +330,12 @@ export default class Main extends Component {
                 entryToShow={this.state.entryToShow}
                 handleDeleteEntry={this.handleDeleteEntry}
                 handleDeleteJournal={this.handleDeleteJournal}
+                confirmDeleteJournal={this.state.confirmDeleteJournal}
+                confDelJournal={this.confDelJournal}
+                closeConfirmJournal={this.closeConfirmJournal}
+                confirmDeleteEntry={this.state.confirmDeleteEntry}
+                confDelEntry={this.confDelEntry}
+                closeConfirmEntry={this.closeConfirmEntry}
               />
             </>
           )}

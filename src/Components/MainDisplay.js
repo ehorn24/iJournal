@@ -18,6 +18,12 @@ const MainDisplay = ({
   entryToShow,
   handleDeleteEntry,
   handleDeleteJournal,
+  confirmDeleteJournal,
+  confDelJournal,
+  closeConfirmJournal,
+  confDelEntry,
+  closeConfirmEntry,
+  confirmDeleteEntry,
 }) => {
   //Get user's selected filters, if any
   let currentFilters = {};
@@ -177,6 +183,37 @@ const MainDisplay = ({
           <div className="maindisplay-div">
             <main className="maindisplay-main">
               <section className="my-journals">
+                <div
+                  className={
+                    confirmDeleteJournal
+                      ? "confirm-delete-message show-confirm"
+                      : "confirm-delete-message hide-confirm"
+                  }
+                >
+                  <p>
+                    Are you sure you want to delete this journal? You can never
+                    get it back...
+                  </p>
+                  <button
+                    className="keep-journal"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      closeConfirmJournal();
+                    }}
+                  >
+                    No, I'll keep it
+                  </button>
+                  <button
+                    className="delete-journal"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleDeleteJournal(match.params.journal_id);
+                    }}
+                  >
+                    Yes, delete it
+                  </button>
+                </div>
+
                 <label className="dropdown-container">
                   <input type="checkbox" />
                   <span>•••</span>
@@ -190,7 +227,7 @@ const MainDisplay = ({
                     <span
                       onClick={(e) => {
                         e.preventDefault();
-                        handleDeleteJournal(match.params.journal_id);
+                        confDelJournal();
                       }}
                       className="delete-journal-span"
                     >
@@ -221,6 +258,9 @@ const MainDisplay = ({
                           journal={x.journal}
                           openEntryModal={openEntryModal}
                           handleDeleteEntry={handleDeleteEntry}
+                          confDelEntry={confDelEntry}
+                          closeConfirmEntry={closeConfirmEntry}
+                          confirmDeleteEntry={confirmDeleteEntry}
                         />
                       );
                     })
@@ -259,6 +299,9 @@ const MainDisplay = ({
                           journal={x.journal}
                           openEntryModal={openEntryModal}
                           handleDeleteEntry={handleDeleteEntry}
+                          confDelEntry={confDelEntry}
+                          closeConfirmEntry={closeConfirmEntry}
+                          confirmDeleteEntry={confirmDeleteEntry}
                         />
                       );
                     }
