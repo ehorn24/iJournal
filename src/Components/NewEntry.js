@@ -53,6 +53,7 @@ const NewEntry = ({
                 Pour your heart out...
               </label>
               <textarea
+                placeholder="Start typing..."
                 className="new-entry-textarea"
                 name="newEntryText"
                 id="newEntryText"
